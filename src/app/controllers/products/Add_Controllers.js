@@ -1,18 +1,7 @@
 const Employee = require('../../models/Employee')
 class AddControllers {
     add(req, res, next) {
-        let name = req.body.name
-        let ssn = req.body.ssn
-        let phone_number = req.body.phone_number
-        let gmail = req.body.gmail
-        let gender = req.body.gender
-        let date_of_birth = req.body.date_of_birth
-        let shift_number = req.body.shift_number
-        let address = req.body.address
-        let position = req.body.position
-        let username = req.body.username
-        let password = req.body.password
-        let isAdmin = req.body.isAdmin
+
         Employee.findOne({
             ssn: ssn
         })
