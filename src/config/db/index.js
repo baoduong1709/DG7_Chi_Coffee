@@ -12,4 +12,3 @@ async function connect() {
 }
 module.exports = { connect }
 
-// mongodb+srv://bao1709:bao17092002@cluster0.ni9fgfo.mongodb.net/?retryWrites=true&w=majority
