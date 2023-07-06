@@ -1,12 +1,12 @@
-const Employee = require('../../models/Employee')
+const Product = require('../../models/Product')
 class DeleteControllers {
     delete(req, res, next) {
         let id = req.body.id
-        Employee.deleteOne({
+        Product.deleteOne({
             _id: id
         })
             .then(data => {
-                res.json('xoa thanh cong')
+                res.json('xoa san pham thanh cong')
             })
             .catch(err => {
                 res.json('loi')

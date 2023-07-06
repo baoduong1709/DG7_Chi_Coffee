@@ -1,26 +1,20 @@
-const Employee = require('../../models/Employee')
+const Product = require('../../models/Product')
 class EditControllers {
     edit(req, res, next) {
         let id = req.body.id
-        let new_name = req.body.name
-        let new_ssn = req.body.ssn
-        let new_phone_number = req.body.phone_number
-        let new_gmail = req.body.gmail
-        let new_gender = req.body.gender
-        let new_date_of_birth = req.body.date_of_birth
-        let new_shift_number = req.body.shift_number
-        let new_address = req.body.address
-        let new_position = req.body.position
-        Employee.findByIdAndUpdate(id, {
-            name: new_name,
-            ssn: new_ssn,
-            phone_number: new_phone_number,
-            gmail: new_gmail,
-            gender: new_gender,
-            date_of_birth: new_date_of_birth,
-            shift_number: new_shift_number,
-            address: new_address,
-            position: new_position,
+        let product_name = req.body.product_name
+        let id_product_type = req.body.id_product_type
+        let old_price = req.body.old_price
+        let new_price = req.body.new_price
+        let product_image = req.body.product_image
+        let product_status = req.body.product_status
+        Product.findByIdAndUpdate(id, {
+            product_name: product_name,
+            id_product_type: id_product_type,
+            old_price: old_price,
+            new_price: new_price,
+            product_image: product_image,
+            product_status: product_status
         })
             .then(data => {
                 res.json('sua thanh cong')

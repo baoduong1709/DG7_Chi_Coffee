@@ -1,43 +1,33 @@
-const Employee = require('../../models/Employee')
+const Product = require('../../models/Product')
 class AddControllers {
     add(req, res, next) {
-
-        Employee.findOne({
-            ssn: ssn
+        let product_name = req.body.product_name
+        let id_product_type = req.body.id_product_type
+        let old_price = req.body.old_price
+        let new_price = req.body.new_price
+        let product_image = req.body.product_image
+        let product_status = req.body.product_status
+        Product.findOne({
+            product_name: product_name
         })
             .then(data => {
                 if (data) {
-                    res.json('nhan vien da ton tai')
+                    res.json('san pham da ton tai')
                 } else {
-                    Employee.findOne({
-                        username: username
+                    Product.create({
+                        product_name: product_name,
+                        id_product_type: id_product_type,
+                        old_price: old_price,
+                        new_price: new_price,
+                        product_image: product_image,
+                        product_status: product_status
                     })
                         .then(data => {
-                            if (data) {
-                                res.json('tai khoan da ton tai')
-                            } else {
-                                Employee.create({
-                                    name: name,
-                                    ssn: ssn,
-                                    phone_number: phone_number,
-                                    gmail: gmail,
-                                    gender: gender,
-                                    date_of_birth: date_of_birth,
-                                    shift_number: shift_number,
-                                    address: address,
-                                    position: position,
-                                    username: username,
-                                    password: password,
-                                    isAdmin: isAdmin
-                                })
-                                    .then(data => {
 
-                                        res.json('da tao nhan vien thanh cong')
-                                    })
-                                    .catch(err => {
-                                        res.json('loi server')
-                                    })
-                            }
+                            res.json('them san pham thanh cong')
+                        })
+                        .catch(err => {
+                            res.json('loi server')
                         })
                 }
             })

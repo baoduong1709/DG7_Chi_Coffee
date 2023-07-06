@@ -1,4 +1,5 @@
 const Employee = require('../../models/Employee')
+const path = require('path');
 class AddControllers {
     add(req, res, next) {
         let name = req.body.name
@@ -18,14 +19,14 @@ class AddControllers {
         })
             .then(data => {
                 if (data) {
-                    res.json('nhan vien da ton tai')
+                    res.status(409).json('nhan vien da ton tai')
                 } else {
                     Employee.findOne({
                         username: username
                     })
                         .then(data => {
                             if (data) {
-                                res.json('tai khoan da ton tai')
+                                res.status(409).json('tai khoan da ton tai')
                             } else {
                                 Employee.create({
                                     name: name,
@@ -42,11 +43,10 @@ class AddControllers {
                                     isAdmin: isAdmin
                                 })
                                     .then(data => {
-
-                                        res.json('da tao nhan vien thanh cong')
+                                        res.status(201).sendFile(path.join(__dirname, '../../views/employee.html'));
                                     })
                                     .catch(err => {
-                                        res.json('loi server')
+                                        res.status(500).json('loi server')
                                     })
                             }
                         })
