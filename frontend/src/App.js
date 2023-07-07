@@ -1,11 +1,13 @@
 import './App.css';
 import bootstrap from 'bootstrap';
-import Header from './components/layouts/header';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header />
+      <BrowserRouter>
+      </BrowserRouter>
+      <h1>Chi Coffee!</h1>
     </>
   );
 }
