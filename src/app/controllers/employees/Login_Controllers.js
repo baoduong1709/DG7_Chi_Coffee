@@ -1,10 +1,10 @@
 const Employee = require('../../models/Employee')
 const path = require('path');
-const jws = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 class LoginControllers {
 
-    login(req, res) {
+    login(req, res, next) {
         let username = req.body.username
         let password = req.body.password
         // let x = [username, password, isAdmin]
@@ -15,23 +15,24 @@ class LoginControllers {
         })
             .then(data => {
                 if (data) {
-                    let token = jws.sign({
+                    let token = jwt.sign({
                         _id: data._id
-                    }, 'mk')
-                    return res.json({
-                        mes: ' thanh cong',
+                    }, 'bao1709')
+                    return res.status(200).json({
+                        message: 'Login successfully!',
                         token: token
                     })
                 } else {
                     console.log(username,password)
-                    res.send('tai khoan hoac mat khau khong chinh xac')
+                    res.status(404).json({message: 'Username or password not correct!'})
                 }
             })
-            .catch()
+            .catch(error => {res.status(500).json({message: 'Some errors occurred while login!'})
+        })
     }
 
     view(req, res) {
-        res.sendFile(path.join(__dirname, '../../views/login.html'));
+        res.sendFile(path.join(__dirname, '../../views/login.html'))
     }
 };
 module.exports = new LoginControllers;
