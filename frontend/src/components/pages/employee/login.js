@@ -3,18 +3,25 @@ import axios from 'axios';
 import logo from '../../../assets/images/logo.png'
 import background from '../../../assets/images/login_background.png'
 
+import { ToastOption } from '../../layouts';
+import { ToastContainer ,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 export default function EmployeeLogin() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const loginRoute = "https://api.escuelajs.co/api/v1/auth/login";
 
 	const validateLogin = () => {
 		if(!username){
-			console.log("Username required!");
+			toast.warning("Chưa nhập tài khoản", ToastOption);
 			return false;
 		}
 		else if(!password){
-			console.log("Password required!");
+			toast.warning("Chưa nhập mật khẩu", ToastOption);
 			return false;
 		}
 		else {
@@ -25,10 +32,19 @@ export default function EmployeeLogin() {
 	const handleLogin = async (event) => {
 		event.preventDefault();
 		if(validateLogin()){
-			let value = {username: username, password: password}
+			let value = {"email": username, "password": password}
 			console.log(value);
-			// const res = await axios.post(loginRoute, value)
-			// console.log(res)
+			const res = await axios.post(loginRoute, value)
+			.then(res => {
+				localStorage.setItem("user", JSON.stringify(res.data));
+				toast.success("Đăng nhập thành công", ToastOption)
+			})
+			.catch(err => {
+				console.log(err.response.status)
+				let status = err.response.status
+				let statusText = err.response.statusText
+				toast.error("Lỗi " + status + ": " + statusText)
+			});
 		}
 	}
 
@@ -54,20 +70,22 @@ export default function EmployeeLogin() {
 								required
 								onChange={e => setUsername(e.target.value)}
 							/>
-							<input type="text"
-								class="form-control border-[#DE4057] border-2 rounded-xl px-3 py-2 mb-3 fw-normal" 
-								type={showPassword? "text":"password"} name="password" id="password" placeholder="Mật khẩu"
-								required
-								onChange={e => setPassword(e.target.value)} 
-								/>
-							<div class="form-check form-check-inline">
-								<input type="checkbox"
-									class="checked:bg-[#DE4057]" 
-									id="showPassword" 
-									checked = {showPassword}
-									onChange={handeShowPassword} 
+							<div class="relative row">
+								<input type="text"
+									class="form-control border-[#DE4057] border-2 rounded-xl px-3 py-2 mb-3 fw-normal" 
+									type={showPassword? "text":"password"} name="password" id="password" placeholder="Mật khẩu"
+									required
+									onChange={e => setPassword(e.target.value)} 
 									/>
-								<label class="form-check-label" for="showPassword"> Hiện mật khẩu</label>
+								<div class="absolute form-check form-check-inline top-3 right-2">
+									<input type="checkbox"
+										class="checked:bg-[#DE4057]" 
+										id="showPassword" 
+										checked = {showPassword}
+										onChange={handeShowPassword} 
+										/>
+									{/* <label class="form-check-label" for="showPassword"> Hiện mật khẩu</label> */}
+								</div>
 							</div>
 							<button type="submit"
 								class="form-control bg-[#DE4057] text-white rounded-lg px-2 py-1 mt-3 mx-auto
@@ -79,10 +97,11 @@ export default function EmployeeLogin() {
 					</div>
 				</div>
 			</div>
-			{/* <div class="collapse md:max-w-1/2 md:visible">
+			<div class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300 md:w-1/2 ">
 				<img src={background} 
 					class="h-full"/>
-			</div> */}
+			</div>
+			<ToastContainer />
 		</div>
     );
 }
