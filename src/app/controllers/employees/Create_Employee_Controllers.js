@@ -1,5 +1,6 @@
 const Employee = require('../../models/Employee')
 const path = require('path');
+const CryptoJS = require("crypto-js");
 class AddControllers {
     async create(req, res, next) {
         let name = req.body.name
@@ -11,7 +12,7 @@ class AddControllers {
         let address = req.body.address
         let position = req.body.position
         let username = req.body.username
-        let password = req.body.password
+        let password = CryptoJS.AES.encrypt(req.body.password, req.body.username).toString()
         let isAdmin = position === 'admin'
         const checkSsn = await Employee.findOne({ssn: ssn})
         const checkUsername = await Employee.findOne({username: username})
@@ -27,7 +28,6 @@ class AddControllers {
             || password==null){
             return res.status(400).json({message: 'Miss information!'})
         }else if(checkSsn){
-            console.log(ssn)
             return res.status(409).json({message: 'User already exists'})
         }else if(checkUsername){
             return res.status(409).json({message: 'Username already exists'})

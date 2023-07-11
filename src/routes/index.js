@@ -5,37 +5,51 @@ const updateEmployeeRouter = require('./employees/updateEmpployee')
 const deleteEmployeeRouter = require('./employees/deleteEmployee')
 const viewEmployeeListRouter = require('./employees/viewEmployeeList')
 const viewEmployeeRouter = require('./employees/viewEmployee')
-
+const jwt = require('jsonwebtoken')
 const addProductRouter = require('./products/add')
 const editProductRouter = require('./products/edit')
 const deleteProductRouter = require('./products/delete')
+const Employee = require('../app/models/Employee')
+const checkLogin = (req, res, next) =>{
+    try{
+        let token = req.body.token
+        let id = jwt.verify(token,'bao1709')
+        Employee.findOne({_id: id})
+        .then((data) =>{
+            if (data){
+                req.data = data
+                next()
+            }else{
+                return res.redirect('/api/v1/auth/employee')
+            }
+        })
+        .catch((err) =>{
 
+        })
 
+    }catch(err){
+        return res.redirect('/api/v1/auth/employee')
+    }
+}
+const checkAdmin = (req, res, next) =>{
+    let isAdmin = req.data.isAdmin
+    if (isAdmin === 'true'){
+        next()
+    }else{
+        res.json('Not permissions')
+    }
 
+}
 
 function route(app) {
-    app.use('/api/v1/employee',(res,req, next) => {
-        try {
-            let token = req.cookies.token
-            let check = jwt.verify(token,bao1709)
-            if(check) {
-                next()
-            }
-        }catch(err) {
-            return res.redirect('/api/v1/auth/employee')
-        }
-    }, ()=>{
         app.use('/api/v1/auth/employee', loginRouter)
-        app.use('/api/v1/employee/create', createEmployeeRouter)
-        app.use('/api/v1/employee/update', updateEmployeeRouter)
-        app.use('/api/v1/employee/delete', deleteEmployeeRouter)
-        app.use('/api/v1/employee/list', viewEmployeeListRouter)
-        app.use('/api/v1/employee', viewEmployeeRouter)
-    
-    
-        app.use('/product/add', addProductRouter)
-        app.use('/product/edit', editProductRouter)
-        app.use('/product/delete', deleteProductRouter)
-    })
+        app.use('/api/v1/employee/create',checkLogin,checkAdmin, createEmployeeRouter)
+        app.use('/api/v1/employee/update',checkLogin,checkAdmin, updateEmployeeRouter)
+        app.use('/api/v1/employee/delete',checkLogin,checkAdmin, deleteEmployeeRouter)
+        app.use('/api/v1/employee/list',checkLogin, viewEmployeeListRouter)
+        app.use('/api/v1/employee',checkLogin, viewEmployeeRouter)   
+        app.use('/product/add',checkLogin, addProductRouter)
+        app.use('/product/edit',checkLogin, editProductRouter)
+        app.use('/product/delete',checkLogin, deleteProductRouter)
 }
 module.exports = route;
