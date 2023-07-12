@@ -1,5 +1,3 @@
-/node_modules
-
-/note.txt
-
-/src/app/controllers/employees/Create_Employee_Controllers.js
+/node_modules/
+/src/
+note.txt
