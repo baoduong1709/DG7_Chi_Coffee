@@ -1,5 +1,4 @@
 const Employee = require('../../../models/Employee')
-const path = require('path');
 const jwt = require('jsonwebtoken')
 const CryptoJS = require("crypto-js");
 class LoginControllers {
