@@ -1,0 +1,18 @@
+/node_modules/
+/src/app/controllers/products/
+/src/app/controllers/employees/Delete_Employee_Controllers
+/src/app/controllers/employees/View_EmployeeList_Controllers
+/src/app/controllers/employees/View_Employee_Controllers
+/src/app/controllers/employees/Update_Employee_Controllers
+/src/app/controllers/employees/Create_Employee_Controllers
+# /src/app/controllers/employees/Login_Employee_Controllers
+/src/routes/customers/
+/src/routes/products/
+# /src/routes/employees/LoginEmployeeRoute/
+/src/routes/employees/CreateEmployeeRoute/
+/src/routes/employees/UpdateEmployeeRoute/
+/src/routes/employees/ViewEmployeeRoute/
+/src/routes/employees/ViewEmployeeListRoute/
+/src/routes/employees/DeleteEmployeeRoute/
+note.txt
+demo.js
