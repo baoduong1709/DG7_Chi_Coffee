@@ -31,12 +31,15 @@ class LoginEmployeeControllers {
                     }
                     
                 } else {
-                    console.log(username,password)
+                    
                     res.status(404).json({message: 'Username not correct!'})
                 }
             })
-            .catch(error => {res.status(500).json({message: 'Some errors occurred while login!'})
+            .catch(error => {
+                res.status(500).json({message: 'Some errors occurred while login!'})
         })
+        
     }
+    
 };
 module.exports = new LoginEmployeeControllers;
