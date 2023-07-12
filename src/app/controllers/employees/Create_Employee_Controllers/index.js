@@ -11,7 +11,7 @@ class AddControllers {
         let address = req.body.address
         let position = req.body.position
         let username = req.body.username
-        let password = CryptoJS.AES.encrypt(req.body.password, req.body.username).toString()
+        let password = CryptoJS.AES.encrypt(req.body.password, 'duonghuybao').toString()
         let isAdmin = position === 'admin'
         const checkSsn = await Employee.findOne({ssn: ssn})
         const checkUsername = await Employee.findOne({username: username})
