@@ -1,5 +1,5 @@
 
-const loginRouter = require('./employees/LoginEmployeeRoute')
+const loginEmployeeRouter = require('./employees/LoginEmployeeRoute')
 const createEmployeeRouter = require('./employees/CreateEmployeeRoute')
 const updateEmployeeRouter = require('./employees/UpdateEmployeeRoute')
 const deleteEmployeeRouter = require('./employees/DeleteEmployeeRoute')
@@ -42,7 +42,7 @@ const checkAdmin = (req, res, next) =>{
 }
 
 function route(app) {
-        app.use('/api/v1/auth/employee', loginRouter)
+        app.use('/api/v1/auth/employee', loginEmployeeRouter)
         app.use('/api/v1/employee/create',checkLogin,checkAdmin, createEmployeeRouter)
         app.use('/api/v1/employee/update',checkLogin,checkAdmin, updateEmployeeRouter)
         app.use('/api/v1/employee/delete',checkLogin,checkAdmin, deleteEmployeeRouter)
