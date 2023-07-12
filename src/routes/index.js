@@ -19,16 +19,11 @@ const checkLogin = (req, res, next) =>{
             if (data){
                 req.data = data
                 next()
-            }else{
-                return res.redirect('/api/v1/auth/employee')
             }
-        })
-        .catch((err) =>{
-
         })
 
     }catch(err){
-        return res.redirect('/api/v1/auth/employee')
+        return res.status(403).json('Not permissions')
     }
 }
 const checkAdmin = (req, res, next) =>{

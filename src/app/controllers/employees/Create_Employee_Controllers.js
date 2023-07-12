@@ -1,5 +1,4 @@
 const Employee = require('../../models/Employee')
-const path = require('path');
 const CryptoJS = require("crypto-js");
 class AddControllers {
     async create(req, res, next) {
@@ -12,16 +11,16 @@ class AddControllers {
         let address = req.body.address
         let position = req.body.position
         let username = req.body.username
-        let password = CryptoJS.AES.encrypt(req.body.password, req.body.username).toString()
+        let password = req.body.password
         let isAdmin = position === 'admin'
         const checkSsn = await Employee.findOne({ssn: ssn})
         const checkUsername = await Employee.findOne({username: username})
         if(name==null
-            || ssn==null 
+            || ssn==null
             || phone_number==null 
             || gender==null 
             || address==null
-            || gmail==null 
+            || gmail==null
             || position==null 
             || date_of_birth == null
             || username==null
@@ -43,7 +42,7 @@ class AddControllers {
                 address: address,
                 position: position,
                 username: username,
-                password: password,
+                password: CryptoJS.AES.encrypt(password,'duonghuybao').toString(),
                 isAdmin: isAdmin
             })
               .then(data => {

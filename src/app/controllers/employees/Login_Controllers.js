@@ -12,19 +12,21 @@ class LoginControllers {
         })
             .then(data => {
                 if (data) {
-                    let bytes  = CryptoJS.AES.decrypt(data.password, username);
+                    let bytes  = CryptoJS.AES.decrypt(data.password, 'duonghuybao');
+                    console.log(bytes)
                     let passwordS = bytes.toString(CryptoJS.enc.Utf8);
-                    console.log(passwordS, passwordC)
                     if (passwordS == passwordC) {
 
                         let token = jwt.sign({
                             _id: data._id,
                         }, 'bao1709')
                         let name = data.name
+                        let isAdmin = data.isAdmin
                         return res.status(200).json({
                             message: 'Login successfully!',
                             token: token,
-                            name: name
+                            name: name,
+                            isAdmin: isAdmin
                         })
                     }else{
                         res.status(404).json({message: 'Password not correct!'})
