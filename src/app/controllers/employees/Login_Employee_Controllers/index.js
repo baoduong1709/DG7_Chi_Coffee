@@ -1,7 +1,7 @@
 const Employee = require('../../../models/Employee')
 const jwt = require('jsonwebtoken')
 const CryptoJS = require("crypto-js");
-class LoginControllers {
+class LoginEmployeeControllers {
 
     login(req, res, next) {
         let username = req.body.username
@@ -39,4 +39,4 @@ class LoginControllers {
         })
     }
 };
-module.exports = new LoginControllers;
+module.exports = new LoginEmployeeControllers;
