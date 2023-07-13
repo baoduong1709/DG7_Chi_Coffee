@@ -1,5 +1,5 @@
 
-const createEmployeeRouter = require('./employees/CreateEmployeeRoute')
+const viewEmployeeListRouter = require('./employees/ViewEmployeeListRoute')
 const jwt = require('jsonwebtoken')
 const Employee = require('../app/models/Employee')
 const checkLogin = (req, res, next) =>{
@@ -34,6 +34,6 @@ const checkAdmin = (req, res, next) =>{
 }
 
 function route(app) {
-        app.use('/api/v1/employee/create',checkLogin,checkAdmin, createEmployeeRouter)
+    app.use('/api/v1/employee/list',checkLogin, viewEmployeeListRouter)
 }
 module.exports = route;
