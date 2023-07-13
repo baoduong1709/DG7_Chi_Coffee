@@ -1,14 +1,14 @@
 
 const loginEmployeeRouter = require('./employees/LoginEmployeeRoute')
-const createEmployeeRouter = require('./employees/CreateEmployeeRoute')
-const updateEmployeeRouter = require('./employees/UpdateEmployeeRoute')
-const deleteEmployeeRouter = require('./employees/DeleteEmployeeRoute')
-const viewEmployeeListRouter = require('./employees/ViewEmployeeListRoute')
-const viewEmployeeRouter = require('./employees/ViewEmployeeRoute')
+// const createEmployeeRouter = require('./employees/CreateEmployeeRoute')
+// const updateEmployeeRouter = require('./employees/UpdateEmployeeRoute')
+// const deleteEmployeeRouter = require('./employees/DeleteEmployeeRoute')
+// const viewEmployeeListRouter = require('./employees/ViewEmployeeListRoute')
+// const viewEmployeeRouter = require('./employees/ViewEmployeeRoute')
 const jwt = require('jsonwebtoken')
-const addProductRouter = require('./products/add')
-const editProductRouter = require('./products/edit')
-const deleteProductRouter = require('./products/delete')
+// const addProductRouter = require('./products/add')
+// const editProductRouter = require('./products/edit')
+// const deleteProductRouter = require('./products/delete')
 const Employee = require('../app/models/Employee')
 const checkLogin = (req, res, next) =>{
     try{
