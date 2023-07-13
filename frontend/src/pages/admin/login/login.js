@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../../../assets/images/logo.png';
+import { useNavigate } from 'react-router';
 
 import { ToastOption } from '../../../components';
 import { ToastContainer ,toast } from 'react-toastify';
@@ -12,15 +13,29 @@ export default function EmployeeLogin() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-	const loginRoute = "https://api.escuelajs.co/api/v1/auth/login";
+    const [isAuth, setIsauth] = useState(false);
 
-    function checkTokenExisted() {
-        const localData = localStorage.getItem("user");
-        if(localData){
-            return true;
-        }
-        return false;
-    }
+	const loginRoute = "http://localhost:5000/api/v1/auth/employee";
+    const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     if(checkTokenExisted && isAuth){
+    //         toast.warning("Bạn phải đăng xuất trước!", ToastOption);
+    //         setTimeout(loadBack, 3000);
+    //     }
+    // }, [])
+
+    // function loadBack() {
+    //     navigate(-1);
+    // }
+
+    // const checkTokenExisted = () => {
+    //     const localData = localStorage.getItem("user");
+    //     if(localData){
+    //         setIsauth(true);
+    //     }
+    //     setIsauth(false);
+    // }
 
 	const validateLogin = () => {
 		if(!username){
@@ -39,19 +54,20 @@ export default function EmployeeLogin() {
 	const handleLogin = async (event) => {
 		event.preventDefault();
 		if(validateLogin()){
-			let value = {"email": username, "password": password}
-			console.log(value);
+			let value = {"username": username, "password": password}
+			// console.log(value);
 			const res = await axios.post(loginRoute, value)
-			.then(res => {
-				localStorage.setItem("user", JSON.stringify(res.data));
-				// toast.success("Đăng nhập thành công", ToastOption)
+            .then(res => {
+                console.log(res.status);
+            	localStorage.setItem("user", JSON.stringify(res.data));
                 window.location.assign("./dashboard");   
-			})
-			.catch(err => {
-				let status = err.response.status
-				let statusText = err.response.statusText
-				toast.error("Lỗi " + status + ": " + statusText)
-			});
+            })
+            .catch(err => {
+            	let status = err.response.status
+            	let data = err.response.data
+            	toast.error("Lỗi " + status + ": " + data, ToastOption)
+                console.log(err);
+            });
 		}
 	}
 
