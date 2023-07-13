@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Customer = new Schema({
-    email: {
+    gmail: {
         type: String,
         index: true,
         unique: true
@@ -18,4 +18,4 @@ const Customer = new Schema({
     address: String,
     bonus_mark: Number
 })
-module.exports = mongoose.model('employees', Customer)
+module.exports = mongoose.model('customers', Customer)
