@@ -5,14 +5,13 @@ const publicRoutes = [
         path: '/admin/login',
         component: AdminLogin
     },
+];
+
+const privateRoutes = [
     {
         path: 'admin/dashboard',
         component: AdminDashBoard
     }
-];
-
-const privateRoutes = [
-    
 ];
 
 export {publicRoutes, privateRoutes};

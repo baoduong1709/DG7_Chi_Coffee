@@ -1,8 +1,10 @@
 import { Fragment } from 'react';
+import { SideBarAdmin } from './sidebar_admin';
 
-function DefaultLayout({ children }) {
+function PrivateLayout({ children }) {
     return (
         <Fragment>
+            <SideBarAdmin />
             <div>
                 <div>{children}</div>
             </div>
@@ -10,4 +12,4 @@ function DefaultLayout({ children }) {
     );
 }
 
-export default DefaultLayout;
+export default PrivateLayout;
