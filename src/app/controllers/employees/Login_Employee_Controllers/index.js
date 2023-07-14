@@ -32,11 +32,11 @@ class LoginEmployeeControllers {
                     
                 } else {
                     
-                    res.status(404).json({message: 'Username not correct!'})
+                    res.status(404).send({message: 'Username not correct!'})
                 }
             })
             .catch(error => {
-                res.status(500).json({message: 'Some errors occurred while login!'})
+                res.status(500).send({message: 'Some errors occurred while login!'})
         })
         
     }
