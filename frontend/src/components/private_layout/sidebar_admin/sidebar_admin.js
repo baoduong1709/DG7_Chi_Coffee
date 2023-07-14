@@ -10,7 +10,6 @@ export default function SideBarAdmin() {
     return(
         <>
             <h1>Xin chào {userData?.name}</h1>
-            <Link to='./{userData?.name}'>link</Link>
         </>
     );
 }
