@@ -27,16 +27,16 @@ class LoginEmployeeControllers {
                             isAdmin: isAdmin
                         })
                     }else{
-                        res.status(404).json({message: 'Password not correct!'})
+                        res.status(404).send('Password not correct!')
                     }
                     
                 } else {
                     
-                    res.status(404).send({message: 'Username not correct!'})
+                    res.status(404).send('Username not correct!')
                 }
             })
             .catch(error => {
-                res.status(500).send({message: 'Some errors occurred while login!'})
+                res.status(500).send('Some errors occurred while login!')
         })
         
     }
