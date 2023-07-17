@@ -19,7 +19,7 @@ class CreateProductControllers {
             product_image == null ||
             product_status == null) {
                 if (dataFile) cloudinary.uploader.destroy(dataFile.filename)
-                return res.json('Vui lòng nhập đầy đủ thông tin')
+                return res.status(400).send('Vui lòng nhập đầy đủ thông tin')
             }else if(checkProductname){
                 if (dataFile) cloudinary.uploader.destroy(dataFile.filename)
                 return res.status(409).send('Tên sản phẩm đã tồn tại')
