@@ -1,4 +1,4 @@
-import '~/assets/css/product_home.css';
+import '~/assets/css/feartureProduct.css';
 
 function Product() {
     return (

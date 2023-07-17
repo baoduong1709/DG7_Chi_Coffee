@@ -2,14 +2,14 @@ import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import '~/assets/css/header.css';
 import { useEffect, useState } from 'react';
-import productApi from '~/api/productTypeApi';
+import productTypeApi from '~/api/productTypeApi';
 
 function Header() {
     const [productType, setProductType] = useState([]);
     useEffect(() => {
         const fetchProductType = async () => {
             try {
-                const response = await productApi.getAll();
+                const response = await productTypeApi.getAll();
 
                 setProductType(response);
             } catch (error) {
@@ -30,12 +30,14 @@ function Header() {
                 <div className="ulHeader">
                     <ul>
                         {productType.map((product) => (
-                            <li className="liItem dis" key={product.id}>
-                                {product.nameDisplay}
-                            </li>
+                            <Link to={`/product/${product.id}`}>
+                                <li className="liItem dis" key={product.id}>
+                                    {product.nameDisplay}
+                                </li>
+                            </Link>
                         ))}
                         <li className="liItem ">
-                            <Link to="/Login">ĐĂNG NHẬP</Link>
+                            <Link to="/login">ĐĂNG NHẬP</Link>
                         </li>
                     </ul>
                 </div>
