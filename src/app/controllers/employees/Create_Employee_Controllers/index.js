@@ -1,6 +1,6 @@
 const Employee = require('../../../models/Employee')
 const CryptoJS = require("crypto-js");
-class AddControllers {
+class CreateEmployeeControllers {
     async create(req, res, next) {
         let name = req.body.name
         let ssn = req.body.ssn
@@ -25,11 +25,11 @@ class AddControllers {
             || date_of_birth == null
             || username==null
             || password==null){
-            return res.status(400).json({message: 'Miss information!'})
+            return res.status(400).send('Nhập thêm thông tin')
         }else if(checkSsn){
-            return res.status(409).json({message: 'User already exists'})
+            return res.status(409).send('Nhân viên đã tồn tại')
         }else if(checkUsername){
-            return res.status(409).json({message: 'Username already exists'})
+            return res.status(409).send('Tài khoản đã tồn tại')
 
         }else{
             Employee.create({
@@ -46,12 +46,12 @@ class AddControllers {
                 isAdmin: isAdmin
             })
               .then(data => {
-                    res.status(200).json({message: 'Account create successfully'});
+                    res.status(200).send('Đã thêm nhân viên thành công');
                 })
               .catch(err => {
-                    res.status(500).json({message:  `Some errors occurred while creating an account!`})
+                    res.status(500).send('Lỗi server')
                 })
         }
     }
 };
-module.exports = new AddControllers;
+module.exports = new CreateEmployeeControllers;
