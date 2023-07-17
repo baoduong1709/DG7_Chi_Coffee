@@ -1,11 +1,10 @@
 
 const viewProductRouter = require('./products/ViewProductRoute')
-const uploadsImageRouter = require('./image/UploadImageRoute')
+const createProductRouter = require('./products/CreateProductRoute')
 
-const fileUploader = require('../config/cloudinary');
 const uploadCloud = require('../config/cloudinary');
 function route(app) {
         app.use('/api/v1/product/view', viewProductRouter)
-        app.use('/api/v1/uploads',uploadCloud.single('image'), uploadsImageRouter)
+        app.use('/api/v1/product/create',uploadCloud.single('product_image'), createProductRouter)
 }
 module.exports = route;
