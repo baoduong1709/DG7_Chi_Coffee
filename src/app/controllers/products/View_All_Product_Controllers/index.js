@@ -1,5 +1,5 @@
 const Product = require('../../../models/Product');
-class ViewProductControllers {
+class ViewAllProductControllers {
     
     view(req, res,next) {
         Product.find({})
@@ -11,4 +11,4 @@ class ViewProductControllers {
         })
     };
 }
-module.exports = new ViewProductControllers;
+module.exports = new ViewAllProductControllers;
