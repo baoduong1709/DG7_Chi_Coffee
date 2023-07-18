@@ -1,4 +1,4 @@
-
+const createEmployeeRouter = require('./employees/CreateEmployeeRoute')
 const viewProductDetailsRouter = require('./products/ViewProductDetailsRoute')
 const viewAllProductRouter = require('./products/ViewAllProductRoute')
 const createProductRouter = require('./products/CreateProductRoute')
@@ -43,5 +43,6 @@ function route(app) {
         app.use('/api/v1/product/details', viewProductDetailsRouter)
         app.use('/api/v1/product/create',uploadCloud.single('product_image'), createProductRouter)
         app.use('/api/v1/auth/employee', loginEmployeeRouter)
+        app.use('/api/v1/employee/create',checkLogin,checkAdmin, createEmployeeRouter)
 }
 module.exports = route;
