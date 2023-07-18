@@ -1,4 +1,4 @@
-
+const viewAllProductRouter = require('./products/ViewAllProductRoute')
 const loginEmployeeRouter = require('./employees/LoginEmployeeRoute')
 const jwt = require('jsonwebtoken')
 const Employee = require('../app/models/Employee')
@@ -36,5 +36,6 @@ const checkAdmin = (req, res, next) =>{
 
 function route(app) {
         app.use('/api/v1/auth/employee', loginEmployeeRouter)
+        app.use('/api/v1/product/view', viewAllProductRouter)
 }
 module.exports = route;
