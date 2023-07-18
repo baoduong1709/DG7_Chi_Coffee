@@ -1,8 +1,23 @@
 import Home from '~/pages/customer/home';
+import { AdminLogin, AdminDashBoard } from "../pages/admin";
 
-//Public dùng cho route không cần đăng nhập vẫn xem được
-const publicRoutes = [{ path: '/', component: Home }];
-// Private dùng cho route đăng nhập mới xem được, nếu không đăng nhập được thì sẽ chuyển qua trang login
-const privateRoutes = [];
+const publicRoutes = [
+    {   
+        path: '/',
+        component: Home
+    },
+    {
+        path: '/admin/login',
+        component: AdminLogin,
+        layout: null
+    },
+];
+
+const privateRoutes = [
+    {
+        path: 'admin/dashboard',
+        component: AdminDashBoard
+    }
+];
 
 export { publicRoutes, privateRoutes };
