@@ -1,6 +1,11 @@
+import Home from '~/pages/customer/home';
 import { AdminLogin, AdminDashBoard } from "../pages/admin";
 
 const publicRoutes = [
+    {   
+        path: '/',
+        component: Home
+    },
     {
         path: '/admin/login',
         component: AdminLogin
@@ -14,4 +19,4 @@ const privateRoutes = [
     }
 ];
 
-export {publicRoutes, privateRoutes};
+export { publicRoutes, privateRoutes };
