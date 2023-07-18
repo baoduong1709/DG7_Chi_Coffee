@@ -26,7 +26,8 @@
 }
 
 #logo {
-    margin-top: 1.25rem; 
+    margin-top: 1.25rem;
+    min-width: 180px; 
     max-width: 225px;
 }
 
@@ -34,8 +35,8 @@
     padding-top: 0.5rem; 
     margin-top: 1.25rem; 
     margin-bottom: 0.5rem; 
-    font-size: 1.25rem;
-    line-height: 1.75rem; 
+    font-size: 18px;
+    line-height: 24px; 
     font-weight: 700; 
     text-align: center; 
     text-transform: uppercase; 
@@ -63,14 +64,16 @@
 }
 
 button#submit {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem; 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
     padding-left: 0.5rem;
     padding-right: 0.5rem; 
     margin-top: 0.75rem; 
-    margin-left: 4rem;
-    margin-right: 4rem;
-    border-radius: 0.5rem; 
+    margin-left: 6rem;
+    margin-right: 6rem;
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #DE4057;
     color: #ffffff; 
     background: #DE4057;
     
@@ -86,14 +89,15 @@ button#submit:active {
 }
 
 input {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem; 
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
     padding-left: 0.75rem;
     padding-right: 0.75rem; 
     margin-top: 0.5rem; 
     margin-bottom: 0.5rem; 
+    border-style: solid;
     border-radius: 0.75rem; 
-    border-width: 2px; 
+    border-width: 2px;
     border-color: #DE4057;
     min-width: 250px;
 }

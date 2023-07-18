@@ -8,7 +8,8 @@ const publicRoutes = [
     },
     {
         path: '/admin/login',
-        component: AdminLogin
+        component: AdminLogin,
+        layout: null
     },
 ];
 
