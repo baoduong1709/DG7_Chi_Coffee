@@ -1,6 +1,6 @@
 .menu-section {
-    background-color: antiquewhite;
     overflow: hidden;
+
 }
 
 .container-content {
@@ -15,6 +15,7 @@
     font-size: 45px;
     font-weight: 500;
     text-align: center;
+    color: var(--primary);
 }
 
 .menu-list {
@@ -26,8 +27,6 @@
     width: 30%;
     height: 510px;
     padding: 0 8px;
-    border: solid 1px #cccccc;
-    border-radius: 15px;
     background-color: #fff;
     margin: 8px 8px;
 }
@@ -35,13 +34,16 @@
 .menu-item:hover {
     transition: box-shadow .25s;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2), 0 4px 15px 0 rgba(0, 0, 0, .19);
+    border: solid 1px #cccccc;
+    border-radius: 15px;
     text-decoration: none;
     border-radius: 15px;
+
 }
 
 .conent-heading:hover {
     cursor: pointer;
-    color: #FF1919;
+    color: var(--primary);
 }
 
 .menu-item-img {
@@ -56,6 +58,7 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.6rem;
+    color: #333;
 
 }
 
