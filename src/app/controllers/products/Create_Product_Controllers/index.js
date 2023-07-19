@@ -5,11 +5,16 @@ const cloudinary = require('cloudinary')
 class CreateProductControllers {
     async create(req, res, next) {
         const dataFile = req.file
+        console.log(dataFile)
+        if (dataFile === undefined){
+            return res.status(400).send('Vui lòng chọn hình ảnh')
+        }
         let product_name = req.body.product_name
         let id_product_type = req.body.id_product_type
         let old_price = req.body.old_price
         let new_price = req.body.new_price
         let product_image = req.file.path
+        let product_image_name = req.file.filename
         let product_status = req.body.product_status
         const checkProductname = await Product.findOne({product_name: product_name})
         if (product_name == null||
@@ -30,6 +35,7 @@ class CreateProductControllers {
                     old_price: old_price,
                     new_price: new_price,
                     product_image: product_image,
+                    product_image_name: product_image_name,
                     product_status: product_status
                 })
                 .then(data => {
