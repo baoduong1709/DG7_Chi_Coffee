@@ -1,12 +1,12 @@
-const Employee = require('../../../models/Employee')
+const Customer = require('../../../models/Customer')
 const jwt = require('jsonwebtoken')
 const CryptoJS = require("crypto-js");
-class LoginEmployeeControllers {
+class LoginCustomerControllers {
 
     login(req, res, next) {
         let username = req.body.username
         let passwordC = req.body.password
-        Employee.findOne({
+        Customer.findOne({
             username: username
         })
             .then(data => {
@@ -19,12 +19,10 @@ class LoginEmployeeControllers {
                             _id: data._id,
                         }, 'bao1709')
                         let name = data.name
-                        let isAdmin = data.isAdmin
                         return res.status(200).json({
                             message: 'Login successfully!',
                             token: token,
                             name: name,
-                            isAdmin: isAdmin
                         })
                     }else{
                         res.status(404).send('Sai mật khẩu!')
@@ -42,4 +40,4 @@ class LoginEmployeeControllers {
     }
     
 };
-module.exports = new LoginEmployeeControllers;
+module.exports = new LoginCustomerControllers;

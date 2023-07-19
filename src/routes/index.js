@@ -5,6 +5,8 @@ const createProductRouter = require('./products/CreateProductRoute')
 const loginEmployeeRouter = require('./employees/LoginEmployeeRoute')
 const viewEmployeeListRouter = require('./employees/ViewEmployeeListRoute')
 const viewAllProductTypeRouter =  require('./product_types/ViewAllProductTypeRoute')
+const loginCustomerRouter = require('./customers/LoginCustomerRoute')
+const createCustomerRouter = require('./customers/CreateCustomerRoute')
 const jwt = require('jsonwebtoken')
 const Employee = require('../app/models/Employee')
 const checkLogin = (req, res, next) =>{
@@ -47,5 +49,7 @@ function route(app) {
     app.use('/api/v1/auth/employee', loginEmployeeRouter)
     app.use('/api/v1/employee/create',checkLogin,checkAdmin, createEmployeeRouter)
     app.use('/api/v1/employee',checkLogin, viewEmployeeListRouter)
+    app.use('/api/v1/auth/customer', loginCustomerRouter)
+    app.use('/api/v1/customer/create', createCustomerRouter)
 }
 module.exports = route;
