@@ -1,6 +1,5 @@
 
 const createEmployeeRouter = require('./employees/CreateEmployeeRoute')
-const viewProductDetailsRouter = require('./products/ViewProductDetailsRoute')
 const viewAllProductRouter = require('./products/ViewAllProductRoute')
 const createProductRouter = require('./products/CreateProductRoute')
 const loginEmployeeRouter = require('./employees/LoginEmployeeRoute')
@@ -42,8 +41,7 @@ const checkAdmin = (req, res, next) =>{
 
 const uploadCloud = require('../config/cloudinary');
 function route(app) {
-    app.use('/api/v1/product/view', viewAllProductRouter)
-    app.use('/api/v1/product/details', viewProductDetailsRouter)
+    app.use('/api/v1/product', viewAllProductRouter)
     app.use('/api/v1/product/create',uploadCloud.single('product_image'), createProductRouter)
     app.use('/api/v1/product-type/view', viewAllProductTypeRouter)
     app.use('/api/v1/auth/employee', loginEmployeeRouter)

@@ -3,7 +3,7 @@ const Product = require('../../../models/Product')
 class ViewProductDetailsControllers {
     
     async view(req, res, next) {
-        let id =req.query._id
+        let id =req.params.id
         console.log(id)
         const product= await Product.findById(id)
         if (!product) {
