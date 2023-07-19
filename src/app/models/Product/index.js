@@ -9,6 +9,7 @@ const Product = new Schema({
     product_image: String,
     product_image_name: String,
     product_status: String,
+    description: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 })
