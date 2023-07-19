@@ -43,9 +43,9 @@ const uploadCloud = require('../config/cloudinary');
 function route(app) {
     app.use('/api/v1/product', viewAllProductRouter)
     app.use('/api/v1/product/create',uploadCloud.single('product_image'), createProductRouter)
-    app.use('/api/v1/product-type/view', viewAllProductTypeRouter)
+    app.use('/api/v1/product-type', viewAllProductTypeRouter)
     app.use('/api/v1/auth/employee', loginEmployeeRouter)
     app.use('/api/v1/employee/create',checkLogin,checkAdmin, createEmployeeRouter)
-    app.use('/api/v1/employee/list',checkLogin, viewEmployeeListRouter)
+    app.use('/api/v1/employee',checkLogin, viewEmployeeListRouter)
 }
 module.exports = route;
