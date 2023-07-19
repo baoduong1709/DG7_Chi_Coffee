@@ -1,8 +1,9 @@
 import images from '~/assets/images';
 import { Link } from 'react-router-dom';
-import '~/assets/css/header.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import productTypeApi from '~/api/productTypeApi';
+import '~/assets/css/header.css';
 
 function Header() {
     const [productType, setProductType] = useState([]);
@@ -19,6 +20,13 @@ function Header() {
         fetchProductType();
     }, []);
 
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+        }
+    });
     return (
         <header className="wrapper">
             <div className="inner">

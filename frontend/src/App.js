@@ -1,17 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from '~/route';
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { publicRoutes, privateRoutes } from './route';
 import { Fragment } from 'react';
-import DefaultLayout from '~/components/defaultLayout';
+import { DefaultLayout, PrivateLayout } from './components';
 
 function App() {
+    const [userData, setUserData] = useState('');
+    useEffect(() => {
+        setUserData(() => JSON.parse(localStorage.getItem('user')));
+    }, [userData]);
+
     return (
-        <Router>
-            <div className="App">
+        <>
+            <BrowserRouter>
                 <Routes>
+                    (!userData)?
                     {publicRoutes?.map((route, index) => {
                         const Layout = route.layout === null ? Fragment : DefaultLayout;
-                        //router.layuot là undefined bởi vì routes/index.js không cấu hình layuot gì ở đây cả, mặc định nó sẽ lấy DefaultLayout.
-                        // nếu mà layout bằng null dùng Fragment ngược lại thì lấy DefaultLayout.
                         const Page = route.component;
                         return (
                             <Route
@@ -19,7 +24,22 @@ function App() {
                                 path={route.path}
                                 element={
                                     <Layout>
-                                        {/* {Page trở thành children của Layuot} */}
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
+                    :
+                    {privateRoutes?.map((route, index) => {
+                        const Layout = route.layout === null ? Fragment : PrivateLayout;
+                        const Page = route.component;
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
                                         <Page />
                                     </Layout>
                                 }
@@ -27,8 +47,8 @@ function App() {
                         );
                     })}
                 </Routes>
-            </div>
-        </Router>
+            </BrowserRouter>
+        </>
     );
 }
 

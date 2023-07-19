@@ -40,8 +40,8 @@ function Coffee() {
                                         />
                                     </div>
                                     <div className="menu-content ">
-                                        <h3 className="conent-heading">TRÀ SEN VÀNG</h3>
-                                        <p>45.000đ</p>
+                                        <h3 className="conent-heading">{Productitem.name}TRÀ SEN VÀNG</h3>
+                                        <p>{Productitem.newPrice}</p>
                                         <div className="item-btn">
                                             <button className="btn btn-danger btn-add-cart" type="button">
                                                 <i className="fa fa-shopping-cart"></i>
