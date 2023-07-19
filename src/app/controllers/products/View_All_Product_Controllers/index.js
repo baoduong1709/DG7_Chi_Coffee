@@ -2,6 +2,10 @@ const Product = require('../../../models/Product');
 class ViewAllProductControllers {
     
     view(req, res,next) {
+        let x = req.params.id
+        console.log(x);
+
+        console.log(req.query)
         Product.find({})
         .then(products => {
             res.status(200).json(products)
