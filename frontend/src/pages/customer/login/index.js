@@ -2,8 +2,9 @@ import images from '~/assets/images';
 import { useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { useNavigate } from 'react-router-dom';
-import '~/assets/css/loginCustomer.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import '~/assets/css/loginCustomer.css';
 
 function Login() {
     const navigate = useNavigate();
@@ -46,14 +47,17 @@ function Login() {
             .then((result) => {
                 console.log(result.data);
                 let user = JSON.parse(result.config.data);
-
                 localStorage.setItem('token', JSON.stringify(result.data));
                 localStorage.setItem('username', user.username);
                 navigate('/');
             })
             .catch((error) => {
                 console.log(error);
-                alert('Tài khoản không chính xác');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Tài khoản không chính xác',
+                    timer: 3000,
+                });
             });
     };
 
@@ -64,14 +68,14 @@ function Login() {
     };
 
     return (
-        <section className="vh-100" style={{ backgroundColor: '#de4057' }}>
+        <section className="vh-100 ">
             <div
                 className=" container py-5 h-100 "
                 style={{ minWidth: 'unset', paddingLeft: 'unset', paddingRight: 'unset' }}
             >
                 <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col col-xl-10">
-                        <div className="card" style={{ borderRadius: '1rem' }}>
+                    <div className="col col-xl-10 ">
+                        <div className="card " style={{ borderRadius: '1rem', boxShadow: 'rgba(0, 0, 0, 0.15)' }}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img

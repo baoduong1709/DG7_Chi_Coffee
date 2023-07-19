@@ -7,14 +7,12 @@ import '~/assets/css/detailsProduct.css';
 
 function DetailsPage() {
     const { id } = useParams();
-
     const [detail, setDetail] = useState([]);
     useEffect(() => {
         const fetchDetails = async () => {
             try {
                 const response = await productApi.get(id);
                 setDetail(response);
-                console.log(response);
             } catch (err) {
                 console.log(err);
             }
@@ -38,20 +36,16 @@ function DetailsPage() {
         <div className="content-product-details">
             <div className="details-item">
                 <div className="content-img">
-                    <img
-                        className="img-item"
-                        src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/TRA-SEN-VANG-CN-5.1.png"
-                        alt=""
-                    />
+                    <img className="img-item" src={detail.product_image} alt={detail.product_image_name} />
                 </div>
                 <div className="content-info">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">Trang Chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item href={`/product/${detail.idProductType}`}>Sản Phẩm</Breadcrumb.Item>
-                        <Breadcrumb.Item active>{detail.name}</Breadcrumb.Item>
+                        <Breadcrumb.Item href={`/product/${detail.id_product_type}`}>Sản Phẩm</Breadcrumb.Item>
+                        <Breadcrumb.Item active>{detail.product_name}</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h1 className="name-item">{detail.name}</h1>
-                    <div className="info-price">{detail.newPrice * number}</div>
+                    <h1 className="name-item">{detail.product_name}</h1>
+                    <div className="info-price">{detail.new_price}</div>
                     <div className="info-quantity">
                         <label>Số Lượng</label>
                         <div className="add-item">
@@ -83,10 +77,7 @@ function DetailsPage() {
                         </p>
                     </div>
                     <div className="col-md-4 col-sm-4 col-xs-12 info-image">
-                        <img
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/TRA-SEN-VANG-CN-5.1.png"
-                            alt=""
-                        />
+                        <img src={detail.product_image} alt={detail.product_image_name} />
                     </div>
                 </div>
             </div>

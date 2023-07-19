@@ -1,8 +1,9 @@
 import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import productTypeApi from '~/api/productTypeApi';
+
 import '~/assets/css/header.css';
 
 function Header() {
@@ -11,7 +12,6 @@ function Header() {
         const fetchProductType = async () => {
             try {
                 const response = await productTypeApi.getAll();
-
                 setProductType(response);
             } catch (error) {
                 console.log(error);
@@ -20,13 +20,13 @@ function Header() {
         fetchProductType();
     }, []);
 
-    const navigate = useNavigate();
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            navigate('/login');
-        }
-    });
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token');
+    //     if (!token) {
+    //         navigate('/login');
+    //     }
+    // });
     return (
         <header className="wrapper">
             <div className="inner">
@@ -38,13 +38,11 @@ function Header() {
                 <div className="ulHeader">
                     <ul>
                         {productType.map((product) => (
-                            <Link to={`/product/${product.id}`}>
-                                <li className="liItem dis" key={product.id}>
-                                    {product.nameDisplay}
-                                </li>
-                            </Link>
+                            <li className="liItem dis" key={product._id}>
+                                <Link to={`/product/${product._id}`}>{product.name_display}</Link>
+                            </li>
                         ))}
-                        <li className="liItem ">
+                        <li className="liItem dn ">
                             <Link to="/login">ĐĂNG NHẬP</Link>
                         </li>
                     </ul>

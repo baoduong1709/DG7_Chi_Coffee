@@ -1,6 +1,6 @@
 .wrapper {
     height: 100px;
-    display: flex;
+    /* display: flex; */
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     position: sticky;
@@ -20,10 +20,12 @@ a {
 }
 
 .inner {
-    width: 100%;
+    width: 1200px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ulHeader,
@@ -38,7 +40,11 @@ a {
     list-style: none;
 }
 
-.dis {
-    position: relative;
-    right: 212px;
+li.liItem.dis {
+    margin-right: 70px;
+}
+
+.dn {
+    margin-left: 44px;
+    padding: unset;
 }

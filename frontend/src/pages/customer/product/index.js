@@ -5,15 +5,12 @@ import '~/assets/css/product.css';
 
 function Coffee() {
     const { id } = useParams();
-
+    console.log(id);
     const [product, setProduct] = useState([]);
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const params = {
-                    idProductType: id,
-                };
-                const response = await productApi.getAll(params);
+                const response = await productApi.getIdAll(id);
                 console.log(response);
                 setProduct(response);
             } catch (error) {
@@ -30,18 +27,18 @@ function Coffee() {
                 <div className="product-list">
                     {product.map((Productitem) => (
                         <div className="menu-item item">
-                            <Link to={`/product/details/${Productitem.id}`}>
+                            <Link to={`/product/details/${Productitem._id}`}>
                                 <Fragment>
                                     <div className="item-img">
                                         <img
                                             className="menu-item-img"
-                                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/TRA-SEN-VANG-CN-5.1.png"
+                                            src={Productitem.product_image}
                                             alt="Trà sen vàng"
                                         />
                                     </div>
                                     <div className="menu-content ">
-                                        <h3 className="conent-heading">{Productitem.name}TRÀ SEN VÀNG</h3>
-                                        <p>{Productitem.newPrice}</p>
+                                        <h3 className="conent-heading">{Productitem.product_name}</h3>
+                                        <p>{Productitem.new_price}</p>
                                         <div className="item-btn">
                                             <button className="btn btn-danger btn-add-cart" type="button">
                                                 <i className="fa fa-shopping-cart"></i>
