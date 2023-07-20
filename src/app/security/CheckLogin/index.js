@@ -7,9 +7,7 @@ class checkLogin{
             if (token == undefined){
                 return res.send('Chưa đăng nhập')
             }
-            console.log(token)
             let id = jwt.verify(token,'bao1709')
-            console.log(id)
             Employee.findOne({_id: id})
             .then((data) =>{
                 if (data){
