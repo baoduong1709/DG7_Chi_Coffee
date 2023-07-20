@@ -8,6 +8,7 @@ class LoginEmployeeControllers {
         let passwordC = req.body.password
         Employee.findOne({
             username: username
+            
         })
             .then(data => {
                 if (data) {
