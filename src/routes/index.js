@@ -19,16 +19,14 @@ const checkLogin = (req, res, next) =>{
                 req.data = data
                 next()
             }else{
-                return res.redirect('/api/v1/auth/employee')
+                return res.send('Tài khoản không tồn tại')
             }
         })
         .catch((err) =>{
-
+            return res.send('Tài khoản không tồn tại')
         })
 
-    }catch(err){
-        return res.redirect('/api/v1/auth/employee')
-    }
+    }catch(err){}
 }
 const checkAdmin = (req, res, next) =>{
     let isAdmin = req.data.isAdmin

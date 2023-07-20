@@ -36,7 +36,7 @@ class LoginEmployeeControllers {
                 }
             })
             .catch(error => {
-                res.status(500).send('Tài khoản không tồn tại!')
+                res.status(500).send('Lỗi server!')
         })
         
     }
