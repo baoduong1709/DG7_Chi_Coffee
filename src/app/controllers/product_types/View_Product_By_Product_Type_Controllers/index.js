@@ -10,7 +10,6 @@ class ViewProductByProductTypeControllers {
                 return res.status(404).send('Loại sản phẩm không tồn tại')
             }
             res.status(200).json(product)
-            console.log(product)
         })
         .catch(err => {
             res.status(500).send('Lỗi server')

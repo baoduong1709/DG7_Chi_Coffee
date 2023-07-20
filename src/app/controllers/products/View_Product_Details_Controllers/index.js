@@ -7,14 +7,14 @@ class ViewProductDetailsControllers {
         console.log(id)
         const product= await Product.findById(id)
         if (!product) {
-            return res.status(404).json({message:`Cannot find account with id=${id}. Maybe this account was not found!`});
+            return res.status(404).send('Sản phẩm không tồn tại')
         }
         await Product.findById(id)
         .then(data => {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.status(500).json({message:'Some errors occurred while retrieving accounts!'})
+            res.status(500).send('Lỗi server')
         })
 
     };
