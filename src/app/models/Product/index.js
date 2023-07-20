@@ -7,6 +7,6 @@ const Product = new Schema({
     old_price: String,
     new_price: String,
     product_image: String,
-    product_status: String
+    product_status: String,
 })
 module.exports = mongoose.model('products', Product)
