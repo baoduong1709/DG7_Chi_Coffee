@@ -1,5 +1,5 @@
 import Home from '~/pages/customer/home';
-import { AdminLogin, AdminDashBoard } from "../pages/admin";
+import { AdminLogin, AdminDashBoard, EmployeeManaging } from "../pages/admin";
 
 const publicRoutes = [
     {   
@@ -17,6 +17,10 @@ const privateRoutes = [
     {
         path: 'admin/dashboard',
         component: AdminDashBoard
+    },
+    {
+        path: 'admin/employee',
+        component: EmployeeManaging
     }
 ];
 

@@ -69,7 +69,7 @@ export default function EmployeeLogin() {
     return(
         <div className="container">
             <div className="app-wrapper" id="form-control">
-                <div className="content">
+                <div className="content" id="content-login">
                     <img id="logo" src={logo} />
                     <div className="text-title">Đăng nhập <br /> Admin</div>
                     <div className="form-group">

@@ -19,7 +19,7 @@
     max-height:100vh;
 }
 
-.content {
+.content#content-login {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
