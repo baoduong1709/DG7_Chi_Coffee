@@ -4,10 +4,10 @@ const CryptoJS = require("crypto-js");
 class LoginCustomerControllers {
 
     login(req, res, next) {
-        let username = req.body.username
+        let gmail = req.body.gmail
         let passwordC = req.body.password
         Customer.findOne({
-            username: username
+            gmail: gmail
         })
             .then(data => {
                 if (data) {
@@ -19,6 +19,7 @@ class LoginCustomerControllers {
                             _id: data._id,
                         }, 'bao1709')
                         let name = data.name
+                        console.log(data)
                         return res.status(200).json({
                             message: 'Login successfully!',
                             token: token,
