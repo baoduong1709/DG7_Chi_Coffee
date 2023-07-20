@@ -2,7 +2,7 @@ const Employee = require('../../../models/Employee')
 class UpdateEmployeeControllers {
     async update(req, res, next) {
         let id = req.params.id
-        console.log(id)
+        console.log(req.body)
         let new_name = req.body.name
         let new_phone_number = req.body.phone_number
         let new_gmail = req.body.gmail
@@ -11,6 +11,7 @@ class UpdateEmployeeControllers {
         let new_shift_number = req.body.shift_number
         let new_address = req.body.address
         let new_position = req.body.position
+        let isAdmin = new_position === 'admin'
         const checkId= await Employee.findById(id)
         if(!checkId){
             return res.status(404).send('Nhân viên không tồn tại');
@@ -35,6 +36,7 @@ class UpdateEmployeeControllers {
             shift_number: new_shift_number,
             address: new_address,
             position: new_position,
+            isAdmin: isAdmin
         })
             .then(data => {
                 res.status(200).send('Cập nhật thành công')
