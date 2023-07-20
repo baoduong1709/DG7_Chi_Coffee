@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function EmployeeManaging() {
+export default function ProductManaging() {
     return(
         <></>
     );

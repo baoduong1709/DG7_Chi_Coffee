@@ -63,7 +63,7 @@ const AdminSide = [
     {
         id: 4,
         svg: faMoneyBills,
-        route: "../admin/dashboard",
+        route: "../admin/bill",
         name: "Hoá đơn"
     },
     {
@@ -84,45 +84,36 @@ const EmployeeSide = [
     {
         id: 7,
         svg: faMugSaucer,
-        route: "../admin/dashboard",
+        route: "../admin/order",
         name: "Đặt hàng"
     },
     {
         id: 4,
         svg: faMoneyBills,
-        route: "../admin/dashboard",
+        route: "../admin/bill",
         name: "Hoá đơn"
     },
     {
         id: 5,
         svg: faGear,
-        route: "../admin/dashboard",
+        route: "../admin/setting",
         name: "Cài đặt"
     },
     {
         id: 6,
         svg: faRightFromBracket,
-        route: "../admin/dashboard",
+        route: "../logout",
         name: "Đăng xuất"
     }
 ];
 
-export default function SideBarAdmin() {
-    const [userData, setUserData] = useState('');
+export default function SideBarAdmin({ userData }) {
     const [selected, setSelected] = useState("Tổng quan");
-    // const { collapseSidebar, toggleSidebar, collapsed, broken } = useProSidebar();
-
     const [ collapsed, setCollapsed ] = useState(false);
     const [ toggled, setToggled ] = useState(false);
     const [ broken, setBroken ] = useState(false);
 
-    
-    useEffect(()=>{
-        setUserData(() => JSON.parse(localStorage.getItem("user")))
-    },[])
-
     let routeSide = userData.isAdmin === "true"?AdminSide:EmployeeSide;
-    // console.log(routeSide);
 
     return(
         <Box
@@ -141,7 +132,6 @@ export default function SideBarAdmin() {
                 backgroundColor: "transparent !important",
                 },
                 "& .menu-item": {
-                // padding: "5px 35px 5px 20px !important",
                 backgroundColor: "transparent !important",
                 },
                 "& .menu-anchor": {
@@ -175,15 +165,18 @@ export default function SideBarAdmin() {
                         color="primary.main"
                         style={{
                             margin: "10px 0 20px 0",
-                            // color: colors.grey[100],
                         }}
                         >
                         {!collapsed && (
                             <Box
                             display="flex"
-                            justifyContent="flex-end"
+                            justifyContent="center"
                             alignItems="center"
                             ml="15px">
+                                <Typography 
+                                    marginRight={4}
+                                    fontStyle={menu_item_styles.root}
+                                >QUẢN LÝ</Typography>
                                 <IconButton
                                     onClick={
                                         broken ? () => setToggled(!toggled) : () => setCollapsed(!collapsed)
