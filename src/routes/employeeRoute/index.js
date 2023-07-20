@@ -9,4 +9,7 @@ router.post('/auth', LoginEmployeeControllers.login)
 const CreateEmployeeControllers = require('../../app/controllers/employees/Create_Employee_Controllers')
 router.post('/create',CheckLogin.check,CheckAdmin.check, CreateEmployeeControllers.create)
 
+const UpdateEmployeeControllers = require('../../app/controllers/employees/Update_Employee_Controllers')
+router.put('/:id/update',CheckLogin.check, CheckAdmin.check, UpdateEmployeeControllers.update)
+
 module.exports = router;
