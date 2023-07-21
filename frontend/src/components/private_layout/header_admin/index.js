@@ -1,0 +1,1 @@
+export { default as HeaderAdmin} from "./header_admin";

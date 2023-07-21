@@ -1,5 +1,5 @@
 import Home from '~/pages/customer/home';
-import { AdminLogin, AdminDashBoard } from '~/pages/admin';
+import { AdminLogin, AdminDashBoard, EmployeeManaging, Bill, Logout, EmployeeOrder, ProductManaging, Setting } from '~/pages/admin';
 import Product from '~/pages/customer/product';
 import Details from '~/pages/customer/product/detailsProduct';
 import Login from '~/pages/customer/login';
@@ -12,8 +12,14 @@ const publicRoutes = [
     { path: '/admin/login', component: AdminLogin, layout: null },
 ];
 
-//Public dùng cho route không cần đăng nhập vẫn xem được
-// Private dùng cho route đăng nhập mới xem được, nếu không đăng nhập được thì sẽ chuyển qua trang login
-const privateRoutes = [{ path: 'admin/dashboard', component: AdminDashBoard }];
+const privateRoutes = [
+    {path: 'admin/dashboard',component: AdminDashBoard},
+    {path: 'admin/employee',component: EmployeeManaging},
+    {path: 'admin/bill',component: Bill},
+    {path: '/logout',component: Logout},
+    {path: 'admin/order',component: EmployeeOrder},
+    {path: 'admin/product',component: ProductManaging},
+    {path: 'admin/setting',component: Setting}
+];
 
 export { publicRoutes, privateRoutes };
