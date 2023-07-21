@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SideBarAdmin } from './sidebar_admin';
 import { HeaderAdmin } from './header_admin';
 import { Grid } from '@mui/material';
@@ -8,6 +9,7 @@ import { theme } from './theme';
 
 function PrivateLayout({ children }) {
     const [userData, setUserData] = useState('');
+    const navigate = useNavigate();
 
     useEffect(()=>{
         setUserData(() => JSON.parse(localStorage.getItem("user")))

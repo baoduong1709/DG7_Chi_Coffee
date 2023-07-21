@@ -1,9 +1,11 @@
 import React from "react";
-import { Grid, IconButton, Typography } from "@mui/material";
+import { Grid, IconButton, Typography, Button } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 
 import { theme } from "../theme";
+import { useNavigate } from "react-router-dom";
 
 const themes = {
     header: {
@@ -32,10 +34,47 @@ const header_item_styles = {
     },
 }
 
+function FormDeleteDialog({ isDialogOpened, handleCloseDialog }) {
+    const navigate = useNavigate();
+    return (
+        <React.Fragment>
+            <Dialog open={isDialogOpened} onClose={handleCloseDialog}>
+                <DialogContent>
+                    <Typography variant='h6'>Đăng xuất khỏi hệ thống?</Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                    variant="contained"
+                    onClick={handleCloseDialog}
+                    color="secondary"
+                    >
+                    No
+                    </Button>
+                    <Button
+                    variant="contained"
+                    onClick={() => {
+                        localStorage.removeItem("user");
+                        navigate("../admin/login");
+                    }}
+                    color="default"
+                    >
+                    Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </React.Fragment>
+    );
+}
+
 export default function HeaderAdmin({ userData }) {
+    const navigate = useNavigate();
+    const [open, setOpen] = React.useState(false);
+
     function handleLogout(){
-        return;
+        localStorage.removeItem("user");
+        navigate("../admin/login");
     }
+
     return(
         <Grid 
             container
@@ -56,6 +95,9 @@ export default function HeaderAdmin({ userData }) {
             >
                 <FontAwesomeIcon icon={faRightFromBracket} style={header_item_styles.icon}/>
             </IconButton>
+            <FormDeleteDialog
+            isDialogOpened={open.state}
+            handleCloseDialog={() => setOpen(false)}/>
         </Grid>
     );
 }

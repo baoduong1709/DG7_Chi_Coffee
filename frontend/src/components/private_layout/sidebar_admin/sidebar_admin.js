@@ -69,15 +69,9 @@ const AdminSide = [
     {
         id: 5,
         svg: faGear,
-        route: "../admin/setting",
-        name: "Cài đặt"
+        route: "../admin/infomation",
+        name: "Sửa thông tin"
     },
-    {
-        id: 6,
-        svg: faRightFromBracket,
-        route: "../logout",
-        name: "Đăng xuất"
-    }
 ];
 
 const EmployeeSide = [
