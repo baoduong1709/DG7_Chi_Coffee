@@ -6,6 +6,9 @@ const CheckAdmin = require('../../app/security/CheckAdmin')
 const ViewEmployeeListControllers = require('../../app/controllers/employees/View_Employee_List_Controllers')
 router.get('/', ViewEmployeeListControllers.view)
 
+const ViewEmployeeDetailsControllers = require('../../app/controllers/employees/View_Employee_Details_Controllers')
+router.get('/:id', ViewEmployeeDetailsControllers.view)
+
 const LoginEmployeeControllers = require('../../app/controllers/employees/Login_Employee_Controllers')
 router.post('/auth', LoginEmployeeControllers.login)
 
