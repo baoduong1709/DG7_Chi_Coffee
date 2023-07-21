@@ -14,7 +14,7 @@ export default function EmployeeLogin() {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 
-	const loginRoute = "https://ex-dg7-chi-coffee-demo1.onrender.com/api/v1/auth/employee";
+	const loginRoute = "https://ex-dg7-chi-coffee-demo.onrender.com/api/v1/auth/employee";
     const navigate = useNavigate();
 
 
