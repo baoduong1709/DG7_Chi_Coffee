@@ -5,6 +5,6 @@ const ViewAllProductTypeControllers = require('../../app/controllers/product_typ
 router.get('/', ViewAllProductTypeControllers.view)
 
 const ViewProductByProductTypeControllers =require('../../app/controllers/product_types/View_Product_By_Product_Type_Controllers')
-router.get('/:id', ViewProductByProductTypeControllers.view)
+router.get('/:name', ViewProductByProductTypeControllers.view)
 
 module.exports = router;
