@@ -1,0 +1,39 @@
+.item {
+    height: 360px;
+    width: 248px;
+}
+
+.menu-content {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item-btn {
+
+    margin-bottom: 20px;
+}
+
+.product-content {
+    width: 1400px;
+}
+
+.product-list {
+    margin-left: 40px;
+    margin-right: 40px;
+
+}
+
+.btn-heading {
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-add-cart {
+    display: none;
+}
+
+.menu-item:hover .btn-add-cart {
+    display: block;
+}

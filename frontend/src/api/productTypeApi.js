@@ -1,9 +1,9 @@
 import axiosClient from '~/api/axiosClient';
 
-const productApi = {
+const productTypeApi = {
     getAll: (params) => {
-        const url = '/productType';
+        const url = '/product-type';
         return axiosClient.get(url, { params });
     },
 };
-export default productApi;
+export default productTypeApi;
