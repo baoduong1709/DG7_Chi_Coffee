@@ -1,16 +1,19 @@
 import images from '~/assets/images';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import '~/assets/css/loginCustomer.css';
+import { UserContext } from '~/context/userContext';
 
 function Login() {
     const navigate = useNavigate();
+    const { loginContext } = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [validation, setValidation] = useState('');
+    const [loadingApi, setLoangApi] = useState(false);
 
     const onChangeUser = (e) => {
         const value = e.target.value;
@@ -35,29 +38,37 @@ function Login() {
             return true;
         }
     };
-    const onSubmitLogin = () => {
+
+    const onSubmitLogin = async () => {
         const isValid = validationAll();
         if (!isValid) return;
         //call API
+        setLoangApi(true);
+
         axios
-            .post('https://reqres.in/api/login', {
-                username: username,
+            .post('https://ex-dg7-chi-coffee-demo-v4.onrender.com/api/v1/customer/auth', {
+                gmail: username,
                 password: password,
             })
             .then((result) => {
-                console.log(result.data);
-                let user = JSON.parse(result.config.data);
-                localStorage.setItem('token', JSON.stringify(result.data));
-                localStorage.setItem('username', user.username);
+                Swal.fire({
+                    icon: 'success',
+                    showConfirmButton: false,
+                    title: 'Đăng nhập thành công',
+                    timer: 1000,
+                });
+                const name = result.data.name;
+                loginContext(name, result.data);
                 navigate('/');
+                setLoangApi(false);
             })
             .catch((error) => {
-                console.log(error);
                 Swal.fire({
                     icon: 'warning',
                     title: 'Tài khoản không chính xác',
                     timer: 3000,
                 });
+                setLoangApi(false);
             });
     };
 
@@ -66,7 +77,12 @@ function Login() {
             onSubmitLogin();
         }
     };
-
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+        if (token) {
+            navigate('/');
+        }
+    });
     return (
         <section className="vh-100 ">
             <div
@@ -90,9 +106,15 @@ function Login() {
                                         <form onKeyDown={handleKeyDown}>
                                             <div
                                                 className="d-flex align-items-center mb-3 pb-1"
-                                                style={{ maxWidth: '200px', justifyContent: 'center' }}
+                                                style={{
+                                                    maxWidth: '36%',
+                                                    justifyContent: 'center',
+                                                    marginLeft: '12px',
+                                                }}
                                             >
-                                                <img src={images.logo} alt="logo" className="logo-login" />
+                                                <Link to={'/'}>
+                                                    <img src={images.logo} alt="logo" className="logo-login" />
+                                                </Link>
                                             </div>
 
                                             <h1
@@ -119,13 +141,9 @@ function Login() {
                                                     }}
                                                     className="form-control form-control-lg"
                                                     placeholder="Tên đăng nhập"
-                                                    // autoComplete="on" // đề xuất tên đã điền vào form
                                                     required
                                                     onChange={onChangeUser}
                                                 />
-                                                {/* <label className="form-label" htmlFor="form2Example17">
-                                                    TÊN ĐĂNG NHẬP
-                                                </label> */}
                                                 <p className="warning">{validation.username}</p>
                                             </div>
 
@@ -155,10 +173,11 @@ function Login() {
                                                     className="btn btn-lg btn-block "
                                                     id="btn-login"
                                                     type="button"
-                                                    style={{ width: '100px', height: '40px' }}
+                                                    style={{ width: '130px', height: '40px' }}
                                                     onClick={onSubmitLogin}
                                                 >
-                                                    ĐĂNG NHẬP
+                                                    ĐĂNG NHẬP &nbsp;
+                                                    {loadingApi && <i className="fas fa-circle-notch fa-spin"></i>}
                                                 </button>
                                             </div>
                                             <div className="link-item">

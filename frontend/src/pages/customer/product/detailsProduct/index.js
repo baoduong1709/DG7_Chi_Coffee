@@ -70,11 +70,7 @@ function DetailsPage() {
                     <div className="col-md-4 col-sm-4 col-xs-12 info info-left">
                         <h1>Thông tin sản phẩm</h1>
                         <hr width="100%" align="center" />
-                        <p>
-                            Mô tả: Hạt cà phê robusta có hình tròn với đường rảnh thẳng ở giữa hạt. Cà phê Robusta có
-                            mùi thơm dịu, vị đắng, đậm, vị chát, nước có màu nâu sánh, ít chua mang lại sự hứng khởi và
-                            sáng tạo cho người dùng.
-                        </p>
+                        <p>{detail.description}</p>
                     </div>
                     <div className="col-md-4 col-sm-4 col-xs-12 info-image">
                         <img src={detail.product_image} alt={detail.product_image_name} />

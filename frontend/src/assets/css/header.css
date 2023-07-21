@@ -40,11 +40,20 @@ a {
     list-style: none;
 }
 
-li.liItem.dis {
-    margin-right: 70px;
-}
+
 
 .dn {
-    margin-left: 44px;
+
     padding: unset;
+    float: right;
+}
+
+.navdropdown {
+    float: right;
+    color: var(--primary);
+
+}
+
+.dropdown-menu.show {
+    font-size: 1.5rem;
 }
