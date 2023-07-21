@@ -3,6 +3,9 @@ var router = express.Router()
 const CheckLogin =require('../../app/security/CheckLogin')
 const CheckAdmin = require('../../app/security/CheckAdmin')
 
+const ViewEmployeeListControllers = require('../../app/controllers/employees/View_Employee_List_Controllers')
+router.get('/', ViewEmployeeListControllers.view)
+
 const LoginEmployeeControllers = require('../../app/controllers/employees/Login_Employee_Controllers')
 router.post('/auth', LoginEmployeeControllers.login)
 
