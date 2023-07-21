@@ -93,12 +93,6 @@ const EmployeeSide = [
         route: "../admin/setting",
         name: "Cài đặt"
     },
-    {
-        id: 6,
-        svg: faRightFromBracket,
-        route: "../logout",
-        name: "Đăng xuất"
-    }
 ];
 
 export default function SideBarAdmin({ userData }) {
