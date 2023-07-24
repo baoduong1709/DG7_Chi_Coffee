@@ -2,7 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import Carousel from './carousel';
 import About from './about';
-import Product from './product';
+import Product from './feartureProduct';
 
 function Home() {
     return (

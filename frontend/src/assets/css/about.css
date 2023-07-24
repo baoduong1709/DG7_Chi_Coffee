@@ -1,12 +1,13 @@
 .container-section {
     margin-top: 100px;
-}
-
-.section-content {
     width: 1400px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.section-content {
     padding: 50px 0;
+
 }
 
 .content-row {

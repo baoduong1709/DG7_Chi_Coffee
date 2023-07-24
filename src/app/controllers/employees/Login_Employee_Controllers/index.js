@@ -8,6 +8,7 @@ class LoginEmployeeControllers {
         let passwordC = req.body.password
         Employee.findOne({
             username: username
+            
         })
             .then(data => {
                 if (data) {
@@ -27,16 +28,16 @@ class LoginEmployeeControllers {
                             isAdmin: isAdmin
                         })
                     }else{
-                        res.status(404).send('Password not correct!')
+                        res.status(404).send('Sai mật khẩu!')
                     }
                     
                 } else {
                     
-                    res.status(404).send('Username not correct!')
+                    res.status(404).send('Tài khoản không tồn tại!')
                 }
             })
             .catch(error => {
-                res.status(500).send('Some errors occurred while login!')
+                res.status(500).send('Lỗi server!')
         })
         
     }
