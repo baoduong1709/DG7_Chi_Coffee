@@ -1,0 +1,48 @@
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.info-heading {
+    text-align: center;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+input,
+.input-info {
+    font-size: 1.6rem;
+}
+
+.btn-register {
+    background-color: var(--primary);
+    color: white;
+    border: unset;
+    font-size: 1.8rem;
+    padding: 10px 20px;
+
+}
+
+.btn-register:hover {
+    background-color: var(--primary);
+    color: white;
+    border: unset;
+
+}
+
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+label {
+
+    margin-bottom: unset;
+
+}

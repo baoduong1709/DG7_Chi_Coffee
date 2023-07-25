@@ -14,7 +14,7 @@ function App() {
     console.log(user);
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            loginContext(JSON.parse(localStorage.getItem('user')), JSON.parse(localStorage.getItem('token')));
+            loginContext(JSON.parse(localStorage.getItem('token')));
         }
     }, []);
     return (

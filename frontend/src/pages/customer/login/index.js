@@ -46,7 +46,7 @@ function Login() {
         setLoangApi(true);
 
         axios
-            .post('https://ex-dg7-chi-coffee-demo-v4.onrender.com/api/v1/customer/auth', {
+            .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/auth', {
                 gmail: username,
                 password: password,
             })
@@ -57,8 +57,7 @@ function Login() {
                     title: 'Đăng nhập thành công',
                     timer: 1000,
                 });
-                const name = result.data.name;
-                loginContext(name, result.data);
+                loginContext(result.data);
                 navigate('/');
                 setLoangApi(false);
             })
@@ -140,7 +139,7 @@ function Login() {
                                                         fontSize: '1.6rem',
                                                     }}
                                                     className="form-control form-control-lg"
-                                                    placeholder="Tên đăng nhập"
+                                                    placeholder="Tên gmail"
                                                     required
                                                     onChange={onChangeUser}
                                                 />
@@ -181,9 +180,9 @@ function Login() {
                                                 </button>
                                             </div>
                                             <div className="link-item">
-                                                <a href="#!" style={{ color: '#de4057', fontWeight: 'bold' }}>
+                                                <Link to="/register" style={{ color: '#de4057', fontWeight: 'bold' }}>
                                                     Đăng ký tại đây
-                                                </a>
+                                                </Link>
                                                 <a className="small " href="#!" style={{ color: '#de4057' }}>
                                                     Quên mật khẩu ?
                                                 </a>

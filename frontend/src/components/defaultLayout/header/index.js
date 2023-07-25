@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import '~/assets/css/header.css';
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 function Header() {
     const navigate = useNavigate();
@@ -19,7 +18,9 @@ function Header() {
                 const response = await productTypeApi.getAll();
                 setProductType(response);
             } catch (error) {
-                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                });
             }
         };
         fetchProductType();
@@ -55,7 +56,7 @@ function Header() {
                     <ul>
                         {productType.map((product) => (
                             <li className="liItem dis" key={product._id}>
-                                <Link to={`/product/${product._id}`}>{product.name_display}</Link>
+                                <Link to={`/product/${product.name}`}>{product.name_display}</Link>
                             </li>
                         ))}
                     </ul>

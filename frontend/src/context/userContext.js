@@ -8,18 +8,16 @@ const UserContext = React.createContext({ username: '', auth: false });
 const UserProvider = ({ children }) => {
     const [user, setUser] = React.useState({ username: '', auth: false });
 
-    const loginContext = (name, data) => {
+    const loginContext = (data) => {
         localStorage.setItem('token', JSON.stringify(data));
-        localStorage.setItem('user', JSON.stringify(name));
         setUser((user) => ({
-            username: name,
+            username: data.name,
             auth: true,
         }));
     };
 
     const logout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('user');
         setUser((user) => ({
             username: '',
             auth: false,

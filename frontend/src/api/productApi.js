@@ -5,8 +5,8 @@ const productApi = {
         const url = '/product';
         return axiosClient.getAll(url, { params });
     },
-    getIdAll: (id) => {
-        const url = `/product-type/${id}`;
+    getIdAll: (name) => {
+        const url = `/product-type/${name}`;
         return axiosClient.get(url);
     },
     get: (id) => {
