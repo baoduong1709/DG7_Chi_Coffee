@@ -16,6 +16,8 @@ import { faEye, faPenToSquare, faRightFromBracket, faTrashCan } from '@fortaweso
 import { ThemeProvider, styled } from '@mui/material/styles';
 import { theme } from '~/components/private_layout/theme';
 
+import productApi from '~/api/productApi';
+
 const columns = [
     { id: 'name', label: 'Tên sản phẩm', flex: 3, minWidth: 300 },
     { id: 'idproducttype', label: 'Loại sản phẩm', flex: 2, minWidth: 200 },
@@ -26,10 +28,10 @@ function createData(name, idproducttype, newprice) {
   return { name, idproducttype, newprice };
 }
 
-const rows = [
-    createData("Tra o long", "1", 27000),
-    createData("Tra hat vai", "2", 14000)
-];
+// const rows = [
+//     createData("Tra o long", "1", 27000),
+//     createData("Tra hat vai", "2", 14000)
+// ];
 
 const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
@@ -142,108 +144,122 @@ function FormDeleteDialog({ isDialogOpened, handleCloseDialog, name }) {
 }
 
 export default function StickyHeadTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [viewOpen, setViewOpen] = React.useState({state: false, name:""});
-  const [editOpen, setEditOpen] = React.useState(false);
-  const [deleteOpen, setDeleteOpen] = React.useState(false);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [viewOpen, setViewOpen] = React.useState({state: false, name:""});
+    const [editOpen, setEditOpen] = React.useState(false);
+    const [deleteOpen, setDeleteOpen] = React.useState(false);
+    const [rows, setRows] = React.useState([]);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+    React.useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await productApi.getAll();
+                console.log(res);
+                setRows(res);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchProduct();
+        setRows([]);
+    }, []);
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
 
-  return (
-    <Container sx={{ alignItems: "center", width: "100%" }}>
-        <Box sx={{marginY:5}}>
-            <Typography variant='h3'>Sản phẩm</Typography>
-        </Box>
-        <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <StyledTableRow>
-                        {columns.map((column) => (
-                            <StyledTableCell
-                            key={column.id}
-                            align={column.align}
-                            style={{ minWidth: column.minWidth }}
-                            >
-                            {column.label}
-                            </StyledTableCell>
-                        ))}
-                        <StyledTableCell></StyledTableCell>
-                        <StyledTableCell></StyledTableCell>
-                        <StyledTableCell></StyledTableCell>
-                        </StyledTableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => {
-                            return (
-                            <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                {columns.map((column) => {
-                                const value = row[column.id];
-                                return (
-                                    <StyledTableCell key={column.id} align={column.align}>
-                                    {column.format && typeof value === 'number'
-                                        ? column.format(value)
-                                        : value}
-                                    </StyledTableCell>
-                                );
-                                })}
-                                <StyledTableCell>
-                                    <IconButton onClick={() => setViewOpen({state: true, name: "abc"})}>
-                                    <FontAwesomeIcon icon={faEye} />
-                                    </IconButton>
-                                    {console.log(viewOpen)}
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
+    return (
+        <Container sx={{ alignItems: "center", width: "100%" }}>
+            <Box sx={{marginY:5}}>
+                <Typography variant='h3'>Sản phẩm</Typography>
+            </Box>
+            <Box sx={{ width: '100%' }}>
+                <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                    <TableContainer sx={{ maxHeight: 440 }}>
+                        <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <StyledTableRow>
+                            {columns.map((column) => (
+                                <StyledTableCell
+                                key={column.id}
+                                align={column.align}
+                                style={{ minWidth: column.minWidth }}
+                                >
+                                {column.label}
                                 </StyledTableCell>
-                                <StyledTableCell>
-                                    <IconButton onClick={() => setEditOpen({state: true, name: "abc"})}>
-                                    <FontAwesomeIcon icon={faPenToSquare} />
-                                    </IconButton>
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    <IconButton onClick={() => setDeleteOpen({state: true, name: "abc"})}>
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                    </IconButton>
-                                </StyledTableCell>
+                            ))}
+                            <StyledTableCell></StyledTableCell>
+                            <StyledTableCell></StyledTableCell>
+                            <StyledTableCell></StyledTableCell>
                             </StyledTableRow>
-                            );
-                        })}
-                    </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    component="div"
-                    count={rows.length}
-                    sx={{}}
-                    rowsPerPage={10}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
-            <FormDialog
-            isDialogOpened={viewOpen.state}
-            name = {viewOpen.name}
-            handleCloseDialog={() => setViewOpen({state: false, name: ""})}/>
-            <FormEditDialog
-            isDialogOpened={editOpen.state}
-            name = {editOpen.name}
-            handleCloseDialog={() => setEditOpen({state: false, name: ""})}/>
-            <FormDeleteDialog
-            isDialogOpened={deleteOpen.state}
-            name = {deleteOpen.name}
-            handleCloseDialog={() => setDeleteOpen({state: false, name: ""})}/>
-        </Box>
-    </Container>
-    
-  );
+                        </TableHead>
+                        <TableBody>
+                            {rows
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row) => {
+                                return (
+                                <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                    {columns.map((column) => {
+                                    const value = row[column.id];
+                                    return (
+                                        <StyledTableCell key={column.id} align={column.align}>
+                                        {column.format && typeof value === 'number'
+                                            ? column.format(value)
+                                            : value}
+                                        </StyledTableCell>
+                                    );
+                                    })}
+                                    <StyledTableCell>
+                                        <IconButton onClick={() => setViewOpen({state: true, name: "abc"})}>
+                                        <FontAwesomeIcon icon={faEye} />
+                                        </IconButton>
+                                        {console.log(viewOpen)}
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <IconButton onClick={() => setEditOpen({state: true, name: "abc"})}>
+                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                        </IconButton>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <IconButton onClick={() => setDeleteOpen({state: true, name: "abc"})}>
+                                        <FontAwesomeIcon icon={faTrashCan} />
+                                        </IconButton>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                                );
+                            })}
+                        </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        component="div"
+                        count={rows.length}
+                        sx={{}}
+                        rowsPerPage={10}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Paper>
+                <FormDialog
+                isDialogOpened={viewOpen.state}
+                name = {viewOpen.name}
+                handleCloseDialog={() => setViewOpen({state: false, name: ""})}/>
+                <FormEditDialog
+                isDialogOpened={editOpen.state}
+                name = {editOpen.name}
+                handleCloseDialog={() => setEditOpen({state: false, name: ""})}/>
+                <FormDeleteDialog
+                isDialogOpened={deleteOpen.state}
+                name = {deleteOpen.name}
+                handleCloseDialog={() => setDeleteOpen({state: false, name: ""})}/>
+            </Box>
+        </Container>
+    );
 }

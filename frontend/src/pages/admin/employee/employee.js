@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
+import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Box, Container, IconButton, Typography, Button, Grid } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
@@ -24,10 +24,6 @@ const columns = [
     { id: 'position', label: 'Vị trí', flex: 1, minWidth: 80}
 ];
 
-// const rows = [
-//     createData("Duong Bao", "0123456789", "Quản lí"),
-//     createData("Hoang Phi", "0123456789", "Nhân viên")
-// ];
 
 const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
@@ -44,7 +40,6 @@ const StyledTableRow = styled(TableRow)(() => ({
     '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.light.main,
     },
-    // hide last border
 }));
 
 function FormDialog({ isDialogOpened, name, handleCloseDialog }) {
@@ -170,7 +165,7 @@ export default function StickyHeadTable() {
     };
 
     return (
-        <Box m="1.5rem 2.5rem" width="100%" >
+        <Box m="1.5rem 2.5rem" width="95%" >
             <Box sx={{marginY:5}}>
                 <Typography variant='h3'>Nhân viên</Typography>
             </Box>
@@ -233,10 +228,9 @@ export default function StickyHeadTable() {
                         </TableBody>
                         </Table>
                     </TableContainer>
-                    <TablePagination
+                    <CustomTablePagination
                         component="div"
                         count={rows.length}
-                        sx={{}}
                         rowsPerPage={10}
                         page={page}
                         onPageChange={handleChangePage}
@@ -259,3 +253,78 @@ export default function StickyHeadTable() {
         </Box>  
     );
 }
+
+const CustomTablePagination = styled(TablePagination)(
+    ({ theme }) => 
+    `
+    & .${classes.spacer} {
+      display: none;
+    }
+    & .${classes.toolbar}  {
+      display: flex;
+      font-size: 14px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      background-color: theme.palette.light.main;
+  
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  
+    & .${classes.selectLabel} {
+      margin: 0;
+      font-size: 14px;
+    }
+  
+    & .${classes.select}{
+        font-size: 14px;
+      padding: 2px 6px;
+      border: 1px solid;
+      border-radius: 50px;
+      background-color: transparent;
+      color: theme.palette.primary.main;
+  
+      &:hover {
+        background-color: theme.palette.main.hover;
+      }
+  
+      &:focus {
+        outline: 1px solid theme.palette.secondary.hover;
+      }
+    }
+  
+    & .${classes.displayedRows} {
+      margin: 0;
+      font-size: 14px;
+      @media (min-width: 768px) {
+        margin-left: auto;
+      }
+    }
+  
+    & .${classes.actions} {
+      padding: 2px;
+      border: 1px solid;
+      border-radius: 50px;
+      text-align: center;
+    }
+  
+    & .${classes.actions} > button {
+      margin: 0 8px;
+      border: transparent;
+      border-radius: 4px;
+      background-color: transparent;
+      color: theme.palette.primary.main;
+  
+      &:hover {
+        background-color: theme.palette.light.hover;
+      }
+  
+      &:focus {
+        outline: 1px solid theme.palette.light.main;
+      }
+    }
+    `,
+  );

@@ -81,7 +81,7 @@ export default function HeaderAdmin({ userData }) {
             direction="row"
             justifyContent="space-between"
             alignItems="center"
-            sx={{ height: "8vh",
+            sx={{ height: "100%",
                 backgroundColor: themes.header.backgroundColor,
                 paddingX: 2}}
         >

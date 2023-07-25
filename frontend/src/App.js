@@ -11,7 +11,6 @@ function App() {
         setUserData(() => JSON.parse(localStorage.getItem('user')));
     }, [userData]);
     const { user, loginContext } = useContext(UserContext);
-    console.log(user);
     useEffect(() => {
         if (localStorage.getItem('token')) {
             loginContext(JSON.parse(localStorage.getItem('user')), JSON.parse(localStorage.getItem('token')));
