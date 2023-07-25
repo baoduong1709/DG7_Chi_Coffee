@@ -1,4 +1,5 @@
 const Employee = require('../../../models/Employee')
+
 // const { mutipleMongooseToObject } = require('../../../util/mongoose')
 class ViewEmployeeDetailsControllers {
     
@@ -10,6 +11,7 @@ class ViewEmployeeDetailsControllers {
         }
         await Employee.findById(id)
         .then(data => {
+
             res.status(200).json(data)
         })
         .catch(err => {
