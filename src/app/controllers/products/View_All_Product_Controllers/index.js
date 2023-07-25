@@ -7,7 +7,7 @@ class ViewAllProductControllers {
             res.status(200).json(employees)
         })
         .catch(err => {
-            res.status(500).json({message: 'Some errors occurred while retrieving accounts!'})
+            res.status(500).send('Lỗi server')
         })
     };
 }

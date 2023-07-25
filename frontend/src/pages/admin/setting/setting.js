@@ -1,10 +1,10 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-export default function AdminDashBoard() {
+export default function Setting() {
     return(
         <>
-            <Typography variant="h2">Tổng quan</Typography>
+            <Typography variant="h2">Cài đặt</Typography>
         </>
     );
 }

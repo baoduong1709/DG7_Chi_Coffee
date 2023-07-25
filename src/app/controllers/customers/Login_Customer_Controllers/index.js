@@ -1,14 +1,13 @@
-const Employee = require('../../../models/Employee')
+const Customer = require('../../../models/Customer')
 const jwt = require('jsonwebtoken')
 const CryptoJS = require("crypto-js");
-class LoginEmployeeControllers {
+class LoginCustomerControllers {
 
     login(req, res, next) {
-        let username = req.body.username
+        let gmail = req.body.gmail
         let passwordC = req.body.password
-        Employee.findOne({
-            username: username
-            
+        Customer.findOne({
+            gmail: gmail
         })
             .then(data => {
                 if (data) {
@@ -20,12 +19,11 @@ class LoginEmployeeControllers {
                             _id: data._id,
                         }, 'bao1709')
                         let name = data.name
-                        let isAdmin = data.isAdmin
+                        console.log(data)
                         return res.status(200).json({
                             message: 'Login successfully!',
                             token: token,
                             name: name,
-                            isAdmin: isAdmin
                         })
                     }else{
                         res.status(404).send('Sai mật khẩu!')
@@ -37,10 +35,10 @@ class LoginEmployeeControllers {
                 }
             })
             .catch(error => {
-                res.status(500).send('Lỗi server!')
+                res.status(500).send('Tài khoản không tồn tại!')
         })
         
     }
     
 };
-module.exports = new LoginEmployeeControllers;
+module.exports = new LoginCustomerControllers;

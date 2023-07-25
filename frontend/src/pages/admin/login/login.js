@@ -14,7 +14,7 @@ export default function EmployeeLogin() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const loginRoute = 'https://ex-dg7-chi-coffee-demo1.onrender.com/api/v1/auth/employee';
+	const loginRoute = "https://ex-dg7-chi-coffee-demo.onrender.com/api/v1/auth/employee";
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -69,9 +69,7 @@ export default function EmployeeLogin() {
             <div className="app-wrapper" id="form-control">
                 <div className="content" id="content-login">
                     <img id="logo" src={logo} alt="" />
-                    <div className="text-title">
-                        Đăng nhập <br /> Admin
-                    </div>
+                    <div className="text-title">Đăng nhập <br /> Admin</div>
                     <div className="form-group">
                         <p>
                             <input
