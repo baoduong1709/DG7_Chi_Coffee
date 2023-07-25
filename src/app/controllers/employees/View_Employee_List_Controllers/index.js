@@ -4,7 +4,7 @@ const Employee = require('../../../models/Employee')
 class ViewEmployeeListControllers {
     
     view(req, res, next) {
-        Employee.find({})
+        Employee.find({},'name ssn phone_number gmail gender date_of_birth shift_number address position username')
         .then(employees => {
             res.status(200).json(employees)
         })
