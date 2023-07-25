@@ -5,6 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
+// import { isAfter } from 'dayjs';
 import { ToastOption } from '~/components/toastify';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
@@ -37,6 +38,9 @@ function Register() {
         const value = e.target.value;
         setCurrentRadioValue(value);
     };
+    const today = dayjs();
+    const minimumBirthYear = today.subtract(16, 'year').year();
+    const selectedBirthYear = date ? dayjs(date).year() : null;
 
     const onSubmitRegister = () => {
         const ho = inputHo.current.value;
@@ -47,41 +51,72 @@ function Register() {
         const phone_number = inputPhoneNumber.current.value;
         const address = inputAddress.current.value;
         const phoneRegex = /^\d+$/;
+
+        if (
+            !ho ||
+            !ten ||
+            !gmail ||
+            !password ||
+            !confirmPassword ||
+            !currentRadioValue ||
+            !formattedDate ||
+            !phone_number ||
+            !address
+        ) {
+            toast.warning('Vui lòng điền đầy đủ thông tin', ToastOption);
+            return;
+        }
+
         if (!ho) {
             toast.warning('Chưa nhập họ', ToastOption);
-            return false;
-        } else if (!ten) {
+            return;
+        }
+        if (!ten) {
             toast.warning('Chưa nhập tên', ToastOption);
-            return false;
-        } else if (!gmail) {
+            return;
+        }
+        if (!gmail) {
             toast.warning('Chưa nhập gmail', ToastOption);
-            return false;
-        } else if (!gmail.endsWith('@gmail.com')) {
+            return;
+        }
+        if (!gmail.endsWith('@gmail.com')) {
             toast.warning('Nhập mail không hợp lệ', ToastOption);
-            return false;
-        } else if (!password) {
+            return;
+        }
+        if (!password) {
             toast.warning('Chưa nhập mật khẩu', ToastOption);
-            return false;
-        } else if (password.length < 4) {
+            return;
+        }
+        if (password.length < 4) {
             toast.warning('Mật khẩu phải tối đa 4 ký tự', ToastOption);
-        } else if (password !== confirmPassword) {
+        }
+        if (password !== confirmPassword) {
             toast.warning('Mật khẩu không khớp', ToastOption);
-            return false;
-        } else if (!currentRadioValue) {
+            return;
+        }
+        if (!currentRadioValue) {
             toast.warning('Chưa chọn giới tính', ToastOption);
-            return false;
-        } else if (!formattedDate) {
+            return;
+        }
+        if (!formattedDate) {
             toast.warning('Chưa chọn ngày sinh', ToastOption);
-            return false;
-        } else if (!phone_number) {
+            return;
+        }
+        if (selectedBirthYear && selectedBirthYear > minimumBirthYear) {
+            toast.warning('Bạn phải đủ 16 tuổi trở lên để đăng ký tài khoản', ToastOption);
+            return;
+        }
+        if (!phone_number) {
             toast.warning('Chưa nhập số điện thoại', ToastOption);
-            return false;
-        } else if (!phoneRegex.test(phone_number)) {
+            return;
+        }
+        if (!phoneRegex.test(phone_number)) {
             toast.warning('Số điện thoại phải là số', ToastOption);
-            return false;
-        } else if (!address) {
+            return;
+        }
+        if (!address) {
             toast.warning('Chưa nhập địa chỉ', ToastOption);
-            return false;
+            return;
         }
 
         setLoadingApi(true);
@@ -261,7 +296,11 @@ function Register() {
                                                 Ngày sinh:
                                             </h3>
                                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                                <DatePicker onChange={onChangeDate} defaultValue={formattedDate} />
+                                                <DatePicker
+                                                    onChange={onChangeDate}
+                                                    defaultValue={formattedDate}
+                                                    maxDate={today}
+                                                />
                                             </LocalizationProvider>
                                         </div>
                                         <div className="form-outline mb-4">
