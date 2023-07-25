@@ -10,12 +10,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-<<<<<<< HEAD
     "@mui/material": "^5.14.1",
     "@mui/x-date-pickers": "^6.10.1",
-=======
-    "@mui/material": "^5.14.0",
->>>>>>> 0c095c4759f81ac9b6fccb02ff7bcaf857a87c54
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
