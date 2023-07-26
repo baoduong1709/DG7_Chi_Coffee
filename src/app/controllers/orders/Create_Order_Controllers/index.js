@@ -5,8 +5,8 @@ class CreateOrderControllers {
         console.log(req.body)
         let customer_id = req.body.customer_id
         let customer_name = req.body.customer_name
-        let employee_id =   req.body.employee_id
-        let employee_name = req.body.employee_name
+        let employee_id = null
+        let employee_name = null
         let table_id = req.body.table_id
         let product = req.body.product
         let amount = req.body.amount
