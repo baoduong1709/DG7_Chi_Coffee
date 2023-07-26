@@ -1,5 +1,5 @@
 export const ToastOption = {
-    position: "top-right",
+    position: 'top-right',
     autoClose: 3000,
     hideProgressBar: true,
     newestOnTop: true,
@@ -8,5 +8,5 @@ export const ToastOption = {
     pauseOnFocusLoss: true,
     draggable: false,
     pauseOnHover: true,
-    theme: "dark"
-}
+    theme: 'light',
+};

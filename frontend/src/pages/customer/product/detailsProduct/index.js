@@ -4,15 +4,18 @@ import productApi from '~/api/productApi';
 import { useParams } from 'react-router-dom';
 
 import '~/assets/css/detailsProduct.css';
+import '~/assets/css/loading.css';
 
 function DetailsPage() {
     const { id } = useParams();
     const [detail, setDetail] = useState([]);
     useEffect(() => {
         const fetchDetails = async () => {
+            setLoangApi(true);
             try {
                 const response = await productApi.get(id);
                 setDetail(response);
+                setLoangApi(false);
             } catch (err) {
                 console.log(err);
             }
@@ -31,9 +34,19 @@ function DetailsPage() {
     const increase = () => {
         setNumber(number + 1);
     };
+    const [loadingApi, setLoangApi] = useState(false);
 
     return (
         <div className="content-product-details">
+            {loadingApi && (
+                <div className="follow-the-leader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            )}
             <div className="details-item">
                 <div className="content-img">
                     <img className="img-item" src={detail.product_image} alt={detail.product_image_name} />
@@ -41,7 +54,7 @@ function DetailsPage() {
                 <div className="content-info">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">Trang Chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item href={`/product/${detail.id_product_type}`}>Sản Phẩm</Breadcrumb.Item>
+                        <Breadcrumb.Item href={`/product/${detail.product_type_name}`}>Sản Phẩm</Breadcrumb.Item>
                         <Breadcrumb.Item active>{detail.product_name}</Breadcrumb.Item>
                     </Breadcrumb>
                     <h1 className="name-item">{detail.product_name}</h1>
