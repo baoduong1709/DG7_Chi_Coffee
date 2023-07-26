@@ -3,12 +3,12 @@ let Employee = require('../../models/Employee')
 class checkLogin{
     async check(req, res, next){
         try{
-            let token = req.query.token
+            let token = req.header('Authorization')
             if (token == undefined){
                 return res.send('Chưa đăng nhập')
             }
             let id = jwt.verify(token,'bao1709')
-            Employee.findOne({_id: id})
+            Employee.findById(id)
             .then((data) =>{
                 if (data){
                     req.data = data
