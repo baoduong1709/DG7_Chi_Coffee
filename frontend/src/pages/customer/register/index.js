@@ -116,7 +116,7 @@ function Register() {
             return;
         }
         if (phone_number.length < 10 || phone_number.length > 12) {
-            toast.warning('Số điện thoại phải từ 10 đến 12 số', ToastOption);
+            toast.warning('Số điện thoại không hợp lệ', ToastOption);
             return;
         }
         if (!address) {

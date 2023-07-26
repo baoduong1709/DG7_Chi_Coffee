@@ -63,8 +63,9 @@ function Header() {
                 </div>
                 <div className="btn-user">
                     <div className="liItem dn ">
-                        <Link to="">
-                            <i className="fas fa-shopping-cart"></i> &nbsp;
+                        <Link to="/cart">
+                            <i className="fas fa-shopping-cart"></i>
+                            <span className="cart-number">1</span>&nbsp;
                         </Link>
 
                         {user && user.auth === true ? (

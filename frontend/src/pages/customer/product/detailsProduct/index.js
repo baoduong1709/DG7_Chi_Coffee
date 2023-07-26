@@ -8,14 +8,15 @@ import '~/assets/css/loading.css';
 
 function DetailsPage() {
     const { id } = useParams();
+    console.log(id);
     const [detail, setDetail] = useState([]);
     useEffect(() => {
         const fetchDetails = async () => {
-            setLoangApi(true);
+            setLoading(true);
             try {
                 const response = await productApi.get(id);
                 setDetail(response);
-                setLoangApi(false);
+                setLoading(false);
             } catch (err) {
                 console.log(err);
             }
@@ -34,7 +35,7 @@ function DetailsPage() {
     const increase = () => {
         setNumber(number + 1);
     };
-    const [loadingApi, setLoangApi] = useState(false);
+    const [loadingApi, setLoading] = useState(false);
 
     return (
         <div className="content-product-details">

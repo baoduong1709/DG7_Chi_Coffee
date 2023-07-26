@@ -16,6 +16,7 @@ function App() {
         if (localStorage.getItem('token')) {
             loginContext(JSON.parse(localStorage.getItem('token')));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <>
