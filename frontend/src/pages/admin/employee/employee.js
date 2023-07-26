@@ -11,7 +11,7 @@ import { Box, Container, IconButton, Typography, Button, Grid } from '@mui/mater
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faPenToSquare, faRightFromBracket, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faMagnifyingGlass, faPenToSquare, faRightFromBracket, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 import { ThemeProvider, styled } from '@mui/material/styles';
 import { theme } from '~/components/private_layout/theme';
@@ -24,6 +24,27 @@ const columns = [
     { id: 'position', label: 'Vị trí', flex: 1, minWidth: 80}
 ];
 
+const StyledDialog = styled(Dialog) (() => ({
+    '& .MuiDialogContent-root': {
+        padding: theme.spacing(2),
+    },
+    '& .MuiDialogContentText-root': {
+        fontSize: 18,
+        marginY: 5,
+    },
+    '& .MuiTextField': {
+        fontSize: 14,
+    },
+    '& .MuiDialogActions-root': {
+        padding: theme.spacing(1),
+        fontSize: 14,
+    },
+    '& .MuiDialogActions-button': {
+        padding: theme.spacing(1),
+        marginX: 2,
+        fontSize: 14,
+    },
+}));
 
 const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
@@ -42,34 +63,103 @@ const StyledTableRow = styled(TableRow)(() => ({
     },
 }));
 
-function FormDialog({ isDialogOpened, name, handleCloseDialog }) {
+function FormDialog({ isDialogOpened, item, handleCloseDialog }) {
     return (
         <React.Fragment>
             <Dialog open={isDialogOpened} onClose={handleCloseDialog}>
                 <DialogTitle>Xem thông tin</DialogTitle>
                 <DialogContent>
-                    <Grid container direction="column">
-                        <Grid item>
-                            <TextField id="username" variant='standard' value="bao1709" aria-readonly />
-                            <TextField id="role" variant='standard' value="manager" aria-readonly />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="fullname" variant='standard' value={name} aria-readonly />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="dateofbirth" variant='standard' value="17/06/2002" aria-readonly />
-                            <TextField id="gender" variant='standard' value="nam" aria-readonly />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="ssn" variant='standard' value="0123456789012" aria-readonly />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="ssn" variant='standard' value="0123456789012" aria-readonly />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="address" variant='standard' value="33 Tran Quang Dieu, Geng Rang, Quy Nhon, ABC XYZKLAJHDKJLASD" aria-readonly />
-                        </Grid>
-                    </Grid>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Họ và tên"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.name}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="gender"
+                        label="Giới tính"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.gender === "male"?"Nam":"Nữ"}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="dateOfBirth"
+                        label="Ngày tháng năm sinh"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.date_of_birth}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="ssn"
+                        label="CCCD"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.ssn}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="phone_number"
+                        label="Số điện thoại"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.phone_number}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="gmail"
+                        label="Địa chỉ email"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.gmail}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="position"
+                        label="Vị trí"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.position === "admin"? "Quản lí":"Nhân viên"}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseDialog}>Đóng lại</Button>
@@ -79,57 +169,117 @@ function FormDialog({ isDialogOpened, name, handleCloseDialog }) {
     );
 }
 
-function FormEditDialog({ isDialogOpened, handleCloseDialog, name }) {
+function FormCreateDialog({ isDialogOpened, handleCloseDialog}) {
     return (
         <React.Fragment>
-            <Dialog open={isDialogOpened} onClose={handleCloseDialog}>
+            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"sm"} fullWidth={true}>
                 <DialogTitle>Sửa thông tin</DialogTitle>
                 <DialogContent>
-                    <Grid container direction="column">
-                        <Grid item>
-                            <TextField id="username" variant='standard' value="bao1709" />
-                            <TextField id="role" variant='standard' value="manager" />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="fullname" variant='standard' value={name} />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="dateofbirth" variant='standard' value="17/06/2002" />
-                            <TextField id="gender" variant='standard' value="nam" />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="ssn" variant='standard' value="0123456789012" />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="ssn" variant='standard' value="0123456789012" />
-                        </Grid>
-                        <Grid item>
-                            <TextField id="address" variant='standard' value="33 Tran Quang Dieu, Geng Rang, Quy Nhon, ABC XYZKLAJHDKJLASD" />
-                        </Grid>
-                    </Grid>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Họ và tên"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="username"
+                        label="Tên đăng nhập"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="password"
+                        label="Mật khẩu"
+                        defaultValue="chii"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="dateOfBirth"
+                            label="Ngày tháng năm sinh"
+                            variant="outlined"
+                            helperText="dd-mm-yyyy"
+                            type="text"
+                            fullWidth
+                        />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="ssn"
+                        label="CCCD"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="phone_number"
+                        label="Số điện thoại"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="gmail"
+                        label="Địa chỉ email"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="position"
+                        label="Vị trí"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDialog}>Huỷ bỏ</Button>
-                    <Button onClick={handleCloseDialog}>Xác nhận</Button>
+                    <Button onClick={handleCloseDialog} variant="contained" color="error">Huỷ bỏ</Button>
+                    <Button onClick={handleCloseDialog} color="primary">Thêm mới</Button>
                 </DialogActions>
-            </Dialog>
+            </StyledDialog>
         </React.Fragment>
     );
 }
 
-function FormDeleteDialog({ isDialogOpened, handleCloseDialog, name }) {
+function FormDeleteDialog({ isDialogOpened, handleCloseDialog, item }) {
     return (
         <React.Fragment>
-            <Dialog open={isDialogOpened} onClose={handleCloseDialog}>
-                <DialogTitle>Xoá người dùng</DialogTitle>
-                <DialogContent>
-                    <Typography variant='h6'>Xoá người dùng này?</Typography>
+            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"xs"} fullWidth={true}>
+                <DialogContent sx={{marginY: "20px"}}>
+                    <DialogContentText textAlign="center">
+                        Xoá nhân viên này?
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDialog}>Huỷ bỏ</Button>
-                    <Button onClick={handleCloseDialog}>Xác nhận</Button>
+                    <Button onClick={handleCloseDialog} color="secondary">
+                        Huỷ bỏ
+                    </Button>
+                    <Button variant="contained" onClick={handleCloseDialog} color="error">
+                        Đồng ý
+                    </Button>
                 </DialogActions>
-            </Dialog>
+            </StyledDialog>
         </React.Fragment>
     );
 }
@@ -137,8 +287,8 @@ function FormDeleteDialog({ isDialogOpened, handleCloseDialog, name }) {
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [viewOpen, setViewOpen] = React.useState({state: false, name:""});
-    const [editOpen, setEditOpen] = React.useState(false);
+    const [viewOpen, setViewOpen] = React.useState({state: false, item:{}});
+    const [createOpen, setCreateOpen] = React.useState(false);
     const [deleteOpen, setDeleteOpen] = React.useState(false);
 
     const [userData, setUserData] = React.useState('');
@@ -152,8 +302,7 @@ export default function StickyHeadTable() {
                 setRows(employees);
             }
         );
-        console.log(rows);
-    },[])
+    },[userData])
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -166,9 +315,26 @@ export default function StickyHeadTable() {
 
     return (
         <Box m="1.5rem 2.5rem" width="95%" >
-            <Box sx={{marginY:5}}>
+            <Box sx={{marginTop:2}}>
                 <Typography variant='h3'>Nhân viên</Typography>
             </Box>
+            <Grid container direction="row" justifyContent="flex-end" alignItems="center">
+                <TextField 
+                    autoFocus
+                    margin="dense"
+                    id="position"
+                    label="Tìm kiếm"
+                    variant="standard"
+                    type="text"
+                    sx={{minWidth: 200}}>
+                </TextField>
+                <IconButton sx={{marginX: 1}}>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </IconButton>
+                <Button variant='contained' color='secondary' onClick={() => setCreateOpen(true)}>
+                    Thêm tài khoản
+                </Button>
+            </Grid>
             <Box 
                 mt="40px"
                 height="75vh">
@@ -208,17 +374,12 @@ export default function StickyHeadTable() {
                                     );
                                     })}
                                     <StyledTableCell>
-                                        <IconButton onClick={() => setViewOpen({state: true, name: row["position"]})}>
+                                        <IconButton onClick={() => setViewOpen({state: true, item: row})}>
                                         <FontAwesomeIcon icon={faEye} />
                                         </IconButton>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <IconButton onClick={() => setEditOpen({state: true, name: "abc"})}>
-                                        <FontAwesomeIcon icon={faPenToSquare} />
-                                        </IconButton>
-                                    </StyledTableCell>
-                                    <StyledTableCell>
-                                        <IconButton onClick={() => setDeleteOpen({state: true, name: "abc"})}>
+                                        <IconButton onClick={() => setDeleteOpen({state: true, item: "abc"})}>
                                         <FontAwesomeIcon icon={faTrashCan} />
                                         </IconButton>
                                     </StyledTableCell>
@@ -239,16 +400,15 @@ export default function StickyHeadTable() {
                 </Paper>
                 <FormDialog
                 isDialogOpened={viewOpen.state}
-                name = {viewOpen.name}
-                handleCloseDialog={() => setViewOpen({state: false, name: ""})}/>
-                <FormEditDialog
-                isDialogOpened={editOpen.state}
-                name = {editOpen.name}
-                handleCloseDialog={() => setEditOpen({state: false, name: ""})}/>
+                item = {viewOpen.item}
+                handleCloseDialog={() => setViewOpen({state: false, item: {}})}/>
+                <FormCreateDialog
+                isDialogOpened={createOpen}
+                handleCloseDialog={() => setCreateOpen(false)} />
                 <FormDeleteDialog
                 isDialogOpened={deleteOpen.state}
-                name = {deleteOpen.name}
-                handleCloseDialog={() => setDeleteOpen({state: false, name: ""})}/>
+                item = {deleteOpen.item}
+                handleCloseDialog={() => setDeleteOpen({state: false, item: {}})}/>
             </Box>
         </Box>  
     );

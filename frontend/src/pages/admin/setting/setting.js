@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Container, Typography, Grid, TextField } from "@mui/material";
+import { Box, Container, Typography, Grid, TextField, Button } from "@mui/material";
 
 export default function Setting() {
+    const [open, setOpen] = React.useState(false);
     return(
         <Container sx={{ alignItems: "center", width: "100%" }}>
             <Box sx={{marginY:5}}>
@@ -9,26 +10,88 @@ export default function Setting() {
             </Box>
             <Box>
                 <Grid container direction="column">
-                    <Grid item>
-                        <TextField id="username" variant='standard' value="bao1709" />
-                        <TextField id="role" variant='standard' value="manager" />
-                    </Grid>
-                    <Grid item>
-                        <TextField id="fullname" variant='standard' value="name" />
-                    </Grid>
-                    <Grid item>
-                        <TextField id="dateofbirth" variant='standard' value="17/06/2002" />
-                        <TextField id="gender" variant='standard' value="nam" />
-                    </Grid>
-                    <Grid item>
-                        <TextField id="ssn" variant='standard' value="0123456789012" />
-                    </Grid>
-                    <Grid item>
-                        <TextField id="ssn" variant='standard' value="0123456789012" />
-                    </Grid>
-                    <Grid item>
-                        <TextField id="address" variant='standard' value="33 Tran Quang Dieu, Geng Rang, Quy Nhon, ABC XYZKLAJHDKJLASD" />
-                    </Grid>
+                <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Họ và tên"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="username"
+                        label="Tên đăng nhập"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="password"
+                        label="Mật khẩu"
+                        defaultValue="chii"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="dateOfBirth"
+                            label="Ngày tháng năm sinh"
+                            variant="outlined"
+                            helperText="dd-mm-yyyy"
+                            type="text"
+                            fullWidth
+                        />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="ssn"
+                        label="CCCD"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="phone_number"
+                        label="Số điện thoại"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="gmail"
+                        label="Địa chỉ email"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="position"
+                        label="Vị trí"
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid container>
+                    <Button variant="contained" color="primary">
+                        Xác nhận
+                    </Button>
                 </Grid>
             </Box>
         </Container>

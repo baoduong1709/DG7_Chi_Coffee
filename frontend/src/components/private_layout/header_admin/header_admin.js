@@ -3,6 +3,7 @@ import { Grid, IconButton, Typography, Button } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { ThemeProvider, styled } from '@mui/material/styles';
 
 import { theme } from "../theme";
 import { useNavigate } from "react-router-dom";
@@ -33,35 +34,49 @@ const header_item_styles = {
         color: themes.button.icon,
     },
 }
+const StyledDialog = styled(Dialog) (() => ({
+    '& .MuiDialogContent-root': {
+        padding: theme.spacing(2),
+    },
+    '& .MuiDialogContentText-root': {
+        fontSize: 18,
+        marginY: 5,
+    },
+    '& .MuiTextField': {
+        fontSize: 14,
+    },
+    '& .MuiDialogActions-root': {
+        padding: theme.spacing(1),
+        fontSize: 14,
+    },
+    '& .MuiDialogActions-button': {
+        padding: theme.spacing(1),
+        marginX: 2,
+        fontSize: 14,
+    },
+}));
 
-function FormDeleteDialog({ isDialogOpened, handleCloseDialog }) {
-    const navigate = useNavigate();
+function FormLogoutDialog({ isDialogOpened, handleCloseDialog, item }) {
     return (
         <React.Fragment>
-            <Dialog open={isDialogOpened} onClose={handleCloseDialog}>
-                <DialogContent>
-                    <Typography variant='h6'>Đăng xuất khỏi hệ thống?</Typography>
+            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"xs"} fullWidth={true}>
+                <DialogContent sx={{marginY: "20px"}}>
+                    <DialogContentText textAlign="center">
+                        Đăng xuất khỏi hệ thống?
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button
-                    variant="contained"
-                    onClick={handleCloseDialog}
-                    color="secondary"
-                    >
-                    No
+                    <Button onClick={handleCloseDialog} color="secondary">
+                        Quay lại
                     </Button>
-                    <Button
-                    variant="contained"
-                    onClick={() => {
+                    <Button variant="contained" onClick={() => {
                         localStorage.removeItem("user");
-                        navigate("../admin/login");
-                    }}
-                    color="default"
-                    >
-                    Yes
+                        window.location.assign("../admin/login");
+                    }} color="error">
+                        Đồng ý
                     </Button>
                 </DialogActions>
-            </Dialog>
+            </StyledDialog>
         </React.Fragment>
     );
 }
@@ -71,8 +86,7 @@ export default function HeaderAdmin({ userData }) {
     const [open, setOpen] = React.useState(false);
 
     function handleLogout(){
-        localStorage.removeItem("user");
-        navigate("../admin/login");
+        
     }
 
     return(
@@ -90,14 +104,14 @@ export default function HeaderAdmin({ userData }) {
                 marginX={3}
             >Xin chào, {userData.name}</Typography>
             <IconButton
-                onClick={handleLogout} 
+                onClick={() => setOpen(true)} 
                 sx={{ display: 'flex', flexDirection: 'row'}}
             >
                 <FontAwesomeIcon icon={faRightFromBracket} style={header_item_styles.icon}/>
             </IconButton>
-            <FormDeleteDialog
-            isDialogOpened={open.state}
-            handleCloseDialog={() => setOpen(false)}/>
+            <FormLogoutDialog
+                isDialogOpened={open}
+                handleCloseDialog={() => setOpen(false)}/>
         </Grid>
     );
 }

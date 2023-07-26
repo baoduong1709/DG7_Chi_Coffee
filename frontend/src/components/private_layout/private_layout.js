@@ -8,7 +8,7 @@ import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
 function PrivateLayout({ children }) {
-    const [userData, setUserData] = useState('');
+    const [userData, setUserData] = useState({});
     const navigate = useNavigate();
 
     useEffect(()=>{

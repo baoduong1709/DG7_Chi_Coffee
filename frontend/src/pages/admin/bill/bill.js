@@ -166,7 +166,6 @@ export default function StickyHeadTable() {
                                     <IconButton onClick={() => setViewOpen({state: true, name: "abc"})}>
                                     <FontAwesomeIcon icon={faEye} />
                                     </IconButton>
-                                    {console.log(viewOpen)}
                                 </StyledTableCell>
                                 <StyledTableCell>
                                     <IconButton onClick={() => setDeleteOpen({state: true, name: "abc"})}>
