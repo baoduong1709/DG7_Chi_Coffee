@@ -8,7 +8,7 @@ import '~/assets/css/loading.css';
 
 function Product() {
     const { id } = useParams();
-    console.log(id);
+
     const [product, setProduct] = useState([]);
     useEffect(() => {
         const fetchProduct = async () => {

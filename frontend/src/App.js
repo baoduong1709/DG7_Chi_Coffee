@@ -10,8 +10,8 @@ function App() {
     useEffect(() => {
         setUserData(() => JSON.parse(localStorage.getItem('user')));
     }, [userData]);
-    const { user, loginContext } = useContext(UserContext);
-    console.log(user);
+    const { loginContext } = useContext(UserContext);
+
     useEffect(() => {
         if (localStorage.getItem('token')) {
             loginContext(JSON.parse(localStorage.getItem('token')));
@@ -27,6 +27,7 @@ function App() {
                         const Page = route.component;
                         return (
                             <Route
+                                exact
                                 key={index}
                                 path={route.path}
                                 element={
@@ -43,6 +44,7 @@ function App() {
                         const Page = route.component;
                         return (
                             <Route
+                                exact
                                 key={index}
                                 path={route.path}
                                 element={
