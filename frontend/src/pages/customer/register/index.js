@@ -79,7 +79,7 @@ function Register() {
             toast.warning('Chưa nhập gmail', ToastOption);
             return;
         }
-        if (!gmail.endsWith('@gmail.com')) {
+        if (!gmail.endsWith('@gmail.com') && !gmail.endsWith('@outlook.com')) {
             toast.warning('Nhập mail không hợp lệ', ToastOption);
             return;
         }
@@ -88,7 +88,7 @@ function Register() {
             return;
         }
         if (password.length < 4) {
-            toast.warning('Mật khẩu phải tối đa 4 ký tự', ToastOption);
+            toast.warning('Mật khẩu phải tối thiểu 4 ký tự', ToastOption);
         }
         if (password !== confirmPassword) {
             toast.warning('Mật khẩu không khớp', ToastOption);
@@ -110,8 +110,13 @@ function Register() {
             toast.warning('Chưa nhập số điện thoại', ToastOption);
             return;
         }
+
         if (!phoneRegex.test(phone_number)) {
             toast.warning('Số điện thoại phải là số', ToastOption);
+            return;
+        }
+        if (phone_number.length < 10 || phone_number.length > 12) {
+            toast.warning('Số điện thoại phải từ 10 đến 12 số', ToastOption);
             return;
         }
         if (!address) {
