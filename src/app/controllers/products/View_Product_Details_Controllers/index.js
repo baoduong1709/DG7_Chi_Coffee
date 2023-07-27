@@ -13,7 +13,7 @@ class ViewProductDetailsControllers {
             .then(product_type =>{
                 let product_type_name = product_type.name
                 let data ={
-                    id:product._id,
+                    _id:product._id,
                     product_type_name: product_type_name,
                     product_name: product.product_name,
                     id_product_type: product.id_product_type,
