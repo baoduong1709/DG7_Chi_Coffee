@@ -21,7 +21,7 @@ class CreateOrderControllers {
                     let product = req.body.product
                     let amount = req.body.amount
                     let cost = req.body.cost
-                    let status = req.body.status
+                    let status = false
                     Order.create({
                         customer_id: customer_id,
                         customer_name: customer_name,
@@ -40,9 +40,9 @@ class CreateOrderControllers {
                         res.send('error')
                     })
 
-            }else{
-                return res.send('Tài khoản không tồn tại')
-            }
+                }else{
+                    return res.send('Tài khoản không tồn tại')
+                }
         })
         }
         catch(err){
