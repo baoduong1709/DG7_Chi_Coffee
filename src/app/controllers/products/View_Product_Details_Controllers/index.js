@@ -4,9 +4,8 @@ const Product_type =require('../../../models/Product_type')
 class ViewProductDetailsControllers {
     
     async view(req, res, next) {
-        let id =req.params.id
-        console.log(id)
-        const product= await Product.findById(id)
+        let _id =req.params._id
+        const product= await Product.findById(_id)
         if (!product) {
             return res.status(404).send('Sản phẩm không tồn tại')
         }else {
@@ -14,7 +13,7 @@ class ViewProductDetailsControllers {
             .then(product_type =>{
                 let product_type_name = product_type.name
                 let data ={
-                    id:product.id,
+                    id:product._id,
                     product_type_name: product_type_name,
                     product_name: product.product_name,
                     id_product_type: product.id_product_type,

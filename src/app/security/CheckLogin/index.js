@@ -7,8 +7,8 @@ class checkLogin{
             if (token == undefined){
                 return res.send('Chưa đăng nhập')
             }
-            let id = jwt.verify(token,'bao1709')
-            Employee.findById(id)
+            let _id = jwt.verify(token,'bao1709')
+            Employee.findById(_id)
             .then((data) =>{
                 if (data){
                     req.data = data

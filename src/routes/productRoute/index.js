@@ -11,6 +11,6 @@ const ViewAllProductControllers = require('../../app/controllers/products/View_A
 router.get('/', ViewAllProductControllers.view)
 
 const ViewProductDetailsControllers = require('../../app/controllers/products/View_Product_Details_Controllers')
-router.get('/:id', ViewProductDetailsControllers.view)
+router.get('/:_id', ViewProductDetailsControllers.view)
 
 module.exports = router;

@@ -2,18 +2,18 @@ const Order = require('../../../models/Order')
 
 class UpdateOrderOnlineControllers {
     async update(req, res) {
-        let id = req.body.id
-        let employee_id=req.data.id
+        let _id = req.body._id
+        let employee_id=req.data._id
         let employee_name=req.data.name
         let status=true
         let updatedAt = Date.now()
         console.log(updatedAt)    
-        await Order.findById(id)
+        await Order.findById(_id)
         .then(data => {
             if (data==null) {
                 return res.status(404).send('Hóa đơn không tồn tại');
             }
-            Order.findByIdAndUpdate(id, {
+            Order.findByIdAndUpdate(_id, {
                 employee_id: employee_id,
                 employee_name: employee_name,
                 status: status,

@@ -9,8 +9,8 @@ class CreateOrderControllers {
             if (token == undefined){
                 return res.send('Chưa đăng nhập')
             }
-            let id = jwt.verify(token,'bao1709')
-            Customer.findOne({_id: id})
+            let _id = jwt.verify(token,'bao1709')
+            Customer.findOne({_id: _id})
             .then((data) =>{
                 if (data){
                     let customer_id = data._id
