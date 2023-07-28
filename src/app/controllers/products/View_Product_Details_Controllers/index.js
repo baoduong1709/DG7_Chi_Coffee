@@ -30,8 +30,6 @@ class ViewProductDetailsControllers {
                 res.status(500).send('Lỗi server')
             })
         }
-
-
     };
 }
 module.exports = new ViewProductDetailsControllers;
