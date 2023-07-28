@@ -14,7 +14,7 @@
 
 .four_zero_four_bg {
 
-    background-image: url(D:\practice\ReactJS\DG7_Chi_Coffee\frontend\src\assets\images\dribbble_1.gif);
+    background-image: url("../images/dribbble_1.gif");
     height: 500px;
     background-position: center;
 }
