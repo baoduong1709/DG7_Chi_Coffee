@@ -13,6 +13,6 @@ const Employee = new Schema({
     position: String,
     username: String,
     password: String,
-    isAdmin: String
+    isAdmin: Boolean
 })
 module.exports = mongoose.model('employees', Employee)
