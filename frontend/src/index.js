@@ -4,14 +4,17 @@ import App from '~/App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from '~/components/gloabalStyles';
 import { UserProvider } from './context/userContext';
+import { CartProvider } from './context/cartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <UserProvider>
-            <GlobalStyle>
-                <App />
-            </GlobalStyle>
+            <CartProvider>
+                <GlobalStyle>
+                    <App />
+                </GlobalStyle>
+            </CartProvider>
         </UserProvider>
     </React.StrictMode>,
 );

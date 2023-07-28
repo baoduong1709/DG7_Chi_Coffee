@@ -10,15 +10,24 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+<<<<<<< HEAD
     "@mui/material": "^5.14.0",
     "@mui/x-data-grid": "^6.10.0",
+=======
+    "@mui/material": "^5.14.1",
+    "@mui/x-date-pickers": "^6.10.1",
+>>>>>>> 55a148fcb9580362549b36f389e060d34614fe89
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "babel": "^6.23.0",
     "bootstrap": "^5.3.0",
+<<<<<<< HEAD
     "material-react-table": "^1.14.0",
+=======
+    "dayjs": "^1.11.9",
+>>>>>>> 55a148fcb9580362549b36f389e060d34614fe89
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",

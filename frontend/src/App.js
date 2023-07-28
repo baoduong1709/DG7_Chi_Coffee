@@ -9,16 +9,23 @@ function App() {
     const [userData, setUserData] = useState('');
     const [isSending, setIsSending] = useState(true);
     useEffect(() => {
+<<<<<<< HEAD
         if(isSending){
             setUserData(() => JSON.parse(localStorage.getItem('user')));
         }
         setIsSending(false);
     }, []);
     const { user, loginContext } = useContext(UserContext);
+=======
+        setUserData(() => JSON.parse(localStorage.getItem('user')));
+    }, [userData]);
+    const { loginContext } = useContext(UserContext);
+>>>>>>> 55a148fcb9580362549b36f389e060d34614fe89
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            loginContext(JSON.parse(localStorage.getItem('user')), JSON.parse(localStorage.getItem('token')));
+            loginContext(JSON.parse(localStorage.getItem('token')));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const ProtectedRoute = ({ user, redirectPath = "../admin/login", children }) => {

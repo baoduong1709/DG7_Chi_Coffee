@@ -7,6 +7,7 @@ const axiosClient = axios.create({
         'content-type': 'application/json',
     },
 });
+<<<<<<< HEAD
 axiosClient.interceptors.request.use(async function (config){
         const token = JSON.parse(localStorage.getItem("user"))["token"];
         if(token) {
@@ -18,6 +19,16 @@ axiosClient.interceptors.request.use(async function (config){
         return Promise.reject(error);
     }
 );
+=======
+axiosClient.interceptors.request.use(async (config) => {
+    // Handle token here ...
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers['Authorization'] = `${JSON.parse(token)['token']}`;
+    }
+    return config;
+});
+>>>>>>> 55a148fcb9580362549b36f389e060d34614fe89
 axiosClient.interceptors.response.use(
     (response) => {
         if (response && response.data) {

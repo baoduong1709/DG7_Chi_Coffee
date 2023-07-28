@@ -1,6 +1,6 @@
 .wrapper {
     height: 100px;
-    /* display: flex; */
+    display: flex;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     position: sticky;
@@ -20,7 +20,7 @@ a {
 }
 
 .inner {
-    width: 1200px;
+    width: 1400px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,7 +40,18 @@ a {
     list-style: none;
 }
 
-
+.cart-number {
+    position: relative;
+    top: -15px;
+    right: 8px;
+    padding: 1px 4px;
+    font-size: 1.5rem;
+    line-height: 1rem;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    color: #fff;
+    background-color: var(--primary);
+}
 
 .dn {
 
