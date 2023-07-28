@@ -9,6 +9,10 @@ const axiosClient = axios.create({
 });
 axiosClient.interceptors.request.use(async (config) => {
     // Handle token here ...
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers['Authorization'] = `${JSON.parse(token)['token']}`;
+    }
     return config;
 });
 axiosClient.interceptors.response.use(

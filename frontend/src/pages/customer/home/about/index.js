@@ -1,4 +1,5 @@
 import '~/assets/css/about.css';
+import image from '~/assets/images';
 
 function About() {
     return (
@@ -6,11 +7,7 @@ function About() {
             <div className="section-content">
                 <div className="content-row">
                     <div className="content-image">
-                        <img
-                            style={{ width: '100%' }}
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/about/ABOUT-CAREER3.jpg"
-                            alt="Về chúng tôi"
-                        />
+                        <img style={{ width: '100%' }} src={image.about} alt="Về chúng tôi" />
                     </div>
                     <div className="content-text">
                         <h1 className="text-heading">Về chúng tôi</h1>

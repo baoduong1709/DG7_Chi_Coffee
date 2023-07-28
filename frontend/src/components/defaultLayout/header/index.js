@@ -4,12 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import productTypeApi from '~/api/productTypeApi';
 import { UserContext } from '~/context/userContext';
+import { CartContext } from '~/context/cartContext';
 import Swal from 'sweetalert2';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import '~/assets/css/header.css';
 
 function Header() {
+    const { cartItems } = useContext(CartContext);
     const navigate = useNavigate();
     const [productType, setProductType] = useState([]);
     useEffect(() => {
@@ -18,9 +20,7 @@ function Header() {
                 const response = await productTypeApi.getAll();
                 setProductType(response);
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                });
+                console.log(error);
             }
         };
         fetchProductType();
@@ -65,7 +65,7 @@ function Header() {
                     <div className="liItem dn ">
                         <Link to="/cart">
                             <i className="fas fa-shopping-cart"></i>
-                            <span className="cart-number">1</span>&nbsp;
+                            <span className="cart-number">{cartItems.length}</span>&nbsp;
                         </Link>
 
                         {user && user.auth === true ? (
