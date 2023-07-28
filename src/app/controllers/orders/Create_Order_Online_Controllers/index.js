@@ -7,7 +7,7 @@ class CreateOrderControllers {
         try {
             let token = req.header('Authorization')
             if (token == undefined){
-                return res.send('Chưa đăng nhập')
+                return res.status(401).send('Chưa đăng nhập')
             }
             let _id = jwt.verify(token,'bao1709')
             Customer.findOne({_id: _id})
@@ -34,19 +34,19 @@ class CreateOrderControllers {
                         status: status
                     })
                     .then(() =>{
-                        res.send('success')
+                        res.status(201).send('Tạo hóa đơn thành công')
                     })
                     .catch(()=>{
-                        res.send('error')
+                        res.status(500).send('Lỗi server')
                     })
 
                 }else{
-                    return res.send('Tài khoản không tồn tại')
+                    return res.status(404).send('Tài khoản không tồn tại')
                 }
         })
         }
         catch(err){
-            return res.send('error')
+            return res.status(401).send('Token không hợp lệ')
         }
 
     }
