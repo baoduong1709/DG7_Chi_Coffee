@@ -1,322 +1,59 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import { Box, Container, IconButton, Typography, Button, Grid } from '@mui/material';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
-
+import React from 'react';
+import { Box, IconButton, Typography, Button, Grid, Table, TableBody, TableContainer, TableHead, TextField, Paper } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faMagnifyingGlass, faPenToSquare, faRightFromBracket, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faMagnifyingGlass, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-import { ThemeProvider, styled } from '@mui/material/styles';
-import { theme } from '~/components/private_layout/theme';
+import { CustomTablePagination, StyledTableCell, StyledTableRow } from '~/components/private_layout/theme';
+import { FormDialog, FormCreateDialog, FormDeleteDialog, FormEditDialog } from './product_dialog';
 
 import { getProductList, getProductTypeList } from '~/api/product/productsAPI';
-
-
-const StyledDialog = styled(Dialog) (() => ({
-    '& .MuiDialogContent-root': {
-        padding: theme.spacing(2),
-    },
-    '& .MuiDialogContentText-root': {
-        fontSize: 18,
-        marginY: 5,
-    },
-    '& .MuiTextField': {
-        fontSize: 14,
-    },
-    '& .MuiDialogActions-root': {
-        padding: theme.spacing(1),
-        fontSize: 14,
-    },
-    '& .MuiDialogActions-button': {
-        padding: theme.spacing(1),
-        marginX: 2,
-        fontSize: 14,
-    },
-}));
-
-const StyledTableCell = styled(TableCell)(() => ({
-    [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.light.main,
-    fontSize: 18,
-    },
-    [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    },
-}));
-
-const StyledTableRow = styled(TableRow)(() => ({
-    '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.light.main,
-    },
-}));
-
-function FormDialog({ isDialogOpened, item, handleCloseDialog }) {
-    return (
-        <React.Fragment>
-            <Dialog open={isDialogOpened} onClose={handleCloseDialog}>
-                <DialogTitle>Xem thông tin</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Họ và tên"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.name}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="gender"
-                        label="Giới tính"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.gender === "male"?"Nam":"Nữ"}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="dateOfBirth"
-                        label="Ngày tháng năm sinh"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.date_of_birth}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="ssn"
-                        label="CCCD"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.ssn}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="phone_number"
-                        label="Số điện thoại"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.phone_number}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="gmail"
-                        label="Địa chỉ email"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.gmail}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="position"
-                        label="Vị trí"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.position === "admin"? "Quản lí":"Nhân viên"}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog}>Đóng lại</Button>
-                </DialogActions>
-            </Dialog>
-        </React.Fragment>
-    );
-}
-
-function FormCreateDialog({ isDialogOpened, handleCloseDialog}) {
-    return (
-        <React.Fragment>
-            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"sm"} fullWidth={true}>
-                <DialogTitle>Sửa thông tin</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Họ và tên"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="username"
-                        label="Tên đăng nhập"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="password"
-                        label="Mật khẩu"
-                        defaultValue="chii"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="dateOfBirth"
-                            label="Ngày tháng năm sinh"
-                            variant="outlined"
-                            helperText="dd-mm-yyyy"
-                            type="text"
-                            fullWidth
-                        />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="ssn"
-                        label="CCCD"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="phone_number"
-                        label="Số điện thoại"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="gmail"
-                        label="Địa chỉ email"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="position"
-                        label="Vị trí"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} variant="contained" color="error">Huỷ bỏ</Button>
-                    <Button onClick={handleCloseDialog} color="primary">Thêm mới</Button>
-                </DialogActions>
-            </StyledDialog>
-        </React.Fragment>
-    );
-}
-
-function FormDeleteDialog({ isDialogOpened, handleCloseDialog, item }) {
-    return (
-        <React.Fragment>
-            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"xs"} fullWidth={true}>
-                <DialogContent sx={{marginY: "20px"}}>
-                    <DialogContentText textAlign="center">
-                        Xoá sản phẩm này?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} color="secondary">
-                        Huỷ bỏ
-                    </Button>
-                    <Button variant="contained" onClick={handleCloseDialog} color="error">
-                        Đồng ý
-                    </Button>
-                </DialogActions>
-            </StyledDialog>
-        </React.Fragment>
-    );
-}
+import productApi from '~/api/productApi';
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [viewOpen, setViewOpen] = React.useState({state: false, item:{}});
     const [createOpen, setCreateOpen] = React.useState(false);
-    const [deleteOpen, setDeleteOpen] = React.useState(false);
+    const [editOpen, setEditOpen] = React.useState({state: false, item:{}});
+    const [deleteOpen, setDeleteOpen] = React.useState({state: false, item:{}});
+    const [handlePageData, setHandlePageData] = React.useState(0);
 
     const [userData, setUserData] = React.useState('');
     const [names, setNames] = React.useState([]);
     const [rows, setRows] = React.useState([]);
 
     const columns = [
-        { id: 'product_name', label: 'Tên sản phẩm', flex: 3, minWidth: 300 },
-        { id: 'id_product_type', label: 'Loại sản phẩm', flex: 2, minWidth: 200, format: (value) => convertName(value) },
-        { id: 'new_price', label: 'Giá (VND)', flex: 2, minWidth: 200, format: (value) => value.toLocaleString('en-US')}
+        { id: 'product_name', label: 'Tên sản phẩm', flex: 3, minWidth: 180 },
+        { id: 'id_product_type', label: 'Loại sản phẩm', flex: 2, minWidth: 120, format: (value) => convertName(value) },
+        { id: 'new_price', label: 'Giá (VND)', flex: 2, minWidth: 120, format: (value) => value.toLocaleString('en-US')}
     ];
 
     React.useEffect(() => {
-        setUserData(() => JSON.parse(localStorage.getItem("user")));
-        getProductTypeList(
-            userData,
-            (product_types) => {
-                setNames(product_types);
+        const getProductTypeList = async () => {
+            try {
+                const res = await productApi.getTypeAll();
+                setNames(res);
+            } catch (err) {
+                console.log(err);
             }
-        );
-        getProductList(
-            userData,
-            (products) => {
-                setRows(products);
+        };
+        const getProductList = async () => {
+            try {
+                const res = await productApi.getAll();
+                setRows(res);
+            } catch (err) {
+                console.log(err);
             }
-        );
-    },[userData])
+        };
+        getProductTypeList();
+        getProductList();
+    },[])
 
     function convertName (_id) {
         let length = names.length;
         for( let i = 0; i < length; i++) {
             if(names[i]._id === _id){
-                return names[i].name_display;
+                return names[i].name_display.toLowerCase();
             }
         }
         return "null";
@@ -333,11 +70,10 @@ export default function StickyHeadTable() {
     return (
         <Box m="1.5rem 2.5rem" width="95%" >
             <Box sx={{marginTop:2}}>
-                <Typography variant='h3'>Nhân viên</Typography>
+                <Typography variant='h3'>Sản phẩm</Typography>
             </Box>
             <Grid container direction="row" justifyContent="flex-end" alignItems="center">
                 <TextField 
-                    autoFocus
                     margin="dense"
                     id="position"
                     label="Tìm kiếm"
@@ -379,13 +115,13 @@ export default function StickyHeadTable() {
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
                                 return (
-                                <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                <StyledTableRow hover key={row._id}>
                                     {columns.map((column) => {
                                     const value = row[column.id];
                                     return (
-                                        <StyledTableCell style={{maxHeight: 40}} key={column.id} align={column.align}>
-                                        {column.format || typeof value === 'number'
-                                            ? column.format(value)
+                                        <StyledTableCell key={column.id} align={column.align}>
+                                        {column.format? 
+                                            column.format(value)
                                             : value}
                                         </StyledTableCell>
                                     );
@@ -396,7 +132,12 @@ export default function StickyHeadTable() {
                                         </IconButton>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <IconButton onClick={() => setDeleteOpen({state: true, item: "abc"})}>
+                                        <IconButton onClick={() => setEditOpen({state: true, item: row})}>
+                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                        </IconButton>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <IconButton onClick={() => setDeleteOpen({state: true, item: row})}>
                                         <FontAwesomeIcon icon={faTrashCan} />
                                         </IconButton>
                                     </StyledTableCell>
@@ -410,6 +151,7 @@ export default function StickyHeadTable() {
                         component="div"
                         count={rows.length}
                         rowsPerPage={10}
+                        rowsPerPageOptions={[10]}
                         page={page}
                         onPageChange={handleChangePage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
@@ -421,7 +163,13 @@ export default function StickyHeadTable() {
                 handleCloseDialog={() => setViewOpen({state: false, item: {}})}/>
                 <FormCreateDialog
                 isDialogOpened={createOpen}
-                handleCloseDialog={() => setCreateOpen(false)} />
+                handleCloseDialog={() => setCreateOpen(false)} 
+                names={names}/>
+                <FormEditDialog
+                isDialogOpened={editOpen.state}
+                handleCloseDialog={() => setEditOpen({state: false, item: {}})} 
+                item = {editOpen.item}
+                names={names}/>
                 <FormDeleteDialog
                 isDialogOpened={deleteOpen.state}
                 item = {deleteOpen.item}
@@ -430,78 +178,3 @@ export default function StickyHeadTable() {
         </Box>  
     );
 }
-
-const CustomTablePagination = styled(TablePagination)(
-    ({ theme }) => 
-    `
-    & .${classes.spacer} {
-      display: none;
-    }
-    & .${classes.toolbar}  {
-      display: flex;
-      font-size: 14px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      background-color: theme.palette.light.main;
-  
-      @media (min-width: 768px) {
-        flex-direction: row;
-        align-items: center;
-      }
-    }
-  
-    & .${classes.selectLabel} {
-      margin: 0;
-      font-size: 14px;
-    }
-  
-    & .${classes.select}{
-        font-size: 14px;
-      padding: 2px 6px;
-      border: 1px solid;
-      border-radius: 50px;
-      background-color: transparent;
-      color: theme.palette.primary.main;
-  
-      &:hover {
-        background-color: theme.palette.main.hover;
-      }
-  
-      &:focus {
-        outline: 1px solid theme.palette.secondary.hover;
-      }
-    }
-  
-    & .${classes.displayedRows} {
-      margin: 0;
-      font-size: 14px;
-      @media (min-width: 768px) {
-        margin-left: auto;
-      }
-    }
-  
-    & .${classes.actions} {
-      padding: 2px;
-      border: 1px solid;
-      border-radius: 50px;
-      text-align: center;
-    }
-  
-    & .${classes.actions} > button {
-      margin: 0 8px;
-      border: transparent;
-      border-radius: 4px;
-      background-color: transparent;
-      color: theme.palette.primary.main;
-  
-      &:hover {
-        background-color: theme.palette.light.hover;
-      }
-  
-      &:focus {
-        outline: 1px solid theme.palette.light.main;
-      }
-    }
-    `,
-  );

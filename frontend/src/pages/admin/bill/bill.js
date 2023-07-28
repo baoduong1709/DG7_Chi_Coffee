@@ -17,10 +17,10 @@ import { ThemeProvider, styled } from '@mui/material/styles';
 import { theme } from '~/components/private_layout/theme';
 
 const columns = [
-    { id: 'id', label: 'Mã hoá đơn', flex: 3, minWidth: 300, format: (value) => value.toLocaleString('en-US') },
-    { id: 'tableid', label: 'Bàn', flex: 1, minWidth: 100},
-    { id: 'time', label: 'Thời gian', flex: 2, minWidth: 200 },
-    { id: 'cost', label: 'Tổng (VND)', flex: 2, minWidth: 200, format: (value) => value.toLocaleString('en-US')}
+    { id: 'id', label: 'Mã hoá đơn', flex: 3, minWidth: 210, format: (value) => value.toLocaleString('en-US') },
+    { id: 'tableid', label: 'Bàn', flex: 1, minWidth: 70},
+    { id: 'time', label: 'Thời gian', flex: 2, minWidth: 140 },
+    { id: 'cost', label: 'Tổng (VND)', flex: 2, minWidth: 140, format: (value) => value.toLocaleString('en-US')}
 ];
 
 function createData(id, tableid, time, cost) {

@@ -7,10 +7,17 @@ const axiosClient = axios.create({
         'content-type': 'application/json',
     },
 });
-axiosClient.interceptors.request.use(async (config) => {
-    // Handle token here ...
-    return config;
-});
+axiosClient.interceptors.request.use(async function (config){
+        const token = JSON.parse(localStorage.getItem("user"))["token"];
+        if(token) {
+            config.headers["Authorization"] = `${token}`;
+            config.headers["Access-Control-Allow-Origin"] = "* ";
+        }
+        return config;
+    }, (error) => {
+        return Promise.reject(error);
+    }
+);
 axiosClient.interceptors.response.use(
     (response) => {
         if (response && response.data) {
@@ -19,8 +26,7 @@ axiosClient.interceptors.response.use(
         return response;
     },
     (error) => {
-        // Handle errors
-        throw error;
+        return Promise.reject(error.response || error.message);
     },
 );
 export default axiosClient;

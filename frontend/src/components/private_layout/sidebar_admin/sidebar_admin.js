@@ -90,8 +90,8 @@ const EmployeeSide = [
     {
         id: 5,
         svg: faGear,
-        route: "../admin/setting",
-        name: "Cài đặt"
+        route: "../admin/infomation",
+        name: "Chỉnh sửa thông tin"
     },
 ];
 

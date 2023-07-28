@@ -49,9 +49,8 @@ export default function EmployeeLogin() {
             const res = await axios
                 .post(loginRoute, value)
                 .then((res) => {
-                    console.log(res.status);
                     localStorage.setItem('user', JSON.stringify(res.data));
-                    window.location.assign('./dashboard');
+                    navigate("../admin/dashboard");
                 })
                 .catch((err) => {
                     let status = err.response.status;
