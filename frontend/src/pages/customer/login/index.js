@@ -1,4 +1,4 @@
-import images from '~/assets/images';
+import image from '~/assets/images';
 import { useContext, useEffect, useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { Link, useNavigate } from 'react-router-dom';
@@ -94,7 +94,7 @@ function Login() {
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
-                                        src="https://images.pexels.com/photos/7937505/pexels-photo-7937505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        src={image.avatar}
                                         alt="login form"
                                         className="img-fluid"
                                         style={{ borderRadius: '1rem 0 0 1rem' }}
@@ -112,7 +112,7 @@ function Login() {
                                                 }}
                                             >
                                                 <Link to={'/'}>
-                                                    <img src={images.logo} alt="logo" className="logo-login" />
+                                                    <img src={image.logo} alt="logo" className="logo-login" />
                                                 </Link>
                                             </div>
 

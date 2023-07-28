@@ -11,11 +11,11 @@ function App() {
         setUserData(() => JSON.parse(localStorage.getItem('user')));
     }, [userData]);
     const { loginContext } = useContext(UserContext);
-
     useEffect(() => {
         if (localStorage.getItem('token')) {
             loginContext(JSON.parse(localStorage.getItem('token')));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <>

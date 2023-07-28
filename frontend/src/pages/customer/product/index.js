@@ -1,21 +1,20 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useContext } from 'react';
 import productApi from '~/api/productApi';
 import { Link, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { CartContext } from '~/context/cartContext';
 
 import '~/assets/css/product.css';
 import '~/assets/css/loading.css';
 
 function Product() {
     const { id } = useParams();
-
     const [product, setProduct] = useState([]);
     useEffect(() => {
         const fetchProduct = async () => {
             setLoangApi(true);
             try {
                 const response = await productApi.getIdAll(id);
-                console.log(response);
                 setProduct(response);
                 setLoangApi(false);
             } catch (error) {
@@ -30,6 +29,11 @@ function Product() {
         setProduct([]);
     }, [id]);
     const [loadingApi, setLoangApi] = useState(false);
+    const { addToCart } = useContext(CartContext);
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
     return (
         <div className="menu-section">
             <div className="container-content product-content">
@@ -56,16 +60,20 @@ function Product() {
                                     </div>
                                     <div className="menu-content ">
                                         <h3 className="conent-heading">{Productitem.product_name}</h3>
-                                        <p>{Productitem.new_price}</p>
-                                        <div className="item-btn">
-                                            <button className="btn btn-danger btn-add-cart" type="button">
-                                                <i className="fa fa-shopping-cart"></i>
-                                                <span className="btn-heading">Thêm vào giỏ hàng</span>
-                                            </button>
-                                        </div>
+                                        <p>{formatter.format(Productitem.new_price).replace(/₫/g, 'VNĐ')}</p>
                                     </div>
                                 </Fragment>
                             </Link>
+                            <div className="item-btn ">
+                                <button
+                                    className="btn btn-danger btn-add-cart button"
+                                    type="button"
+                                    onClick={() => addToCart(Productitem)}
+                                >
+                                    <i className="fa fa-shopping-cart"></i>
+                                    <span className="btn-heading">Thêm vào giỏ hàng</span>
+                                </button>
+                            </div>
                         </div>
                     ))}
                     <div className="clear"></div>

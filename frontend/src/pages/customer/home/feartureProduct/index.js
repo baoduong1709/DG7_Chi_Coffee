@@ -1,3 +1,4 @@
+import image from '~/assets/images';
 import '~/assets/css/feartureProduct.css';
 
 function Product() {
@@ -9,11 +10,7 @@ function Product() {
                 </div>
                 <div className="menu-list">
                     <div className="menu-item">
-                        <img
-                            className="menu-item-img"
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/TRA-SEN-VANG-CN-5.1.png"
-                            alt="Trà sen vàng"
-                        />
+                        <img className="menu-item-img" src={image.home_product} alt="Trà sen vàng" />
                         <div className="menu-content">
                             <h3 className="conent-heading">TRÀ SEN VÀNG</h3>
                             <p className="conent-text">
@@ -24,11 +21,7 @@ function Product() {
                     </div>
 
                     <div className="menu-item">
-                        <img
-                            className="menu-item-img"
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/HLC_New_logo_5.1_Products__TRA_THANH_DAO-09.jpg"
-                            alt="Trà Thạch Đào"
-                        />
+                        <img className="menu-item-img" src={image.home_product_1} alt="Trà Thạch Đào" />
                         <div className="menu-content">
                             <h3 className="conent-heading">TRÀ THANH ĐÀO</h3>
                             <p className="conent-text">
@@ -39,11 +32,7 @@ function Product() {
                     </div>
 
                     <div className="menu-item">
-                        <img
-                            className="menu-item-img"
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/HLC_New_logo_5.1_Products__PHIN_SUADA.jpg"
-                            alt="Phin Sữa Đá"
-                        />
+                        <img className="menu-item-img" src={image.home_product_2} alt="Phin Sữa Đá" />
                         <div className="menu-content">
                             <h3 className="conent-heading">PHIN SỮA ĐÁ</h3>
                             <p className="conent-text">
@@ -55,11 +44,7 @@ function Product() {
                     </div>
 
                     <div className="menu-item">
-                        <img
-                            className="menu-item-img"
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/HLC_New_logo_5.1_Products__PHINDI_KEM_SUA.jpg"
-                            alt="PhinDi Kem Sữa"
-                        />
+                        <img className="menu-item-img" src={image.home_product_3} alt="PhinDi Kem Sữa" />
                         <div className="menu-content">
                             <h3 className="conent-heading">PHINDI KEM SỮA</h3>
                             <p className="conent-text">
@@ -70,11 +55,7 @@ function Product() {
                     </div>
 
                     <div className="menu-item">
-                        <img
-                            className="menu-item-img"
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/thumbs/270_crop_HLC_New_logo_5.1_Products__FREEZE_CHOCO.jpg"
-                            alt="Freeze Socola"
-                        />
+                        <img className="menu-item-img" src={image.home_product_4} alt="Freeze Socola" />
                         <div className="menu-content">
                             <h3 className="conent-heading">FREEZE SÔ-CÔ-LA</h3>
                             <p className="conent-text">
@@ -86,11 +67,7 @@ function Product() {
                     </div>
 
                     <div className="menu-item">
-                        <img
-                            className="menu-item-img"
-                            src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"
-                            alt="FREEZE TRÀ XANH"
-                        />
+                        <img className="menu-item-img" src={image.home_product_5} alt="FREEZE TRÀ XANH" />
                         <div className="menu-content">
                             <h3 className="conent-heading">FREEZE TRÀ XANH</h3>
                             <p className="conent-text">

@@ -40,9 +40,3 @@ input,
     background-color: var(--primary);
     border-color: var(--primary);
 }
-
-label {
-
-    margin-bottom: unset;
-
-}

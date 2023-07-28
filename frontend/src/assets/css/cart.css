@@ -38,6 +38,5 @@
 }
 
 .btn-total {
-    position: relative;
-    left: 300px;
+    float: right;
 }

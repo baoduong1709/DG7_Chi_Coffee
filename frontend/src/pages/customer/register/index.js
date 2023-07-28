@@ -5,11 +5,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
-
 import { ToastOption } from '~/components/toastify';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import image from '~/assets/images';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '~/assets/css/datePicker.css';
@@ -116,7 +116,7 @@ function Register() {
             return;
         }
         if (phone_number.length < 10 || phone_number.length > 12) {
-            toast.warning('Số điện thoại phải từ 10 đến 12 số', ToastOption);
+            toast.warning('Số điện thoại không hợp lệ', ToastOption);
             return;
         }
         if (!address) {
@@ -166,7 +166,7 @@ function Register() {
                             <div className="row g-0">
                                 <div className="col-xl-6 d-none d-xl-block">
                                     <img
-                                        src="https://images.pexels.com/photos/7937505/pexels-photo-7937505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        src={image.avatar}
                                         alt="Sample"
                                         className="img-fluid"
                                         style={{
@@ -235,7 +235,7 @@ function Register() {
                                             </div>
                                         </div>
                                         <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                                            <h3 className="mb-0 me-4" style={{ color: '#333' }}>
+                                            <h3 className="mb-0 me-4" style={{ color: '#333', marginTop: '-10px' }}>
                                                 Giới tính:
                                             </h3>
                                             <div className="form-check form-check-inline mb-0 me-4">

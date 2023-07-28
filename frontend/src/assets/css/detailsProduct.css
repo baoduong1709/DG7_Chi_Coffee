@@ -56,7 +56,7 @@ label {
 
 
 .add-item span {
-    border: 1px solid #B3B3B3;
+
     width: 40px;
     height: 40px;
     display: table-cell;
@@ -65,19 +65,25 @@ label {
     cursor: pointer;
 }
 
-
-
-.add-item .change-decrease {
+.change-decrease {
     border-radius: 4px 0 0 4px;
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 900;
 }
 
 .quantity {
     border-left: none;
     border-right: none;
+    border: 1px solid var(--primary);
+    border-radius: 40%;
 }
 
-.add-item .change-increase {
+.change-increase {
     border-radius: 0 4px 4px 0;
+    color: var(--primary);
+    font-size: 20px;
+
 }
 
 .btn-add {
