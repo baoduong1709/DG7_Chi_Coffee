@@ -8,7 +8,7 @@ const Product = new Schema({
     new_price: String,
     product_image: String,
     product_image_name: String,
-    product_status: String,
+    product_status: Boolean,
     description: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
