@@ -17,7 +17,6 @@ class LoginCustomerControllers {
                             _id: data._id,
                         }, 'bao1709')
                         let name = data.name
-                        console.log(data)
                         return res.status(200).json({
                             message: 'Login successfully!',
                             token: token,

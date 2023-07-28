@@ -13,4 +13,7 @@ router.get('/', ViewAllProductControllers.view)
 const ViewProductDetailsControllers = require('../../app/controllers/products/View_Product_Details_Controllers')
 router.get('/:_id', ViewProductDetailsControllers.view)
 
+const UpdateProductControllers = require('../../app/controllers/products/Update_Product_Controllers')
+router.put('/:_id/update',CheckLogin.check,CheckAdmin.check,uploadCloud.single('product_image'), UpdateProductControllers.update)
+
 module.exports = router;
