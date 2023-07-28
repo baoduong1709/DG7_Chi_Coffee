@@ -13,7 +13,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   allowedFormats: ['jpg', 'png'],
     params:{
-        folder: 'test'
+        folder: 'DG7_Chi_Coffee'
     }
 });
 
