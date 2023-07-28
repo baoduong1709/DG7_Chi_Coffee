@@ -14,6 +14,7 @@ import Details from '~/pages/customer/product/detailsProduct';
 import Login from '~/pages/customer/login';
 import Register from '~/pages/customer/register';
 import Cart from '~/pages/customer/cart';
+import NotFound from '~/pages/notFound/NotFound';
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -23,6 +24,7 @@ const publicRoutes = [
     { path: '/product/details/:id', component: Details },
     { path: '/cart', component: Cart },
     { path: '/admin/login', component: AdminLogin, layout: null },
+    { path: '*', component: NotFound, layout: null },
 ];
 
 const privateRoutes = [
