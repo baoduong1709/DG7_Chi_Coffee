@@ -101,7 +101,7 @@ export default function SideBarAdmin({ userData }) {
     const [ toggled, setToggled ] = useState(false);
     const [ broken, setBroken ] = useState(false);
 
-    let routeSide = userData.isAdmin === "true"?AdminSide:EmployeeSide;
+    let routeSide = userData.isAdmin === true?AdminSide:EmployeeSide;
 
     return(
         <Box
