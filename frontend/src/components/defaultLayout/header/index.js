@@ -4,13 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import productTypeApi from '~/api/productTypeApi';
 import { UserContext } from '~/context/userContext';
+import { CartContext } from '~/context/cartContext';
 import Swal from 'sweetalert2';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import '~/assets/css/header.css';
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 function Header() {
+    const { cartItems } = useContext(CartContext);
     const navigate = useNavigate();
     const [productType, setProductType] = useState([]);
     useEffect(() => {
@@ -55,15 +56,16 @@ function Header() {
                     <ul>
                         {productType.map((product) => (
                             <li className="liItem dis" key={product._id}>
-                                <Link to={`/product/${product._id}`}>{product.name_display}</Link>
+                                <Link to={`/product/${product.name}`}>{product.name_display}</Link>
                             </li>
                         ))}
                     </ul>
                 </div>
                 <div className="btn-user">
                     <div className="liItem dn ">
-                        <Link to="">
-                            <i className="fas fa-shopping-cart"></i> &nbsp;
+                        <Link to="/cart">
+                            <i className="fas fa-shopping-cart"></i>
+                            <span className="cart-number">{cartItems.length}</span>&nbsp;
                         </Link>
 
                         {user && user.auth === true ? (

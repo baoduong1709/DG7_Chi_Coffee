@@ -1,4 +1,4 @@
-import images from '~/assets/images';
+import image from '~/assets/images';
 import { useContext, useEffect, useState } from 'react';
 import isEmpty from 'validator/lib/isEmpty';
 import { Link, useNavigate } from 'react-router-dom';
@@ -46,7 +46,7 @@ function Login() {
         setLoangApi(true);
 
         axios
-            .post('https://ex-dg7-chi-coffee-demo-v4.onrender.com/api/v1/customer/auth', {
+            .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/auth', {
                 gmail: username,
                 password: password,
             })
@@ -57,8 +57,7 @@ function Login() {
                     title: 'Đăng nhập thành công',
                     timer: 1000,
                 });
-                const name = result.data.name;
-                loginContext(name, result.data);
+                loginContext(result.data);
                 navigate('/');
                 setLoangApi(false);
             })
@@ -95,7 +94,7 @@ function Login() {
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
-                                        src="https://images.pexels.com/photos/7937505/pexels-photo-7937505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        src={image.avatar}
                                         alt="login form"
                                         className="img-fluid"
                                         style={{ borderRadius: '1rem 0 0 1rem' }}
@@ -113,7 +112,7 @@ function Login() {
                                                 }}
                                             >
                                                 <Link to={'/'}>
-                                                    <img src={images.logo} alt="logo" className="logo-login" />
+                                                    <img src={image.logo} alt="logo" className="logo-login" />
                                                 </Link>
                                             </div>
 
@@ -140,7 +139,7 @@ function Login() {
                                                         fontSize: '1.6rem',
                                                     }}
                                                     className="form-control form-control-lg"
-                                                    placeholder="Tên đăng nhập"
+                                                    placeholder="Tên gmail"
                                                     required
                                                     onChange={onChangeUser}
                                                 />
@@ -181,9 +180,9 @@ function Login() {
                                                 </button>
                                             </div>
                                             <div className="link-item">
-                                                <a href="#!" style={{ color: '#de4057', fontWeight: 'bold' }}>
+                                                <Link to="/register" style={{ color: '#de4057', fontWeight: 'bold' }}>
                                                     Đăng ký tại đây
-                                                </a>
+                                                </Link>
                                                 <a className="small " href="#!" style={{ color: '#de4057' }}>
                                                     Quên mật khẩu ?
                                                 </a>

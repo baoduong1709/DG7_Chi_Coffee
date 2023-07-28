@@ -17,8 +17,9 @@ function App() {
     const { user, loginContext } = useContext(UserContext);
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            loginContext(JSON.parse(localStorage.getItem('user')), JSON.parse(localStorage.getItem('token')));
+            loginContext(JSON.parse(localStorage.getItem('token')));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const ProtectedRoute = ({ user, redirectPath = "../admin/login", children }) => {
