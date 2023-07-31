@@ -69,15 +69,9 @@ const AdminSide = [
     {
         id: 5,
         svg: faGear,
-        route: "../admin/setting",
-        name: "Cài đặt"
+        route: "../admin/infomation",
+        name: "Sửa thông tin"
     },
-    {
-        id: 6,
-        svg: faRightFromBracket,
-        route: "../logout",
-        name: "Đăng xuất"
-    }
 ];
 
 const EmployeeSide = [
@@ -96,15 +90,9 @@ const EmployeeSide = [
     {
         id: 5,
         svg: faGear,
-        route: "../admin/setting",
-        name: "Cài đặt"
+        route: "../admin/infomation",
+        name: "Chỉnh sửa thông tin"
     },
-    {
-        id: 6,
-        svg: faRightFromBracket,
-        route: "../logout",
-        name: "Đăng xuất"
-    }
 ];
 
 export default function SideBarAdmin({ userData }) {
@@ -113,14 +101,14 @@ export default function SideBarAdmin({ userData }) {
     const [ toggled, setToggled ] = useState(false);
     const [ broken, setBroken ] = useState(false);
 
-    let routeSide = userData.isAdmin === "true"?AdminSide:EmployeeSide;
+    let routeSide = userData.isAdmin === true?AdminSide:EmployeeSide;
 
     return(
         <Box
             sx={{
                 position: "sticky",
                 display: "flex",
-                height: "100vh",
+                height: "100%",
                 top: 0,
                 bottom: 0,
                 zIndex: 10000,

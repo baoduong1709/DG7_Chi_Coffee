@@ -14,7 +14,7 @@ export default function EmployeeLogin() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-	const loginRoute = "https://ex-dg7-chi-coffee-demo.onrender.com/api/v1/auth/employee";
+	const loginRoute = "https://ex-dg7-chi-coffee.onrender.com/api/v1/employee/auth";
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export default function EmployeeLogin() {
         if (getAuth) {
             toast.warning('Bạn phải đăng xuất trước!', ToastOption);
             setTimeout(loadBack, 3000);
-            // window.location.assign("./dashboard");
+            window.location.assign("./dashboard");   
         }
     }, []);
 
@@ -49,9 +49,8 @@ export default function EmployeeLogin() {
             const res = await axios
                 .post(loginRoute, value)
                 .then((res) => {
-                    console.log(res.status);
                     localStorage.setItem('user', JSON.stringify(res.data));
-                    window.location.assign('./dashboard');
+                    navigate("../admin/dashboard");
                 })
                 .catch((err) => {
                     let status = err.response.status;
