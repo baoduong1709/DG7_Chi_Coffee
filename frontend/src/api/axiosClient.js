@@ -7,17 +7,15 @@ const axiosClient = axios.create({
         'content-type': 'application/json',
     },
 });
-axiosClient.interceptors.request.use(async function (config){
-        const token = JSON.parse(localStorage.getItem("user"))["token"];
-        if(token) {
-            config.headers["Authorization"] = `${token}`;
-            config.headers["Access-Control-Allow-Origin"] = "* ";
-        }
-        return config;
-    }, (error) => {
-        return Promise.reject(error);
+axiosClient.interceptors.request.use(async (config) => {
+    // Handle token here ...
+    const tokencustomer = localStorage.getItem('token');
+    if (tokencustomer) {
+        config.headers['Authorization'] = `${JSON.parse(tokencustomer)['token']}`;
+        config.headers['Access-Control-Allow-Origin'] = '* ';
     }
-);
+    return config;
+});
 axiosClient.interceptors.response.use(
     (response) => {
         if (response && response.data) {
