@@ -10,4 +10,7 @@ router.post('/create', CreateCustomerControllers.create)
 const UpdateCustomerControllers = require('../../app/controllers/customers/Update_Customer_Controllers')
 router.put('/:_id/update', UpdateCustomerControllers.update)
 
+const ViewCustomerDatailsControllers = require('../../app/controllers/customers/View_Customer_Details_Controllers')
+router.get('/details', ViewCustomerDatailsControllers.view)
+
 module.exports = router;
