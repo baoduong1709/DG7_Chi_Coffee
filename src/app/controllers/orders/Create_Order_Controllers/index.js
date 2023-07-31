@@ -15,9 +15,9 @@ class CreateOrderControllers {
                 if (data){
                     let customer_id = data._id
                     let customer_name = data.name
-                    let employee_id = null
-                    let employee_name = null
-                    let table_id = null
+                    let employee_id = req.body.employee_id
+                    let employee_name = req.body.employee_name
+                    let table_name = req.body.table_name
                     let product = req.body.product
                     let amount = req.body.amount
                     let cost = req.body.cost
@@ -27,7 +27,7 @@ class CreateOrderControllers {
                         customer_name: customer_name,
                         employee_id: employee_id,
                         employee_name: employee_name,
-                        table_id: table_id,
+                        table_name: table_name,
                         product: product,
                         amount: amount,
                         cost: cost,
