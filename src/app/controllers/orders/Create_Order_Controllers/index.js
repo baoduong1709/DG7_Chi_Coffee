@@ -6,6 +6,7 @@ class CreateOrderControllers {
     async create(req, res, next) {
         try {
             let token = req.header('Authorization')
+            console.log(token)
             if (token == undefined){
                 return res.status(401).send('Chưa đăng nhập')
             }
