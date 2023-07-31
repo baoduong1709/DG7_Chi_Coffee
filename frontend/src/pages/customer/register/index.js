@@ -32,7 +32,7 @@ function Register() {
     const onChangeDate = (date) => {
         setDate(date);
     };
-    const formattedDate = date ? dayjs(date).format('MM-DD-YYYY') : '';
+    const formattedDate = date ? dayjs(date).format('MM/DD/YYYY') : '';
 
     const onChangeRadio = (e) => {
         const value = e.target.value;
@@ -150,7 +150,7 @@ function Register() {
             .catch((error) => {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Tài khoản không chính xác',
+                    title: 'Tài khoản đã tồn tại',
                     timer: 3000,
                 });
                 setLoadingApi(false);
@@ -296,7 +296,12 @@ function Register() {
                                         <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
                                             <h3
                                                 className="mb-0 me-4"
-                                                style={{ marginTop: '-10px', color: '#333', paddingTop: '10px' }}
+                                                style={{
+                                                    minWidth: '105px',
+                                                    marginTop: '-10px',
+                                                    color: '#333',
+                                                    paddingTop: '10px',
+                                                }}
                                             >
                                                 Ngày sinh:
                                             </h3>
