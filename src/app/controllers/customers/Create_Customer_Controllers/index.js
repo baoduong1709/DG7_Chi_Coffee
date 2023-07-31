@@ -31,13 +31,12 @@ class CreateCustommerControllers {
                 address: address,
                 bonus_mark: 0
             })
-              .then(data => {
-                    res.status(200).json('Tạo tài khoản thành công ');
-                })
-              .catch(err => {
-                console.log(err);
-                    res.status(500).json('Lỗi server')
-                })
+            .then(() => {
+                res.status(200).json('Tạo tài khoản thành công ');
+            })
+            .catch(() => {
+                res.status(500).json('Lỗi server')
+            })
         }
     }
 };
