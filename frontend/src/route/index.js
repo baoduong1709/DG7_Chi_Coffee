@@ -15,6 +15,8 @@ import Login from '~/pages/customer/login';
 import Register from '~/pages/customer/register';
 import Cart from '~/pages/customer/cart';
 import NotFound from '~/pages/notFound/NotFound';
+import Information from '~/pages/customer/information';
+import OrderHistory from '~/pages/customer/orderHistory';
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -25,6 +27,8 @@ const publicRoutes = [
     { path: '/cart', component: Cart },
     { path: '/admin/login', component: AdminLogin, layout: null },
     { path: '*', component: NotFound, layout: null },
+    { path: '/customer/information', component: Information },
+    { path: '/orderHistory', component: OrderHistory },
 ];
 
 const privateRoutes = [

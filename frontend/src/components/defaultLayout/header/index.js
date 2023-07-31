@@ -70,9 +70,8 @@ function Header() {
 
                         {user && user.auth === true ? (
                             <NavDropdown title={user.username} id="basic-nav-dropdown" className="navdropdown">
-                                <NavDropdown.Item href="#action/3.1">Thông tin cá nhân</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown.Item href="/customer/information">Thông tin cá nhân</NavDropdown.Item>
+                                <NavDropdown.Item href="/orderHistory">Lịch sử đặt hàng</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={handleLogout} style={{ color: '#de4057' }}>
                                     ĐĂNG XUẤT
