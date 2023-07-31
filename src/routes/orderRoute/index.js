@@ -6,6 +6,6 @@ const CreateOrderOnlineController = require('../../app/controllers/orders/Create
 router.post('/create', CreateOrderOnlineController.create)
 
 const UpdateOrderOnlineControllers = require('../../app/controllers/orders/Update_Order_Controllers')
-router.put('/update',CheckLogin.check, UpdateOrderOnlineControllers.update)
+router.put('/:_id/update',CheckLogin.check, UpdateOrderOnlineControllers.update)
 
 module.exports = router
