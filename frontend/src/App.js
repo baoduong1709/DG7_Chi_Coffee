@@ -9,12 +9,12 @@ function App() {
     const [userData, setUserData] = useState('');
     const [isSending, setIsSending] = useState(true);
     useEffect(() => {
-        if(isSending){
-            setUserData(() => JSON.parse(localStorage.getItem('user')));
+        if (isSending) {
+            setUserData(() => JSON.parse(localStorage.getItem('user-admin')));
         }
         setIsSending(false);
     }, []);
-    const { user, loginContext } = useContext(UserContext);
+    const { loginContext } = useContext(UserContext);
     useEffect(() => {
         if (localStorage.getItem('token')) {
             loginContext(JSON.parse(localStorage.getItem('token')));
@@ -22,11 +22,11 @@ function App() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const ProtectedRoute = ({ user, redirectPath = "../admin/login", children }) => {
+    const ProtectedRoute = ({ user, redirectPath = '../admin/login', children }) => {
         if (!user && !isSending) {
-          return <Navigate to={redirectPath} />;
+            return <Navigate to={redirectPath} />;
         }
-        return children? children:<Outlet />;
+        return children ? children : <Outlet />;
     };
     return (
         <>
