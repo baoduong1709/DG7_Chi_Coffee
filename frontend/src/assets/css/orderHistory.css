@@ -1,4 +1,4 @@
-table {
+.table-container {
     border-spacing: 1px;
     border-collapse: collapse;
     background: white;
@@ -10,48 +10,48 @@ table {
     position: relative;
 }
 
-table * {
+.table-container * {
     position: relative;
 }
 
-table td,
-table th {
+.table-container td,
+.table-container th {
     padding-left: 8px;
 }
 
-table thead tr {
+.table-container thead tr {
     height: 60px;
     background: #fff;
     font-size: 16px;
     color: var(--primary);
 }
 
-table tbody tr {
+.table-container tbody tr {
     height: 48px;
     border-bottom: 1px solid var(--primary);
 }
 
-table tbody tr:last-child {
+.table-container tbody tr:last-child {
     border: 0;
 }
 
-table td,
-table th {
+.table-container td,
+.table-container th {
     text-align: left;
 }
 
-table td.l,
-table th.l {
+.table-container td.l,
+.table-container th.l {
     text-align: right;
 }
 
-table td.c,
-table th.c {
+.table-container td.c,
+.table-container th.c {
     text-align: center;
 }
 
-table td.r,
-table th.r {
+.table-container td.r,
+.table-container th.r {
     text-align: center;
 }
 

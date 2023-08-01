@@ -20,7 +20,7 @@ function OrderHistory() {
     return (
         <section className="py-5 my-5">
             <h1 className="mb-5 text-uppercase text-danger text-center fw-bold">lịch sử đặt hàng</h1>
-            <table>
+            <table className="table-container">
                 <thead>
                     <tr>
                         <th>CODE</th>
