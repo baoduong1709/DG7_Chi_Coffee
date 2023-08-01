@@ -9,7 +9,6 @@ class UpdateCustommerControllers {
             }
             let _id = jwt.verify(token,'bao1709')
             let customer = req.body
-            console.log(customer)
             try {     
                 const updatedCustomer = await Customer.findByIdAndUpdate(_id, customer, { new: true });       
                 if (!updatedCustomer) {
