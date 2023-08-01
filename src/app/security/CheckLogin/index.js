@@ -3,7 +3,7 @@ let Employee = require('../../models/Employee')
 class checkLogin{
     async check(req, res, next){
         try{
-            let token = req.header('Authorization')
+            let token = req.header('Token-Admin')
             if (token == undefined){
                 return res.send('Chưa đăng nhập')
             }

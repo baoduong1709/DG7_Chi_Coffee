@@ -2,20 +2,35 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Customer = new Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
+    gender: {
+        type: String,
+        enum: ['male', 'female', 'other'],
+    required: true,
+    },
     gmail: {
         type: String,
-        index: true,
-        unique: true
+        required: true,
+        immutable: true
     },
-    password: {
+    date_of_birth: {
         type: String,
         required: true
     },
-    name: String,
-    gender: String,
-    date_of_birth: String,
-    phone_number: String,
-    address: String,
+    phone_number: {
+        type: String,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
     bonus_mark: Number
 })
 module.exports = mongoose.model('customers', Customer)
