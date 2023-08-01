@@ -1,0 +1,121 @@
+#container-login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.app-wrapper {
+    width: 100%;
+    justify-items: center;
+}
+
+.app-wrapper#form-control {
+    min-width: 50%;
+    justify-items: center;
+}
+
+#background {
+    max-height: 100vh;
+}
+
+#content-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo {
+    margin-top: 1.25rem;
+    min-width: 180px;
+    max-width: 225px;
+}
+
+.text-title {
+    padding-top: 0.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: #DE4057;
+}
+
+.form-group {
+    display: flex;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#relative {
+    display: flex;
+    align-items: center;
+}
+
+#eye {
+    margin-left: -30px;
+    cursor: pointer;
+}
+
+button#submit {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 0.75rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #DE4057;
+    color: #ffffff;
+    background: #DE4057;
+
+}
+
+button#submit:hover {
+    opacity: 0.95;
+}
+
+button#submit:active {
+    opacity: 1;
+    scale: 0.95;
+}
+
+input {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-style: solid;
+    border-radius: 0.75rem;
+    border-width: 2px;
+    border-color: #DE4057;
+    min-width: 250px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .app-wrapper {
+        width: 50%;
+    }
+
+    .text-title {
+        padding-top: 0;
+        padding-bottom: 0;
+        align-items: center;
+    }
+}

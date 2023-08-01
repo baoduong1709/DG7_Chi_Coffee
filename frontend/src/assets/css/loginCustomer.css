@@ -1,0 +1,37 @@
+.logo-login {
+    width: 80%;
+    margin-left: 190px;
+    margin-top: -40px;
+}
+
+
+
+#btn-login {
+    background-color: var(--primary);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: none !important;
+}
+
+.link-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 8px;
+}
+
+.warning {
+    color: red;
+    font-size: 12px;
+    margin-left: 80px;
+    margin-bottom: -10px;
+
+}

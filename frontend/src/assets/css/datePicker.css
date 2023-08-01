@@ -1,0 +1,46 @@
+.MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: -webkit-fill-available;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    font-size: 1.5rem;
+}
+
+input#\:r1\: {
+    height: 0em;
+}
+
+.MuiPickersCalendarHeader-labelContainer.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+    font-size: 1.6rem;
+}
+
+button.MuiPickersYear-yearButton.css-1beqopj-MuiPickersYear-yearButton {
+    font-size: 1.6rem;
+}
+
+button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
+    font-size: 1.6rem;
+}
+
+
+span.MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+    font-size: 1.4rem;
+}
+
+button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
+    font-size: 1.5rem;
+}
+
+/* 
+fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline:focus {
+    border-color: var(--primary) !important;
+
+} */
+
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+/* .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline :focus {
+    border-color: #d32f2f !important;
+} */

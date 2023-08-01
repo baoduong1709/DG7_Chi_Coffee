@@ -1,0 +1,58 @@
+import { Carousel } from 'react-responsive-carousel';
+import image from '~/assets/images';
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+function Carousels() {
+    let listImg = [
+        {
+            id: 1,
+            image: image.carousel_1,
+        },
+        {
+            id: 2,
+            image: image.carousel_2,
+        },
+        {
+            id: 3,
+            image: image.carousel_3,
+        },
+        {
+            id: 4,
+            image: image.carousel_4,
+        },
+        { id: 5, image: image.carousel_5 },
+
+        {
+            id: 6,
+            image: image.carousel_6,
+        },
+        { id: 7, image: image.carousel_7 },
+        {
+            id: 8,
+            image: image.carousel_8,
+        },
+        { id: 9, image: image.carousel_9 },
+        { id: 10, image: image.carousel_10 },
+        { id: 11, image: image.carousel_11 },
+        { id: 12, image: image.carousel_12 },
+        {
+            id: 13,
+            image: image.carousel_13,
+        },
+        {
+            id: 14,
+            image: image.carousel_14,
+        },
+    ];
+    return (
+        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false} showArrows={false}>
+            {listImg.map((Img) => (
+                <div key={Img.id}>
+                    <img key={Img.id} style={{ height: '500px', width: 'auto' }} alt="" src={Img.image} />
+                </div>
+            ))}
+        </Carousel>
+    );
+}
+export default Carousels;
