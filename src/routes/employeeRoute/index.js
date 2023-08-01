@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router()
-const CheckLogin =require('../../app/security/CheckLogin')
+const CheckLogin =require('../../app/security/CheckLoginEmployee')
 const CheckAdmin = require('../../app/security/CheckAdmin')
 
 const ViewEmployeeListControllers = require('../../app/controllers/employees/View_Employee_List_Controllers')

@@ -15,12 +15,11 @@ class CreateEmployeeControllers {
             return res.status(409).send('Tài khoản đã tồn tại')
 
         }else{
-            Employee.create({name, ssn, phone_number, gmail, gender, date_of_birth, address, position, username, password, isAdmin
-            })
-              .then(data => {
+            Employee.create({name, ssn, phone_number, gmail, gender, date_of_birth, address, position, username, password, isAdmin})
+                .then(() => {
                     res.status(200).send('Đã thêm nhân viên thành công');
                 })
-              .catch(err => {
+                .catch(() => {
                     res.status(500).send('Lỗi server')
                 })
         }
