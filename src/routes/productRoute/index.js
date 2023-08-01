@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const CheckLogin =require('../../app/security/CheckLogin')
+const CheckLogin =require('../../app/security/CheckLoginEmployee')
 const CheckAdmin = require('../../app/security/CheckAdmin')
 
 const uploadCloud = require('../../config/cloudinary');
