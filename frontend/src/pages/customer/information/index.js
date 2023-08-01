@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import userApi from '~/api/userApi';
 
 import '~/assets/css/information.css';
+import '~/assets/css/loading.css';
 
 function Information() {
     const [date, setDate] = useState(null);
@@ -28,8 +29,10 @@ function Information() {
 
     useEffect(() => {
         const fetchUser = async () => {
+            setLoangApi(true);
             try {
                 const response = await userApi.get();
+                setLoangApi(false);
                 setInformation(response);
                 setDateOfBirth(dayjs(response.date_of_birth, 'MM/DD/YYYY')); // Lưu trữ ngày sinh từ API vào trạng thái
             } catch (err) {
@@ -122,11 +125,21 @@ function Information() {
             console.log(err);
         }
     };
+    const [loadingApi, setLoangApi] = useState(false);
 
     return (
         <section className="py-5 my-5">
             <div className="container">
                 <h1 className="mb-5 text-uppercase text-danger text-center fw-bold">Thông tin cá nhân</h1>
+                {loadingApi && (
+                    <div className="follow-the-leader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                )}
                 <div className="bg-white shadow rounded-lg d-block d-sm-flex">
                     <div className="profile-tab-nav border-right">
                         <div className="p-4">
@@ -179,6 +192,7 @@ function Information() {
                             aria-labelledby="account-tab"
                         >
                             <h3 className="mb-4 text-capitalize">cài đặt thông tin</h3>
+
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">

@@ -244,7 +244,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="femaleGender"
-                                                    defaultValue="Nam"
+                                                    defaultValue="male"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
@@ -262,7 +262,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="maleGender"
-                                                    defaultValue="Nữ"
+                                                    defaultValue="famale"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
@@ -280,7 +280,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="maleGender"
-                                                    defaultValue="Khác"
+                                                    defaultValue="other"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
