@@ -40,3 +40,8 @@
 .btn-total {
     float: right;
 }
+
+h4.text-uppercase.text-danger.fw-bold.mb-0:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

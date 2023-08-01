@@ -75,3 +75,7 @@ a {
     text-decoration: none;
     background-color: var(--primary);
 }
+
+li.liItem.dis a:hover {
+    text-decoration: underline;
+}

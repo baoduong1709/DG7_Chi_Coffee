@@ -9,9 +9,9 @@ const axiosClient = axios.create({
 });
 axiosClient.interceptors.request.use(async (config) => {
     // Handle token here ...
-    const tokencustomer = localStorage.getItem('token');
-    if (tokencustomer) {
-        config.headers['Authorization'] = `${JSON.parse(tokencustomer)['token']}`;
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers['Authorization'] = `${JSON.parse(token)['token']}`;
         config.headers['Access-Control-Allow-Origin'] = '* ';
     }
     return config;

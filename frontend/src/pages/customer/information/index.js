@@ -15,10 +15,12 @@ function Information() {
     const onChangeDate = (date) => {
         setDate(date);
     };
+
     const formattedDate = date ? dayjs(date).format('MM/DD/YYYY') : '';
     const today = dayjs();
     const minimumBirthYear = today.subtract(16, 'year').year();
     const selectedBirthYear = date ? dayjs(date).year() : null;
+
     const [information, setInformation] = useState([]);
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
@@ -155,7 +157,7 @@ function Information() {
                                 <i className="fa fa-home text-center mr-1" />
                                 Thông tin
                             </a>
-                            <a
+                            {/* <a
                                 className="nav-link"
                                 id="password-tab"
                                 data-toggle="pill"
@@ -166,7 +168,7 @@ function Information() {
                             >
                                 <i className="fa fa-key text-center mr-1" />
                                 Mật Khẩu
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                     <div className="tab-content p-4 p-md-5" id="v-pills-tabContent">
@@ -274,7 +276,7 @@ function Information() {
                             </div>
                             <ToastContainer />
                         </div>
-                        <div className="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                        {/* <div className="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                             <h3 className="mb-4 text-capitalize">cài đặt mật khẩu</h3>
                             <div className="row">
                                 <div className="col-md-6">
@@ -302,7 +304,7 @@ function Information() {
                                 <button className="btn btn-danger text-uppercase">cập nhật</button>
                                 <button className="btn btn-light text-uppercase">hủy bỏ</button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -54,3 +54,8 @@ table td.r,
 table th.r {
     text-align: center;
 }
+
+tbody>tr:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
