@@ -14,15 +14,15 @@ export default function EmployeeLogin() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-	const loginRoute = "https://ex-dg7-chi-coffee.onrender.com/api/v1/employee/auth";
+    const loginRoute = 'https://ex-dg7-chi-coffee.onrender.com/api/v1/employee/auth';
     const navigate = useNavigate();
 
     useEffect(() => {
-        let getAuth = JSON.parse(localStorage.getItem('user'));
+        let getAuth = JSON.parse(localStorage.getItem('user-admin'));
         if (getAuth) {
             toast.warning('Bạn phải đăng xuất trước!', ToastOption);
             setTimeout(loadBack, 3000);
-            window.location.assign("./dashboard");   
+            window.location.assign('./dashboard');
         }
     }, []);
 
@@ -49,8 +49,8 @@ export default function EmployeeLogin() {
             const res = await axios
                 .post(loginRoute, value)
                 .then((res) => {
-                    localStorage.setItem('user', JSON.stringify(res.data));
-                    navigate("../admin/dashboard");
+                    localStorage.setItem('user-admin', JSON.stringify(res.data));
+                    navigate('../admin/dashboard');
                 })
                 .catch((err) => {
                     let status = err.response.status;
@@ -68,7 +68,9 @@ export default function EmployeeLogin() {
             <div className="app-wrapper" id="form-control">
                 <div className="content" id="content-login">
                     <img id="logo" src={logo} alt="" />
-                    <div className="text-title">Đăng nhập <br /> Admin</div>
+                    <div className="text-title">
+                        Đăng nhập <br /> Admin
+                    </div>
                     <div className="form-group">
                         <p>
                             <input

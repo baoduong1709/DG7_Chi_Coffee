@@ -9,9 +9,9 @@ import { theme } from './theme';
 function PrivateLayout({ children }) {
     const [userData, setUserData] = useState({});
 
-    useEffect(()=>{
-        setUserData(() => JSON.parse(localStorage.getItem("user")))
-    },[])
+    useEffect(() => {
+        setUserData(() => JSON.parse(localStorage.getItem('user-admin')));
+    }, []);
 
     return (
         <ThemeProvider theme={theme}>
@@ -21,9 +21,9 @@ function PrivateLayout({ children }) {
                 </Grid>
                 <Grid container spacing={0.5} height="92vh">
                     <Grid item sx={2}>
-                        <SideBarAdmin userData={userData}/>
+                        <SideBarAdmin userData={userData} />
                     </Grid>
-                    <Grid item width="100%" display='flex' flexDirection="column" flex='1'>
+                    <Grid item width="100%" display="flex" flexDirection="column" flex="1">
                         {children}
                     </Grid>
                 </Grid>
