@@ -7,15 +7,13 @@ class LoginEmployeeControllers {
         let username = req.body.username
         let passwordC = req.body.password
         Employee.findOne({
-            username: username
-            
+            username: username           
         })
             .then(data => {
                 if (data) {
                     let bytes  = CryptoJS.AES.decrypt(data.password, 'duonghuybao');
                     let passwordS = bytes.toString(CryptoJS.enc.Utf8);
                     if (passwordS == passwordC) {
-
                         let token = jwt.sign({
                             _id: data._id,
                         }, 'bao1709')
@@ -29,10 +27,8 @@ class LoginEmployeeControllers {
                         })
                     }else{
                         res.status(404).send('Sai mật khẩu!')
-                    }
-                    
-                } else {
-                    
+                    }                   
+                } else {  
                     res.status(404).send('Tài khoản không tồn tại!')
                 }
             })

@@ -26,8 +26,12 @@ const Order = new Schema({
     }],
     amount: Number,
     cost: Number,
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
+    createdAt: {
+        type: String,
+        required: true,
+        immutable: true
+    },
+    updatedAt: String,
     status: Boolean
 })
 module.exports = mongoose.model('Order', Order)
