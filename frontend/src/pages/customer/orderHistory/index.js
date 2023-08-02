@@ -18,6 +18,7 @@ function OrderHistory() {
                 setOrderHistory(response);
                 setLoading(false);
             } catch (err) {
+                setLoading(false);
                 Swal.fire({
                     icon: 'error',
                     title: 'Khách hàng chưa có đơn đặt hàng',
