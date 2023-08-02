@@ -1,6 +1,45 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Button } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Button, MenuItem, Select } from '@mui/material';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { StyledDialog } from '~/components/private_layout/theme';
+import dayjs from 'dayjs';
+import 'dayjs/locale/en-gb';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+import { ToastOption } from '../../../components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { employeeAPI } from '~/api/employee';
+
+const today = dayjs();
+const onSubmitValidate = (item) => {  
+    const phoneRegex = /^\d+$/;
+    const gmail = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    const minimumBirthYear = today.subtract(17, 'year').year();
+    console.log(dayjs(item.date_of_birth, "DD/MM/YYYY").year(), " > ", minimumBirthYear);
+    if(!item.name)
+        return {state: false, message: "Chưa nhập tên"};
+    else if(!item.username)
+        return {state: false, message: "Chưa nhập tên đăng nhập"};
+    else if(!item.ssn)
+        return {state: false, message: "Chưa nhập căn cước công dân"};
+    else if(!item.phone_number)
+        return {state: false, message: "Chưa nhập số điện thoại"};
+    else if(!phoneRegex.test(item.phone_number) || item.phone_number.length != 10)
+        return {state: false, message: "Số điện thoại không hợp lệ"};
+    else if(item.ssn.length != 12)
+        return {state: false, message: "Căn cước công dân không hợp lệ"};
+    else if(item.position === "")
+        return {state: false, message: "Chưa thêm vị trí cho người được đăng kí"};
+    else if(!gmail.test(item.gmail))
+        return {state: false, message: "Địa chỉ email không hợp lệ"};
+    else if(dayjs(item.date_of_birth, "DD/MM/YYYY").year() > minimumBirthYear)
+        return {state: false, message: "Người được đăng kí chưa đủ tuổi lao động"};
+    else {
+        return {state: true, message: null}
+    }
+}
 
 export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
     return (
@@ -24,6 +63,19 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                     <TextField
                         autoFocus
                         margin="dense"
+                        id="username"
+                        label="Tên đăng nhập"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.username}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
                         id="gender"
                         label="Giới tính"
                         variant="outlined"
@@ -34,19 +86,12 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                             readOnly: true,
                         }}
                     />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="dateOfBirth"
-                        label="Ngày tháng năm sinh"
-                        variant="outlined"
-                        type="text"
-                        defaultValue={item.date_of_birth}
-                        fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'> 
+                        <DesktopDatePicker
+                            defaultValue={dayjs(item.date_of_birth, "DD/MM/YYYY")}
+                            readOnly
+                        />
+                    </LocalizationProvider>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -81,6 +126,19 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                         variant="outlined"
                         type="text"
                         defaultValue={item.gmail}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="address"
+                        label="Địa chỉ"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.address}
                         fullWidth
                         InputProps={{
                             readOnly: true,
@@ -109,16 +167,69 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
 }
 
 export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
+    const [item, setItem] = React.useState({
+        name: "",
+        username: "",
+        password: "",
+        gender: "",
+        date_of_birth: dayjs("2002-01-13").format("DD/MM/YYYY").toString(),
+        ssn: "",
+        phone_number: "",
+        gmail: "",
+        address: "",
+        position: "",
+    });
+    const [msg, setMsg] = React.useState({state: false, message:""});
+    const handleChange = (event) => {
+        event.preventDefault();
+        setItem({
+            ...item,
+            [event.target.name]: event.target.value,
+        });
+    }
+    const handleSelectGender = (event) => {
+        event.preventDefault();
+        setItem({
+            ...item,
+            gender: event.target.value,
+        });
+    }
+    const handleSelectPosition = (event) => {
+        event.preventDefault();
+        setItem({
+            ...item,
+            position: event.target.value,
+        });
+    }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if(onSubmitValidate(item).state == true){
+            try {
+                const res = await employeeAPI.create(item);
+                toast.success(res, ToastOption);
+                setTimeout(handleCloseDialog, 3000);
+            } catch (err) {
+                let status = err.status;
+                let data = err.data;
+                toast.error('Lỗi ' + status + ': ' + data, ToastOption);
+            }
+        }
+        else {
+            toast.warning(onSubmitValidate(item).message, ToastOption); 
+        }
+    }
     return (
         <React.Fragment>
             <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"sm"} fullWidth={true}>
-                <DialogTitle>Sửa thông tin</DialogTitle>
+                <DialogTitle>Thêm tài khoản</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="name"
+                        name="name"
                         label="Họ và tên"
+                        defaultValue={item.name}
+                        onChange={(e) => handleChange(e)}
                         variant="outlined"
                         type="text"
                         fullWidth
@@ -126,8 +237,10 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="username"
+                        name="username"
                         label="Tên đăng nhập"
+                        defaultValue={item.username}
+                        onChange={(e) => handleChange(e)}
                         variant="outlined"
                         type="text"
                         fullWidth
@@ -135,31 +248,49 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="password"
+                        name="password"
                         label="Mật khẩu"
-                        defaultValue="chii"
+                        defaultValue={item.password}
+                        onChange={(e) => handleChange(e)}
                         variant="outlined"
                         type="text"
                         fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
                     />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="dateOfBirth"
-                            label="Ngày tháng năm sinh"
-                            variant="outlined"
-                            helperText="dd-mm-yyyy"
-                            type="text"
-                            fullWidth
+                    <TextField
+                        select
+                        autoFocus
+                        margin="dense"
+                        name="gender"
+                        defaultValue="male"
+                        value={item.gender}
+                        label="Giới tính"
+                        variant="outlined"
+                        type="text"
+                        onChange={(e) => handleSelectGender(e)}
+                        fullWidth
+                    >
+                        <MenuItem id="gender" value={"male"}>Nam</MenuItem>
+                        <MenuItem id="gender" value={"female"}>Nữ</MenuItem>
+                    </TextField>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'> 
+                        <DesktopDatePicker 
+                            value={dayjs(item.date_of_birth, "DD/MM/YYYY")}
+                            maxDate={today}
+                            onChange={(newValue) => {
+                                setItem({
+                                    ...item,
+                                    date_of_birth: newValue.format("DD/MM/YYYY").toString(),
+                                });
+                            }}
                         />
+                    </LocalizationProvider>
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="ssn"
+                        name="ssn"
                         label="CCCD"
+                        defaultValue={item.ssn}
+                        onChange={(e) => handleChange(e)}
                         variant="outlined"
                         type="text"
                         fullWidth
@@ -167,8 +298,10 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="phone_number"
+                        name="phone_number"
                         label="Số điện thoại"
+                        defaultValue={item.phone_number}
+                        onChange={(e) => handleChange(e)}
                         variant="outlined"
                         type="text"
                         fullWidth
@@ -176,8 +309,10 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="gmail"
+                        name="gmail"
                         label="Địa chỉ email"
+                        defaultValue={item.gmail}
+                        onChange={(e) => handleChange(e)}
                         variant="outlined"
                         type="text"
                         fullWidth
@@ -185,23 +320,99 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="position"
+                        name="address"
+                        label="Địa chỉ"
+                        defaultValue={item.address}
+                        onChange={(e) => handleChange(e)}
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        select
+                        autoFocus
+                        margin="dense"
+                        defaultValue="employee"
+                        value={item.position}
                         label="Vị trí"
                         variant="outlined"
                         type="text"
+                        onChange={(e) => handleSelectPosition(e)}
                         fullWidth
-                    />
+                    >
+                        <MenuItem  id="position" value={"employee"}>Nhân viên</MenuItem>
+                        <MenuItem  id="position" value={"admin"}>Quản lí</MenuItem>
+                    </TextField>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseDialog} variant="contained" color="error">Huỷ bỏ</Button>
-                    <Button onClick={handleCloseDialog} color="primary">Thêm mới</Button>
+                    <Button onClick={(event) => {handleSubmit(event)}} color="primary">Thêm mới</Button>
                 </DialogActions>
             </StyledDialog>
+            <ToastContainer />
         </React.Fragment>
     );
 }
 
 export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
+    const [values, setValues] = React.useState({
+        name: "",
+        username: "",
+        date_of_birth: "",
+        gender: "",
+        ssn: "",
+        phone_number: "",
+        gmail: "",
+        address: "",
+        position: "",
+        _id: "",
+    });
+    React.useEffect(() => {
+        setValues({
+            name: item.name,
+            username: item.username,
+            date_of_birth: item.date_of_birth,
+            gender: item.gender,
+            ssn: item.ssn,
+            phone_number: item.phone_number,
+            gmail: item.gmail,
+            address: item.address,
+            position: item.position,
+            _id: item._id,
+        });
+    },[])
+    const handleChange = (event) => {
+        event.preventDefault();
+        setValues({
+            ...values,
+            [event.target.id]: event.target.value,
+        });
+    }
+    const handleSelectGender = (event) => {
+        event.preventDefault();
+        setValues({
+            ...values,
+            gender: event.target.value,
+        });
+    }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if(onSubmitValidate(values).state == true){
+            try {
+                const res = await employeeAPI.update(values, item._id);
+                toast.success(res, ToastOption);
+                setTimeout(handleCloseDialog, 3000);
+            } catch (err) {
+                let status = err.status;
+                let data = err.data;
+                toast.error('Lỗi ' + status + ': ' + data, ToastOption);
+            }
+        }
+        else {
+            toast.warning(onSubmitValidate(values).message, ToastOption); 
+        }
+    }
+
     return (
         <React.Fragment>
             <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"sm"} fullWidth={true}>
@@ -227,33 +438,37 @@ export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
                         label="Họ và tên"
                         variant="outlined"
                         defaultValue={item.name}
+                        onChange={(e) => handleChange(e)}
                         type="text"
                         fullWidth
                     />
                     <TextField
+                        select
                         autoFocus
                         margin="dense"
-                        id="password"
-                        label="Mật khẩu"
-                        defaultValue="chii"
+                        name="gender"
+                        defaultValue={item.gender}
+                        label="Giới tính"
                         variant="outlined"
                         type="text"
+                        onChange={(e) => {handleSelectGender(e)}}
                         fullWidth
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="dateOfBirth"
-                            label="Ngày tháng năm sinh"
-                            variant="outlined"
-                            defaultValue={item.date_of_birth}
-                            helperText="dd-mm-yyyy"
-                            type="text"
-                            fullWidth
+                    >
+                        <MenuItem id="gender" value={"male"}>Nam</MenuItem>
+                        <MenuItem id="gender" value={"female"}>Nữ</MenuItem>
+                    </TextField>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'> 
+                        <DesktopDatePicker 
+                            value={dayjs(item.date_of_birth, "DD/MM/YYYY")}
+                            maxDate={today}
+                            onChange={(newValue) => {
+                                setValues({
+                                    ...values,
+                                    date_of_birth: newValue.format("DD/MM/YYYY").toString(),
+                                });
+                            }}
                         />
+                    </LocalizationProvider>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -261,6 +476,7 @@ export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
                         label="CCCD"
                         variant="outlined"
                         defaultValue={item.ssn}
+                        onChange={(e) => handleChange(e)}
                         type="text"
                         fullWidth
                     />
@@ -271,6 +487,7 @@ export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
                         label="Số điện thoại"
                         variant="outlined"
                         defaultValue={item.phone_number}
+                        onChange={(e) => handleChange(e)}
                         type="text"
                         fullWidth
                     />
@@ -281,33 +498,61 @@ export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
                         label="Địa chỉ email"
                         variant="outlined"
                         defaultValue={item.gmail}
+                        onChange={(e) => handleChange(e)}
                         type="text"
                         fullWidth
                     />
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="position"
+                        id="address"
+                        label="Địa chỉ"
+                        variant="outlined"
+                        defaultValue={item.address}
+                        onChange={(e) => handleChange(e)}
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        select
+                        autoFocus
+                        margin="dense"
+                        value={item.position}
                         label="Vị trí"
                         variant="outlined"
-                        defaultValue={item.position === "admin"? "Quản lí":"Nhân viên"}
                         type="text"
                         fullWidth
                         InputProps={{
                             readOnly: true,
                         }}
-                    />
+                    >
+                        <MenuItem  id="position" value={"employee"}>Nhân viên</MenuItem>
+                        <MenuItem  id="position" value={"admin"}>Quản lí</MenuItem>
+                    </TextField>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseDialog} variant="contained" color="error">Huỷ bỏ</Button>
-                    <Button onClick={handleCloseDialog} color="primary">Lưu thay đổi</Button>
+                    <Button onClick={(event) => {handleSubmit(event)}} color="primary">Lưu thay đổi</Button>
                 </DialogActions>
             </StyledDialog>
         </React.Fragment>
-    );
+    );    
 }
 
 export const FormDeleteDialog = ({ isDialogOpened, handleCloseDialog, item }) => {
+    const id = item?._id;
+    const handleDelete = async (event) => {
+        event.preventDefault();
+        try {
+            const res = await employeeAPI.delete(id);
+            toast.success(res, ToastOption);
+            setTimeout(handleCloseDialog, 3000);
+        } catch (err) {
+            let status = err.status;
+            let data = err.data;
+            toast.error('Lỗi ' + status + ': ' + data, ToastOption);
+        }
+    }
     return (
         <React.Fragment>
             <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"xs"} fullWidth={true}>
@@ -320,7 +565,7 @@ export const FormDeleteDialog = ({ isDialogOpened, handleCloseDialog, item }) =>
                     <Button onClick={handleCloseDialog} color="secondary">
                         Huỷ bỏ
                     </Button>
-                    <Button variant="contained" onClick={handleCloseDialog} color="error">
+                    <Button variant="contained" onClick={(e) => handleDelete(e)} color="error">
                         Đồng ý
                     </Button>
                 </DialogActions>

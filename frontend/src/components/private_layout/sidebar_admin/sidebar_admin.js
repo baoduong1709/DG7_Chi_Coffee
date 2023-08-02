@@ -121,7 +121,7 @@ export default function SideBarAdmin({ userData }) {
                 height: '100%',
                 top: 0,
                 bottom: 0,
-                zIndex: 10000,
+                zIndex: 1100,
                 backgroundColor: themes.sidebar.backgroundColor,
                 '& .sidebar': {
                     border: 'none',
