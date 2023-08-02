@@ -29,23 +29,42 @@ function Cart() {
                 cost: getCartTotal(),
                 amount: cartItems.length,
             };
-            const config = { headers: { Authorization: `${JSON.parse(isUser)['token']}` } };
-            axios
-                .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/order/create', cart_product_item, config)
-                .then((response) => {
+            Swal.fire({
+                title: 'Bạn chắc thanh toán không ?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hủy bỏ',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Thanh toán',
+                width: '400px',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const config = { headers: { Authorization: `${JSON.parse(isUser)['token']}` } };
+                    axios
+                        .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/order/create', cart_product_item, config)
+                        .then((response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Bạn đã thanh toán thành công',
+                            });
+                            clearCart();
+                        })
+                        .catch((error) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi hệ thống',
+                                timer: 1500,
+                            });
+                        });
+                } else {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Bạn đã thanh toán thành công',
+                        icon: 'warning',
+                        title: 'Thanh toán không thành công',
+                        width: '400px',
                     });
-                    clearCart();
-                })
-                .catch((error) => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi hệ thống',
-                        timer: 1500,
-                    });
-                });
+                }
+            });
         } else {
             Swal.fire({
                 icon: 'warning',
