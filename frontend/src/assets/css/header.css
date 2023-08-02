@@ -68,3 +68,14 @@ a {
 .dropdown-menu.show {
     font-size: 1.5rem;
 }
+
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--primary);
+}
+
+li.liItem.dis a:hover {
+    text-decoration: underline;
+}

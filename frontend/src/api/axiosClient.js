@@ -7,20 +7,21 @@ const axiosClient = axios.create({
         'content-type': 'application/json',
     },
 });
-axiosClient.interceptors.request.use(async function (config){
-        const token_admin = JSON.parse(localStorage.getItem("user"))["token"];
-        // if(token) {
-        //     config.headers["Authorization"] = `${token}`;
-        //     config.headers["Access-Control-Allow-Origin"] = "* ";
-        // }
-        if(token_admin) {
-            config.headers["Token-Admin"] = `${token_admin}`;
-        }
-        return config;
-    }, (error) => {
-        return Promise.reject(error);
+axiosClient.interceptors.request.use(async (config) => {
+    //Handle token here ...
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers['Authorization'] = `${JSON.parse(token)['token']}`;
     }
-);
+    const token_admin = localStorage.getItem('user-admin');
+    if (token_admin) {
+        config.headers['Token-Admin'] = `${JSON.parse(token_admin)['token']}`;
+        config.headers['Access-Control-Allow-Origin'] = '* ';
+    }
+
+    return config;
+});
+
 axiosClient.interceptors.response.use(
     (response) => {
         if (response && response.data) {

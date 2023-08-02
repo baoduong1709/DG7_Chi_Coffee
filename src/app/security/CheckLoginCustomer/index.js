@@ -1,25 +1,25 @@
 let jwt = require('jsonwebtoken')
-let Employee = require('../../models/Employee')
-class checkLogin{
+let Customer = require('../../models/Customer')
+class checkLoginEmployee{
     async check(req, res, next){
         try{
             let token = req.header('Authorization')
             if (token == undefined){
-                return res.send('Chưa đăng nhập')
+                return res.status(401).send('Chưa đăng nhập')
             }
             let _id = jwt.verify(token,'bao1709')
-            Employee.findById(_id)
+            Customer.findById(_id)
             .then((data) =>{
                 if (data){
                     req.data = data
                     next()
                 }else{
-                    return res.send('Tài khoản không tồn tại')
+                    return res.status(404).send('Tài khoản không tồn tại')
                 }
             })
         }catch(err){
-            return res.send('error')
+            return res.status(401).send('Token không hợp lệ')
         }
     }
 }
-module.exports = new checkLogin
+module.exports = new checkLoginEmployee

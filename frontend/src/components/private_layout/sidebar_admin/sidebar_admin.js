@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { faAnglesLeft, faBars, faGear, faHouse, faMoneyBills, faMugHot, faMugSaucer, faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+    faAnglesLeft,
+    faBars,
+    faGear,
+    faHouse,
+    faMoneyBills,
+    faMugHot,
+    faMugSaucer,
+    faRightFromBracket,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton } from '@mui/material';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
-import { theme } from "../theme";
+import { theme } from '../theme';
 
 const themes = {
     sidebar: {
@@ -22,7 +32,7 @@ const themes = {
             color: theme.palette.light.hover,
         },
     },
-}
+};
 
 const menu_item_styles = {
     root: {
@@ -35,8 +45,8 @@ const menu_item_styles = {
     },
     button: {
         '&:hover': {
-        backgroundColor: themes.menu.hover.backgroundColor,
-        color: themes.menu.hover.color,
+            backgroundColor: themes.menu.hover.backgroundColor,
+            color: themes.menu.hover.color,
         },
     },
 };
@@ -45,32 +55,32 @@ const AdminSide = [
     {
         id: 1,
         svg: faHouse,
-        route: "../admin/dashboard",
-        name: "Tổng quan"
+        route: '../admin/dashboard',
+        name: 'Tổng quan',
     },
     {
         id: 2,
         svg: faUser,
-        route: "../admin/employee",
-        name: "Nhân viên"
+        route: '../admin/employee',
+        name: 'Nhân viên',
     },
     {
         id: 3,
         svg: faMugHot,
-        route: "../admin/product",
-        name: "Sản phẩm"
+        route: '../admin/product',
+        name: 'Sản phẩm',
     },
     {
         id: 4,
         svg: faMoneyBills,
-        route: "../admin/bill",
-        name: "Hoá đơn"
+        route: '../admin/bill',
+        name: 'Hoá đơn',
     },
     {
         id: 5,
         svg: faGear,
-        route: "../admin/infomation",
-        name: "Sửa thông tin"
+        route: '../admin/information',
+        name: 'Sửa thông tin',
     },
 ];
 
@@ -78,64 +88,64 @@ const EmployeeSide = [
     {
         id: 7,
         svg: faMugSaucer,
-        route: "../admin/order",
-        name: "Đặt hàng"
+        route: '../admin/order',
+        name: 'Đặt hàng',
     },
     {
         id: 4,
         svg: faMoneyBills,
-        route: "../admin/bill",
-        name: "Hoá đơn"
+        route: '../admin/bill',
+        name: 'Hoá đơn',
     },
     {
         id: 5,
         svg: faGear,
-        route: "../admin/infomation",
-        name: "Chỉnh sửa thông tin"
+        route: '../admin/information',
+        name: 'Chỉnh sửa thông tin',
     },
 ];
 
 export default function SideBarAdmin({ userData }) {
-    const [selected, setSelected] = useState("Tổng quan");
-    const [ collapsed, setCollapsed ] = useState(false);
-    const [ toggled, setToggled ] = useState(false);
-    const [ broken, setBroken ] = useState(false);
+    const [selected, setSelected] = useState('Tổng quan');
+    const [collapsed, setCollapsed] = useState(false);
+    const [toggled, setToggled] = useState(false);
+    const [broken, setBroken] = useState(false);
 
-    let routeSide = userData.isAdmin === true?AdminSide:EmployeeSide;
+    let routeSide = userData.isAdmin === true ? AdminSide : EmployeeSide;
 
-    return(
+    return (
         <Box
             sx={{
-                position: "sticky",
-                display: "flex",
-                height: "100%",
+                position: 'sticky',
+                display: 'flex',
+                height: '100%',
                 top: 0,
                 bottom: 0,
                 zIndex: 1100,
                 backgroundColor: themes.sidebar.backgroundColor,
-                "& .sidebar": {
-                border: "none",
+                '& .sidebar': {
+                    border: 'none',
                 },
-                "& .menu-icon": {
-                backgroundColor: "transparent !important",
+                '& .menu-icon': {
+                    backgroundColor: 'transparent !important',
                 },
-                "& .menu-item": {
-                backgroundColor: "transparent !important",
+                '& .menu-item': {
+                    backgroundColor: 'transparent !important',
                 },
-                "& .menu-anchor": {
-                color: "inherit !important",
-                backgroundColor: "transparent !important",
+                '& .menu-anchor': {
+                    color: 'inherit !important',
+                    backgroundColor: 'transparent !important',
                 },
-                "& .menu-item:hover": {
-                color: "primary.main !important",
-                backgroundColor: "transparent !important",
+                '& .menu-item:hover': {
+                    color: 'primary.main !important',
+                    backgroundColor: 'transparent !important',
                 },
-                "& .menu-item.active": {
-                color: "primary.main !important",
-                backgroundColor: "transparent !important",
+                '& .menu-item.active': {
+                    color: 'primary.main !important',
+                    backgroundColor: 'transparent !important',
                 },
             }}
-            >
+        >
             <Sidebar
                 breakPoint="md"
                 backgroundColor="secondary.main"
@@ -147,46 +157,44 @@ export default function SideBarAdmin({ userData }) {
                 <Menu menuItemStyles={menu_item_styles}>
                     <MenuItem
                         icon={
-                            collapsed?
-                            (<FontAwesomeIcon icon={faBars} onClick={() => setCollapsed(!collapsed)}/>):(<div hidden></div>)
+                            collapsed ? (
+                                <FontAwesomeIcon icon={faBars} onClick={() => setCollapsed(!collapsed)} />
+                            ) : (
+                                <div hidden></div>
+                            )
                         }
                         color="primary.main"
                         style={{
-                            margin: "10px 0 20px 0",
+                            margin: '10px 0 20px 0',
                         }}
-                        >
+                    >
                         {!collapsed && (
-                            <Box
-                            display="flex"
-                            justifyContent="center"
-                            alignItems="center"
-                            ml="15px">
-                                <Typography 
-                                    marginRight={4}
-                                    fontStyle={menu_item_styles.root}
-                                >QUẢN LÝ</Typography>
+                            <Box display="flex" justifyContent="center" alignItems="center" ml="15px">
+                                <Typography marginRight={4} fontStyle={menu_item_styles.root}>
+                                    QUẢN LÝ
+                                </Typography>
                                 <IconButton
-                                    onClick={
-                                        broken ? () => setToggled(!toggled) : () => setCollapsed(!collapsed)
-                                    }
-                                    >
+                                    onClick={broken ? () => setToggled(!toggled) : () => setCollapsed(!collapsed)}
+                                >
                                     <FontAwesomeIcon color={themes.menu.icon} icon={faAnglesLeft} />
                                 </IconButton>
                             </Box>
                         )}
                     </MenuItem>
-                    <Box paddingLeft={collapsed ? undefined : "10%"}>
+                    <Box paddingLeft={collapsed ? undefined : '10%'}>
                         {routeSide.map((item) => {
-                            return <MenuItem
-                                key={item.id}
-                                active={selected === item.name}
-                                onClick={() => setSelected(item.name)}
-                                icon={<FontAwesomeIcon icon={item.svg} />}
-                                component={<Link to={item.route} />}
-                                menuItemStyles={menu_item_styles}
+                            return (
+                                <MenuItem
+                                    key={item.id}
+                                    active={selected === item.name}
+                                    onClick={() => setSelected(item.name)}
+                                    icon={<FontAwesomeIcon icon={item.svg} />}
+                                    component={<Link to={item.route} />}
+                                    menuItemStyles={menu_item_styles}
                                 >
-                                <Typography fontStyle={menu_item_styles.root}>{item.name}</Typography>
-                            </MenuItem>
+                                    <Typography fontStyle={menu_item_styles.root}>{item.name}</Typography>
+                                </MenuItem>
+                            );
                         })}
                     </Box>
                 </Menu>

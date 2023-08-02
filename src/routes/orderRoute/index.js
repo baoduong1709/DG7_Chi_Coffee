@@ -1,11 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const CheckLogin =require('../../app/security/CheckLogin')
+const CheckLoginEmployee =require('../../app/security/CheckLoginEmployee')
+const CheckLoginCustomer = require('../../app/security/CheckLoginCustomer')
 
-const CreateOrderOnlineController = require('../../app/controllers/orders/Create_Order_Online_Controllers')
-router.post('/create', CreateOrderOnlineController.create)
+const CreateOrderController = require('../../app/controllers/orders/Create_Order_Controllers')
+router.post('/create',CheckLoginCustomer.check, CreateOrderController.create)
 
-const UpdateOrderOnlineControllers = require('../../app/controllers/orders/Update_Order_Online_Controllers')
-router.put('/update',CheckLogin.check, UpdateOrderOnlineControllers.update)
+const UpdateOrderOnlineController = require('../../app/controllers/orders/Update_Order_Controllers')
+router.put('/:_id/update',CheckLoginEmployee.check, UpdateOrderOnlineController.update)
+
+const ViewOrderHistoryController = require('../../app/controllers/orders/View_Order_History_Controllers')
+router.get('/history',CheckLoginCustomer.check, ViewOrderHistoryController.view)
 
 module.exports = router

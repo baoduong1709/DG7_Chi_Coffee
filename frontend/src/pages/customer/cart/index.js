@@ -29,8 +29,9 @@ function Cart() {
                 cost: getCartTotal(),
                 amount: cartItems.length,
             };
+            const config = { headers: { Authorization: `${JSON.parse(isUser)['token']}` } };
             axios
-                .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/order/create', cart_product_item)
+                .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/order/create', cart_product_item, config)
                 .then((response) => {
                     Swal.fire({
                         icon: 'success',

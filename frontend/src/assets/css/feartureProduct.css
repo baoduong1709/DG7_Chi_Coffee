@@ -1,6 +1,6 @@
 .menu-section {
     overflow: hidden;
-
+    display: flex;
 }
 
 .container-content {

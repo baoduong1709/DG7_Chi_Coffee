@@ -22,8 +22,6 @@ class ViewProductByProductTypeControllers {
         .catch(err => {
             return res.status(404).send('Loại sản phẩm không tồn tại')
         })
-
-
     };
 }
 module.exports = new ViewProductByProductTypeControllers;
