@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Button, MenuItem, Select } from '@mui/material';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { StyledDialog } from '~/components/private_layout/theme';
@@ -11,22 +11,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { employeeAPI } from '~/api/employee';
-
-const role = [
-    {
-        name: "Quản lí",
-        id: "admin"
-    },
-    {
-        name: "Nhân viên",
-        id: "employee"
-    }
-]
-
-const convertName = (id) => {
-    if(id === "admin") return "Quản lí";
-    else return "Nhân viên";
-}
 
 const onSubmitValidate = (item) => {  
     const phoneRegex = /^\d+$/;
