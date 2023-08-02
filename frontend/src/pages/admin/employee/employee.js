@@ -21,6 +21,7 @@ export default function StickyHeadTable() {
     const [deleteOpen, setDeleteOpen] = React.useState({state: false, item:{}});
 
     const [rows, setRows] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     const columns = [
         { id: 'name', label: 'Họ và tên', flex: 3, minWidth: 240 },
@@ -39,6 +40,7 @@ export default function StickyHeadTable() {
             try {
                 const res = await employeesAPI.getAll();
                 setRows(res);
+                setIsLoading(false);
             } catch (err) {
                 let status = err.status;
                 let data = err.data;
@@ -88,7 +90,13 @@ export default function StickyHeadTable() {
                             </StyledTableRow>
                         </TableHead>
                         <TableBody>
-                            {rows
+                            {isLoading?
+                             <StyledTableRow>
+                                <StyledTableCell>
+                                <Typography variant='h5'>Đang tải...</Typography>
+                                </StyledTableCell>
+                             </StyledTableRow>
+                            :rows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
                                 return (
