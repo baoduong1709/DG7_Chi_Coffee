@@ -21,7 +21,6 @@ class UpdateEmployeeControllers {
                 || new_phone_number==null 
                 || new_gender==null 
                 || new_address==null 
-                || new_shift_number==null 
                 || new_gmail==null 
                 || new_position==null 
                 || new_date_of_birth == null){
