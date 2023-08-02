@@ -53,6 +53,19 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                     <TextField
                         autoFocus
                         margin="dense"
+                        id="username"
+                        label="Tên đăng nhập"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.username}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
                         id="gender"
                         label="Giới tính"
                         variant="outlined"
@@ -103,6 +116,19 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                         variant="outlined"
                         type="text"
                         defaultValue={item.gmail}
+                        fullWidth
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="address"
+                        label="Địa chỉ"
+                        variant="outlined"
+                        type="text"
+                        defaultValue={item.address}
                         fullWidth
                         InputProps={{
                             readOnly: true,
