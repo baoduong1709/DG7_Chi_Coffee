@@ -1,19 +1,23 @@
 import React from 'react';
 import { Box, IconButton, Typography, Button, Grid, TextField, Table, TableBody, TableContainer, TableHead, Paper } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faMagnifyingGlass, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 import { StyledTableRow, StyledTableCell, CustomTablePagination } from '~/components/private_layout/theme';
 import { FormDialog, FormCreateDialog, FormDeleteDialog, FormEditDialog } from './employee_dialog';
 
-import { employeesAPI } from '~/api/employee/employeesAPI';
+import { ToastOption } from '../../../components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { employeesAPI } from '~/api/employee';
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [viewOpen, setViewOpen] = React.useState({state: false, item:{}});
     const [createOpen, setCreateOpen] = React.useState(false);
-    const [editOpen, setEditOpen] = React.useState({state: false, item:{}});
+    const [editOpen, setEditOpen] = React.useState({state: false, item:{}, event: null});
     const [deleteOpen, setDeleteOpen] = React.useState({state: false, item:{}});
 
     const [rows, setRows] = React.useState([]);
@@ -23,16 +27,26 @@ export default function StickyHeadTable() {
         { id: 'phone_number', label: 'Số điện thoại', flex: 2, minWidth: 160 },
         { id: 'position', label: 'Vị trí', flex: 1, minWidth: 80}
     ];
+    const dialogOpenId = React.useRef(0);
+    React.useEffect(() => {
+        if(createOpen || editOpen.state || deleteOpen.state) {
+            dialogOpenId.current = dialogOpenId.current + 1;
+        }
+    },[createOpen, editOpen, deleteOpen])
 
     React.useEffect(() => {
         const getEmployeeList = async () => {
             try {
                 const res = await employeesAPI.getAll();
                 setRows(res);
-            } catch (err) {}
+            } catch (err) {
+                let status = err.status;
+                let data = err.data;
+                toast.error('Lỗi ' + status + ': ' + data, ToastOption);
+            }
         };
         getEmployeeList();
-    },[])
+    },[dialogOpenId.current])
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -45,25 +59,12 @@ export default function StickyHeadTable() {
 
     return (
         <Box m="1.5rem 2.5rem" width="95%" >
-            <Box sx={{marginTop:2}}>
+            <Box sx={{marginTop:2, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <Typography variant='h3'>Nhân viên</Typography>
-            </Box>
-            <Grid container direction="row" justifyContent="flex-end" alignItems="center">
-                <TextField 
-                    margin="dense"
-                    id="position"
-                    label="Tìm kiếm"
-                    variant="standard"
-                    type="text"
-                    sx={{minWidth: 200}}>
-                </TextField>
-                <IconButton sx={{marginX: 1}}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </IconButton>
                 <Button variant='contained' color='secondary' onClick={() => setCreateOpen(true)}>
                     Thêm tài khoản
                 </Button>
-            </Grid>
+            </Box>
             <Box 
                 mt="40px"
                 height="75vh">
@@ -108,7 +109,7 @@ export default function StickyHeadTable() {
                                         </IconButton>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <IconButton onClick={() => setEditOpen({state: true, item: row})}>
+                                        <IconButton onClick={(event) => setEditOpen({state: true, item: row, event: event})}>
                                         <FontAwesomeIcon icon={faPenToSquare} />
                                         </IconButton>
                                     </StyledTableCell>
@@ -134,21 +135,27 @@ export default function StickyHeadTable() {
                     />
                 </Paper>
                 <FormDialog
+                key={"view"+dialogOpenId.current.toString()}
                 isDialogOpened={viewOpen.state}
                 item = {viewOpen.item}
                 handleCloseDialog={() => setViewOpen({state: false, item: {}})}/>
                 <FormCreateDialog
+                key={"edit"+dialogOpenId.current.toString()}
                 isDialogOpened={createOpen}
                 handleCloseDialog={() => setCreateOpen(false)} />
-                <FormEditDialog
+                {editOpen.state && <FormEditDialog
+                key={"dele"+dialogOpenId.current.toString()}
                 isDialogOpened={editOpen.state}
                 item = {editOpen.item}
-                handleCloseDialog={() => setEditOpen({state: false, item: {}})}/>
+                event = {editOpen.event}
+                handleCloseDialog={() => setEditOpen({state: false, item: {}})}/>}
                 <FormDeleteDialog
+                key={"crea"+dialogOpenId.current.toString()}
                 isDialogOpened={deleteOpen.state}
                 item = {deleteOpen.item}
                 handleCloseDialog={() => setDeleteOpen({state: false, item: {}})}/>
             </Box>
+            <ToastContainer />
         </Box>  
     );
 }

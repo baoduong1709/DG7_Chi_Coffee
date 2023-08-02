@@ -8,10 +8,13 @@ const axiosClient = axios.create({
     },
 });
 axiosClient.interceptors.request.use(async function (config){
-        const token = JSON.parse(localStorage.getItem("user"))["token"];
-        if(token) {
-            config.headers["Authorization"] = `${token}`;
-            config.headers["Access-Control-Allow-Origin"] = "* ";
+        const token_admin = JSON.parse(localStorage.getItem("user"))["token"];
+        // if(token) {
+        //     config.headers["Authorization"] = `${token}`;
+        //     config.headers["Access-Control-Allow-Origin"] = "* ";
+        // }
+        if(token_admin) {
+            config.headers["Token-Admin"] = `${token_admin}`;
         }
         return config;
     }, (error) => {
