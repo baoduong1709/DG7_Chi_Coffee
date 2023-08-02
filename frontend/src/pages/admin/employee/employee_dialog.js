@@ -386,7 +386,6 @@ export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(values);
         if(onSubmitValidate(values).state == true){
             try {
                 const res = await employeeAPI.update(values, item._id);

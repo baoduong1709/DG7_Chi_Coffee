@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, Typography, Button, Grid, TextField, Table, TableBody, TableContainer, TableHead, Paper } from '@mui/material';
+import { Box, IconButton, Typography, Button, Table, TableBody, TableContainer, TableHead, Paper } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,7 +17,7 @@ export default function StickyHeadTable() {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [viewOpen, setViewOpen] = React.useState({state: false, item:{}});
     const [createOpen, setCreateOpen] = React.useState(false);
-    const [editOpen, setEditOpen] = React.useState({state: false, item:{}, event: null});
+    const [editOpen, setEditOpen] = React.useState({state: false, item:{}});
     const [deleteOpen, setDeleteOpen] = React.useState({state: false, item:{}});
 
     const [rows, setRows] = React.useState([]);
@@ -155,7 +155,6 @@ export default function StickyHeadTable() {
                 key={"dele"+dialogOpenId.current.toString()}
                 isDialogOpened={editOpen.state}
                 item = {editOpen.item}
-                event = {editOpen.event}
                 handleCloseDialog={() => setEditOpen({state: false, item: {}})}/>}
                 <FormDeleteDialog
                 key={"crea"+dialogOpenId.current.toString()}
