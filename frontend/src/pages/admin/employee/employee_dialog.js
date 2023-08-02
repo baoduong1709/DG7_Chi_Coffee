@@ -12,11 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { employeeAPI } from '~/api/employee';
 
+const today = dayjs();
 const onSubmitValidate = (item) => {  
     const phoneRegex = /^\d+$/;
     const gmail = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const today = dayjs();
     const minimumBirthYear = today.subtract(17, 'year').year();
+    console.log(dayjs(item.date_of_birth, "DD/MM/YYYY").year(), " > ", minimumBirthYear);
     if(!item.name)
         return {state: false, message: "Chưa nhập tên"};
     else if(!item.username)
@@ -274,6 +275,7 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'> 
                         <DesktopDatePicker 
                             value={dayjs(item.date_of_birth, "DD/MM/YYYY")}
+                            maxDate={today}
                             onChange={(newValue) => {
                                 setItem({
                                     ...item,
@@ -458,6 +460,7 @@ export const FormEditDialog = ({ isDialogOpened, item, handleCloseDialog}) => {
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'> 
                         <DesktopDatePicker 
                             value={dayjs(item.date_of_birth, "DD/MM/YYYY")}
+                            maxDate={today}
                             onChange={(newValue) => {
                                 setValues({
                                     ...values,
