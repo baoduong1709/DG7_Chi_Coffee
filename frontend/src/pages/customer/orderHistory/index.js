@@ -1,6 +1,7 @@
 import OrderApi from '~/api/orderAPI';
 import { useState, useEffect } from 'react';
 import ModalHistory from './modalHistory';
+import Swal from 'sweetalert2';
 
 import '~/assets/css/orderHistory.css';
 import '~/assets/css/loading.css';
@@ -17,7 +18,11 @@ function OrderHistory() {
                 setOrderHistory(response);
                 setLoading(false);
             } catch (err) {
-                console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Khách hàng chưa có đơn đặt hàng',
+                    timer: 3000,
+                });
             }
         };
         fetchOrderHistory();
