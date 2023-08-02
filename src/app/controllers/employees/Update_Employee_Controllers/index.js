@@ -17,7 +17,6 @@ class UpdateEmployeeControllers {
                 return res.status(404).send('Nhân viên không tồn tại');
             }
             if(new_name==null
-                || _id==null 
                 || new_phone_number==null 
                 || new_gender==null 
                 || new_address==null 

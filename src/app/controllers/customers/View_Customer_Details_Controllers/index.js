@@ -1,5 +1,4 @@
 const Customer = require('../../../models/Customer')
-let jwt = require('jsonwebtoken')
 class ViewCustomerDetailsControllers {
     
     async view(req, res, next) {
