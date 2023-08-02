@@ -2,7 +2,12 @@ const Customer = require('../../../models/Customer')
 class ViewCustomerDetailsControllers {
     
     async view(req, res, next) {
-        let _id = req.data._id
+        let _id = req.params._id
+        console.log(_id)
+        if (_id === undefined){
+            _id = req.data._id
+            console.log(_id)
+        }
         try{
             const customer = await Customer.findById(_id)
             if (!customer) {

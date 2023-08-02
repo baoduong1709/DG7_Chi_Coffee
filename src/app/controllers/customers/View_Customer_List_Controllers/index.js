@@ -3,7 +3,7 @@ const Customer = require('../../../models/Customer')
 class ViewCustomerListControllers {
     
     view(req, res, next) {
-        Customer.find({},'gmail')
+        Customer.find({},'gmail name gender date_of_birth phone_number address bonus_mark')
         .then(customers => {
             res.status(200).json(customers)
         })
