@@ -27,7 +27,7 @@ const Order = new Schema({
     amount: Number,
     cost: Number,
     createdAt: {
-        type: String,
+        type: Date,
         required: true,
         immutable: true
     },

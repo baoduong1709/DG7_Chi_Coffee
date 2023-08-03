@@ -1,11 +1,15 @@
 const Order = require('../../../models/Order')
 const Customer = require('../../../models/Customer')
 const moment = require('moment')
+const { formatISO, utcToZonedTime } = require('date-fns-tz');
 
 class CreateOrderControllers {
     async create(req, res, next) {
-        const currentTime = new Date()
-        const createdAt = moment(currentTime).utcOffset(7).format('DD/MM/YYYY HH:mm');
+        const currentTime = new Date();
+        const offsetHours = 7;
+        currentTime.setHours(currentTime.getHours() + offsetHours);
+        const iso8601String = currentTime.toISOString();
+        const createdAt = iso8601String
         let _id = req.data._id
         Customer.findOne({_id: _id})
         .then((data) =>{

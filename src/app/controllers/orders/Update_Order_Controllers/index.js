@@ -6,8 +6,11 @@ class UpdateOrderOnlineControllers {
         let employee_id=req.data._id
         let employee_name=req.data.name
         let status=true
-        const currentTime = new Date()
-        const updatedAt = moment(currentTime).utcOffset(7).format('DD/MM/YYYY HH:mm');
+        const currentTime = new Date();
+        const offsetHours = 7;
+        currentTime.setHours(currentTime.getHours() + offsetHours);
+        const iso8601String = currentTime.toISOString();
+        const updatedAt = iso8601String
         await Order.findById(_id)
         .then(data => {
             if (data==null) {
