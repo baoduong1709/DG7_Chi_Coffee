@@ -1,5 +1,5 @@
 const Order = require('../../../models/Order')
-class UpdateOrderOnlineControllers {
+class UpdateOrderControllers {
     async update(req, res) {
         let _id = req.params._id
         let employee_id=req.data._id
@@ -34,4 +34,4 @@ class UpdateOrderOnlineControllers {
 
     }
 }
-module.exports = new UpdateOrderOnlineControllers
+module.exports = new UpdateOrderControllers
