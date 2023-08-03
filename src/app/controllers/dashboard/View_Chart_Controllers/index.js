@@ -7,7 +7,8 @@ class ViewChartControllers {
         Order.aggregate([
             {
                 $match: {
-                    createdAt: { $gte: startDate, $lte: endDate }
+                    createdAt: { $gte: startDate, $lte: endDate },
+                    status:true,
                 }
             },
             {

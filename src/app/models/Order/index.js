@@ -31,7 +31,7 @@ const Order = new Schema({
         required: true,
         immutable: true
     },
-    updatedAt: String,
+    updatedAt: Date,
     status: Boolean
 })
 module.exports = mongoose.model('Order', Order)
