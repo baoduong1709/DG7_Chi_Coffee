@@ -2,8 +2,22 @@ const Order = require('../../../../app/models/Order')
 
 class ViewChartControllers {
     view(req, res, next){
-        let startDate = new Date(req.body.startDate)
-        let endDate = new Date(req.body.endDate)
+        let startDate = new Date(req.query.startDate)
+        let endDate = new Date(req.query.endDate)
+        if (startDate == ''){
+            const sevenDaysAgo = new Date(endDate);
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            startDate = sevenDaysAgo
+        }
+        const sevenDaysAgo = new Date(endDate);
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        function formatDateToYYYYMMDD(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+          }
         Order.aggregate([
             {
                 $match: {
@@ -16,7 +30,7 @@ class ViewChartControllers {
                     _id: {
                         year: { $year: '$createdAt' },
                         month: { $month: '$createdAt' },
-                        day: { $dayOfMonth: '$createdAt' }
+                        day: { $dayOfMonth: '$createdAt' },
                     },
                     count: { $sum: 1 },
                     data: { $push: '$$ROOT' },
@@ -44,6 +58,9 @@ class ViewChartControllers {
             }
         ])
         .then(data=>{
+            data.forEach((item) => {
+                item.time = formatDateToYYYYMMDD(item.time);
+              });
             console.log(data);
             res.json(data);
         })
