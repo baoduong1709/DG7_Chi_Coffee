@@ -2,6 +2,8 @@ const Order = require('../../../models/Order')
 
 class ViewChartControllers {
     view(req, res, next){
+        let statusParams = req.query.status
+        let statusValue = JSON.parse(statusParams)
         let startDate = new Date(req.query.startDate)
         let endDate = new Date(req.query.endDate)
         if (isNaN(startDate)){
@@ -22,7 +24,7 @@ class ViewChartControllers {
             {
                 $match: {
                     createdAt: { $gte: startDate, $lte: endDate },
-                    status:true,
+                    status: statusValue,
                 }
             },
             {
