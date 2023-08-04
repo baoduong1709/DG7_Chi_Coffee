@@ -55,6 +55,7 @@ class ViewChartControllers {
                     },
                     count: '$count',
                     cost: '$cost',
+                    data: '$data',
                 
               }
             }
