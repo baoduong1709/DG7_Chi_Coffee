@@ -12,4 +12,7 @@ router.put('/:_id/update',CheckLoginEmployee.check, UpdateOrderOnlineController.
 const ViewOrderHistoryController = require('../../app/controllers/orders/View_Order_History_Controllers')
 router.get('/history',CheckLoginCustomer.check, ViewOrderHistoryController.view)
 
+const ViewOrderListController = require('../../app/controllers/orders/View_Order_List_Controllers')
+router.get('/',CheckLoginCustomer.check, ViewOrderListController.view)
+
 module.exports = router
