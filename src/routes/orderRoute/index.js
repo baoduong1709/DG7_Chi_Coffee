@@ -13,6 +13,6 @@ const ViewOrderHistoryController = require('../../app/controllers/orders/View_Or
 router.get('/history',CheckLoginCustomer.check, ViewOrderHistoryController.view)
 
 const ViewOrderListController = require('../../app/controllers/orders/View_Order_List_Controllers')
-router.get('/',CheckLoginCustomer.check, ViewOrderListController.view)
+router.get('/',CheckLoginEmployee.check, ViewOrderListController.view)
 
 module.exports = router
