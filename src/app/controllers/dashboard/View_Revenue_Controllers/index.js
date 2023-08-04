@@ -1,10 +1,10 @@
-const Order = require('../../../../app/models/Order')
+const Order = require('../../../models/Order')
 
 class ViewChartControllers {
     view(req, res, next){
         let startDate = new Date(req.query.startDate)
         let endDate = new Date(req.query.endDate)
-        if (startDate == ''){
+        if (isNaN(startDate)){
             const sevenDaysAgo = new Date(endDate);
             sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
             startDate = sevenDaysAgo
@@ -61,8 +61,25 @@ class ViewChartControllers {
             data.forEach((item) => {
                 item.time = formatDateToYYYYMMDD(item.time);
               });
-            console.log(data);
-            res.json(data);
+            const dateRange = [];
+            let currentDate = new Date(startDate);
+            while (currentDate <= endDate) {
+              dateRange.push(formatDateToYYYYMMDD(currentDate));
+              currentDate.setDate(currentDate.getDate() + 1);
+            }
+            const newData = dateRange.map(date => {
+                const existingData = data.find(item => item.time === date);
+                if (existingData) {
+                  return existingData;
+                } else {
+                  return {
+                    time: date,
+                    count: 0,
+                    cost: 0,
+                  };
+                }
+              });
+            res.json(newData);
         })
     };
 }
