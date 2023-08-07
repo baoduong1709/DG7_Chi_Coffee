@@ -71,7 +71,7 @@ export const FormEditDialog = ({ isDialogOpened, handleCloseDialog, item, names}
                 formData.append("description", values.description);
                 const res = await productAPI.update(formData, item._id);
                 toast.success(res, ToastOption);
-                setTimeout(handleCloseDialog, 3000);
+                setTimeout(handleCloseDialog, 0);   
             } catch (err) {
                 let status = err.status;
                 let data = err.data;
