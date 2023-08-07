@@ -70,12 +70,12 @@ fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOut
     border: 0;
     box-sizing: content-box;
     background: none;
-    height: 0px;
+    height: 0px !important;
     margin: 0;
     -webkit-tap-highlight-color: transparent;
     display: block;
     min-width: 0;
-    width: 100%;
+    width: 100% !important;
     -webkit-animation-name: mui-auto-fill-cancel;
     animation-name: mui-auto-fill-cancel;
     -webkit-animation-duration: 10ms;
