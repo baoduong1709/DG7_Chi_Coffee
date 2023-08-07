@@ -54,3 +54,10 @@ fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOut
     height: 0px;
 
 }
+
+.date-picker {
+    height: auto;
+    width: 100%;
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    font-size: 1.5rem !important;
+}
