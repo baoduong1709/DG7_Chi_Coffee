@@ -37,7 +37,7 @@ fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOut
 
 } */
 
- .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+ .css-1bn53lx.Mui-error .MuiOutlinedInput-notchedOutline {
      border: var(--bs-border-width) solid var(--bs-border-color) !important;
  }
 
