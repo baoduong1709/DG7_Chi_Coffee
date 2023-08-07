@@ -47,26 +47,31 @@ function TableUnConfirmOrder() {
                     </tr>
                 </thead>
                 <tbody>
-                    {orderHistory.map((history) =>
-                        history.data.map((data) => (
-                            <tr key={data._id}>
-                                <td>
-                                    {' '}
-                                    <a
-                                        href="#modalHistory"
-                                        data-toggle="modal"
-                                        data-target="#modalHistory"
-                                        onClick={() => setSelectedOrder(history)}
-                                    >
-                                        {data._id}
-                                    </a>
-                                </td>
-                                <td>{data.amount}</td>
-                                <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
-                                <td>{dayjs(history.createdAt).format('DD/MM/YYYY  hh:mm:ss')}</td>
-                                <td>{data.customer_name}</td>
+                    {orderHistory?.map((history) =>
+                        history.data && history.data.length > 0 ? (
+                            history?.data?.map((data) => (
+                                <tr key={data._id}>
+                                    <td>
+                                        <a
+                                            href="#modalHistory"
+                                            data-toggle="modal"
+                                            data-target="#modalHistory"
+                                            onClick={() => setSelectedOrder(history)}
+                                        >
+                                            {data._id}
+                                        </a>
+                                    </td>
+                                    <td>{data.amount}</td>
+                                    <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
+                                    <td>{dayjs(history.createdAt).format('DD/MM/YYYY  hh:mm:ss')}</td>
+                                    <td>{data.customer_name}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr key={history._id}>
+                                <td colSpan="5">Không có hóa đơn.</td>
                             </tr>
-                        )),
+                        ),
                     )}
                 </tbody>
             </table>
