@@ -73,3 +73,7 @@ fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOut
  span.MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-10qkmc3 {
      font-size: 15px !important;
  }
+
+ button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-1hrukl9 {
+     font-size: 15px !important;
+ }
