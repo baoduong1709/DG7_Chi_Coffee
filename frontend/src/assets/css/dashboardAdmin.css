@@ -1,0 +1,16 @@
+.column-1 {
+    float: left;
+
+}
+
+.hang {
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 50px;
+
+}

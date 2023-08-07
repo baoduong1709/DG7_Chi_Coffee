@@ -76,12 +76,6 @@ const AdminSide = [
         route: '../admin/bill',
         name: 'Hoá đơn',
     },
-    {
-        id: 5,
-        svg: faGear,
-        route: '../admin/information',
-        name: 'Sửa thông tin',
-    },
 ];
 
 const EmployeeSide = [
@@ -96,12 +90,6 @@ const EmployeeSide = [
         svg: faMoneyBills,
         route: '../admin/bill',
         name: 'Hoá đơn',
-    },
-    {
-        id: 5,
-        svg: faGear,
-        route: '../admin/information',
-        name: 'Chỉnh sửa thông tin',
     },
 ];
 
@@ -121,7 +109,7 @@ export default function SideBarAdmin({ userData }) {
                 height: '100%',
                 top: 0,
                 bottom: 0,
-                zIndex: 10000,
+                zIndex: 1100,
                 backgroundColor: themes.sidebar.backgroundColor,
                 '& .sidebar': {
                     border: 'none',

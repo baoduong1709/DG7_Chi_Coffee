@@ -18,7 +18,6 @@ axiosClient.interceptors.request.use(async (config) => {
         config.headers['Token-Admin'] = `${JSON.parse(token_admin)['token']}`;
         config.headers['Access-Control-Allow-Origin'] = '* ';
     }
-
     return config;
 });
 

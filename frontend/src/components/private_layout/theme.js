@@ -1,10 +1,14 @@
+import React from "react";
 import { createTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import PropTypes from 'prop-types';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow, { tableRowClasses } from "@mui/material/TableRow";
 import Dialog from "@mui/material/Dialog";
 import Button, { ButtonClasses, buttonClasses } from "@mui/material/Button";
 import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
+import TextField, { textFieldClasses} from "@mui/material/TextField";
+import { NumericFormat } from 'react-number-format';
 
 export const theme = createTheme({
     palette: {
@@ -36,6 +40,10 @@ export const theme = createTheme({
         },
     },
 });
+
+theme.typography.subtitle1 = {
+  fontSize: '14px',
+}
 
 export const StyledDialog = styled(Dialog) (() => ({
     '& .MuiDialogContent-root': {
@@ -166,4 +174,37 @@ export const StyledButton = styled(Button) ((theme) => ({
     marginX: 1,
     marginY: 1,
   }
+}));
+
+export const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,ref) {
+	const { onChange, ...other } = props;
+
+	return (
+		<NumericFormat
+			{...other}
+			getInputRef={ref}
+			onValueChange={(values) => {
+				onChange({
+					target: {
+					name: props.name,
+					value: values.value,
+					},
+				});
+			}}
+			thousandSeparator
+			valueIsNumericString
+			suffix=" VND"
+		/>
+	);
+});
+
+NumericFormatCustom.propTypes = {
+	name: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
+};
+
+export const StyledTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiTextField-root': {
+    fontSize: "14px !important" ,
+  },
 }));

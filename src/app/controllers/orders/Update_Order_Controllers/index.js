@@ -1,12 +1,13 @@
 const Order = require('../../../models/Order')
-
+const moment = require('moment')
 class UpdateOrderOnlineControllers {
     async update(req, res) {
         let _id = req.params._id
         let employee_id=req.data._id
         let employee_name=req.data.name
         let status=true
-        let updatedAt = Date.now()   
+        const currentTime = new Date()
+        const updatedAt = moment(currentTime).utcOffset(7).format('DD/MM/YYYY HH:mm');
         await Order.findById(_id)
         .then(data => {
             if (data==null) {

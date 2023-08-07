@@ -2,7 +2,7 @@ import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import productTypeApi from '~/api/productTypeApi';
+import productTypeApi from '~/api/customer/productTypeApi';
 import { UserContext } from '~/context/userContext';
 import { CartContext } from '~/context/cartContext';
 import Swal from 'sweetalert2';
