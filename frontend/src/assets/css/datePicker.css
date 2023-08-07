@@ -81,3 +81,7 @@ fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOut
  button.MuiPickersYear-yearButton.css-1bqdsf2 {
      font-size: 15px !important;
  }
+
+ button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-4ggly9 {
+     font-size: 15px !important;
+ }
