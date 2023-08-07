@@ -2,7 +2,7 @@ const Employee = require('../../../models/Employee')
 class UpdateEmployeeControllers {
     async update(req, res, next) {
         let _id = req.params._id
-        let new_ssn = req.body.ssm
+        let new_ssn = req.body.ssn
         let new_name = req.body.name
         let new_phone_number = req.body.phone_number
         let new_gmail = req.body.gmail
