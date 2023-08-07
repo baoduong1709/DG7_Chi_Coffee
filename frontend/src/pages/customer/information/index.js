@@ -10,6 +10,7 @@ import userApi from '~/api/customer/userApi';
 import image from '~/assets/images';
 
 import '~/assets/css/information.css';
+import '~/assets/css/datepicker.css';
 import '~/assets/css/loading.css';
 
 function Information() {
@@ -251,7 +252,7 @@ function Information() {
                                         <label className="text-capitalize">ngày sinh</label>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                className="form-control"
+                                                className="form-control  date-picker"
                                                 onChange={onChangeDate}
                                                 // defaultValue={formattedDate}
                                                 value={dateOfBirth}
