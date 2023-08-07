@@ -48,7 +48,6 @@ function Information() {
     useEffect(() => {
         if (information.name) {
             const nameParts = information.name.split(' ');
-
             if (nameParts.length > 1) {
                 const hoValue = nameParts[0];
                 const tenValue = nameParts.slice(1).join(' '); // Lấy tất cả phần còn lại và nối lại để tạo thành tên
