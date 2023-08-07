@@ -2,6 +2,7 @@ import { CartContext } from '~/context/cartContext';
 import { Fragment, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import image from '~/assets/images';
 
 import '~/assets/css/cart.css';
 import axios from 'axios';
@@ -30,7 +31,7 @@ function Cart() {
                 amount: cartItems.length,
             };
             Swal.fire({
-                title: 'Bạn chắc thanh toán không ?',
+                title: 'Bạn có chắc thanh toán không ?',
                 icon: 'question',
                 showCancelButton: true,
                 cancelButtonText: 'Hủy bỏ',
@@ -57,12 +58,6 @@ function Cart() {
                                 timer: 1500,
                             });
                         });
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Thanh toán không thành công',
-                        width: '400px',
-                    });
                 }
             });
         } else {
@@ -176,38 +171,20 @@ function Cart() {
                                                 <h5 className="text-uppercase">Tổng tiền tạm tính</h5>
                                                 <h5>{formatter.format(getCartTotal()).replace(/₫/g, 'VNĐ')} </h5>
                                             </div>
-                                            {/* <h4 className="text-uppercase mb-3">Shipping</h4>
-                                            <div className="mb-4 pb-2">
-                                                <select className="select">
-                                                    <option value={1}>Standard-Delivery- €5.00</option>
-                                                    <option value={2}>Two</option>
-                                                    <option value={3}>Three</option>
-                                                    <option value={4}>Four</option>
-                                                </select>
-                                            </div>
-                                            <h4 className="text-uppercase mb-3">Give code</h4>
-                                            <div className="mb-5">
-                                                <div className="form-outline">
-                                                    <input
-                                                        type="text"
-                                                        id="form3Examplea2"
-                                                        className="form-control form-control-lg"
-                                                    />
-                                                    <label className="form-label" htmlFor="form3Examplea2">
-                                                        Enter your code
-                                                    </label>
-                                                </div>
-                                            </div> */}
+
                                             <hr className="my-4" />
                                             <div className="d-flex justify-content-between mb-5 total-money">
                                                 <h4 className="text-uppercase fw-bold">Tổng tiền</h4>
                                                 <h1>{formatter.format(getCartTotal()).replace(/₫/g, 'VNĐ')} </h1>
                                             </div>
+                                            <h3>Vui lòng quét mã QR để thanh toán</h3>
+                                            <img src={image.qr} alt="QR" style={{ height: '100px', width: '100px' }} />
                                             <button
                                                 type="button"
                                                 className="btn btn-danger btn-block btn-lg btn-total button"
                                                 data-mdb-ripple-color="danger"
                                                 onClick={onCheckout}
+                                                style={{ marginTop: '25px' }}
                                             >
                                                 Thanh toán
                                             </button>

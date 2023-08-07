@@ -3,6 +3,10 @@
     width: 248px;
 }
 
+.item-img {
+    height: 230px;
+}
+
 .menu-content {
     align-items: center;
     display: flex;

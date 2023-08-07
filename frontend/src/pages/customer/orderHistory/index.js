@@ -1,10 +1,11 @@
-import OrderApi from '~/api/orderAPI';
+import HistoryOrderApi from '~/api/customer/historyOrderAPI';
 import { useState, useEffect } from 'react';
 import ModalHistory from './modalHistory';
 import Swal from 'sweetalert2';
 
 import '~/assets/css/orderHistory.css';
 import '~/assets/css/loading.css';
+import dayjs from 'dayjs';
 
 function OrderHistory() {
     const [orderHistory, setOrderHistory] = useState([]);
@@ -14,7 +15,7 @@ function OrderHistory() {
         const fetchOrderHistory = async () => {
             setLoading(true);
             try {
-                const response = await OrderApi.getAll();
+                const response = await HistoryOrderApi.getAll();
                 setOrderHistory(response);
                 setLoading(false);
             } catch (err) {
@@ -71,7 +72,7 @@ function OrderHistory() {
                             </td>
                             <td>{history.amount}</td>
                             <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
-                            <td>{history.createdAt}</td>
+                            <td>{dayjs(history.createdAt).format('DD/MM/YYYY  hh:mm:ss')}</td>
                         </tr>
                     ))}
                 </tbody>

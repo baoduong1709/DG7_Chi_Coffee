@@ -1,9 +1,9 @@
 import axiosClient from '~/api/axiosClient';
 
-const OrderApi = {
+const HistoryOrderApi = {
     getAll: (params) => {
         const url = '/order/history';
         return axiosClient.get(url, { params });
     },
 };
-export default OrderApi;
+export default HistoryOrderApi;
