@@ -4,16 +4,18 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { ToastOption } from '~/components/toastify';
 import { ToastContainer, toast } from 'react-toastify';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import Swal from 'sweetalert2';
 import userApi from '~/api/customer/userApi';
 import image from '~/assets/images';
+import { UserContext } from '~/context/userContext';
 
 import '~/assets/css/information.css';
 import '~/assets/css/datePicker.css';
 import '~/assets/css/loading.css';
 
 function Information() {
+    const { updateUserName } = useContext(UserContext);
     const [date, setDate] = useState(null);
     const onChangeDate = (date) => {
         setDate(date);
@@ -129,6 +131,13 @@ function Information() {
         try {
             // eslint-disable-next-line no-unused-vars
             const response = await userApi.update(data_information);
+            const updatedInformation = {
+                ...information,
+                name: data_information.name, // Cập nhật tên trong dữ liệu thông tin
+            };
+            setInformation(updatedInformation); // Cập nhật dữ liệu thông tin trong component
+            const savedToken = JSON.parse(localStorage.getItem('token')); // Lấy token từ localStorage
+            updateUserName(data_information.name, savedToken); // Truyền token vào đây
             Swal.fire({
                 icon: 'success',
                 showConfirmButton: false,

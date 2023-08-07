@@ -12,6 +12,7 @@ import '~/assets/css/header.css';
 
 function Header() {
     const { cartItems } = useContext(CartContext);
+
     const navigate = useNavigate();
     const [productType, setProductType] = useState([]);
     useEffect(() => {
@@ -27,6 +28,7 @@ function Header() {
     }, []);
 
     const { logout, user } = useContext(UserContext);
+
     const handleLogout = () => {
         Swal.fire({
             icon: 'question',
