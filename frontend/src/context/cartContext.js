@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
 
 export const CartContext = createContext();
 
@@ -10,13 +9,6 @@ export const CartProvider = ({ children }) => {
 
     //thêm các sản phẩm vào giỏ hàng
     const addToCart = (item) => {
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Thêm vào giỏ hàng thành công',
-            showConfirmButton: false,
-            timer: 1000,
-        });
         //kiểm tra xem đã có mặt hàng trong giỏ hàng chưa
         const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
         if (isItemInCart) {
