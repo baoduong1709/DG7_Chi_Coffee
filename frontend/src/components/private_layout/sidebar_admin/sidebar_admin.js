@@ -76,12 +76,6 @@ const AdminSide = [
         route: '../admin/bill',
         name: 'Hoá đơn',
     },
-    {
-        id: 5,
-        svg: faGear,
-        route: '../admin/information',
-        name: 'Sửa thông tin',
-    },
 ];
 
 const EmployeeSide = [
@@ -96,12 +90,6 @@ const EmployeeSide = [
         svg: faMoneyBills,
         route: '../admin/bill',
         name: 'Hoá đơn',
-    },
-    {
-        id: 5,
-        svg: faGear,
-        route: '../admin/information',
-        name: 'Chỉnh sửa thông tin',
     },
 ];
 
