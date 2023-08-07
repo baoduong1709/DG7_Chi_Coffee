@@ -15,7 +15,7 @@ export const FormDeleteDialog = ({ isDialogOpened, handleCloseDialog, item }) =>
         try {
             const res = await productAPI.delete(id);
             toast.success(res, ToastOption);
-            setTimeout(handleCloseDialog, 3000);
+            setTimeout(handleCloseDialog, 0);
         } catch (err) {
             let status = err.status;
             let data = err.data;
