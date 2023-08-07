@@ -17,7 +17,6 @@ axiosClient.interceptors.request.use(async (config) => {
     if (token_admin) {
         config.headers['Token-Admin'] = `${JSON.parse(token_admin)['token']}`;
         config.headers['Access-Control-Allow-Origin'] = '* ';
-        config.headers['Content-Type'] = 'multipart/form-data';
     }
     return config;
 });
