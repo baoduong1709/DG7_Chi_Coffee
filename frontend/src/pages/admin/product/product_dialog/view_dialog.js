@@ -6,14 +6,11 @@ import { convertName } from './convert_name';
 export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
     return (
         <React.Fragment>
-            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} fullWidth maxWidth={"lg"}>
+            <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} fullWidth maxWidth={'lg'}>
                 <DialogTitle>{item.product_name}</DialogTitle>
-                <DialogContent sx={{display: "flex", flexDirection: "row"}}>
-                    <Grid item xs={5} style={{display: "flex", justifyContent: "center"}}>
-                        <img
-                            src={item.product_image}
-                            style={{maxHeight: "300px", maxWidth: "300px"}}
-                        />
+                <DialogContent sx={{ display: 'flex', flexDirection: 'row' }}>
+                    <Grid item xs={5} style={{ display: 'flex', justifyContent: 'center' }}>
+                        <img src={item.product_image} style={{ maxHeight: '300px', maxWidth: '300px' }} />
                     </Grid>
                     <Grid item xs={7}>
                         <TextField
@@ -29,19 +26,23 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                                 readOnly: true,
                             }}
                         />
-                        {item.old_price !== "0"?<TextField
-                            autoFocus
-                            margin="dense"
-                            id="old_price"
-                            label="Giá cũ"
-                            variant="outlined"
-                            defaultValue={item.old_price}
-                            fullWidth
-                            InputProps={{
-                                readOnly: true,
-                                inputComponent: NumericFormatCustom,
-                            }}
-                        />:<></>}
+                        {item.old_price !== '0' ? (
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="old_price"
+                                label="Giá cũ"
+                                variant="outlined"
+                                defaultValue={item.old_price}
+                                fullWidth
+                                InputProps={{
+                                    readOnly: true,
+                                    inputComponent: NumericFormatCustom,
+                                }}
+                            />
+                        ) : (
+                            <></>
+                        )}
                         <TextField
                             autoFocus
                             margin="dense"
@@ -62,7 +63,7 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                             label="Trạng thái"
                             variant="outlined"
                             type="text"
-                            defaultValue={item.product_status === true? "Đang bán": "Đã ngừng bán"}
+                            defaultValue={item.product_status === true ? 'Đang bán' : 'Đã ngừng bán'}
                             fullWidth
                             InputProps={{
                                 readOnly: true,
@@ -82,7 +83,7 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                             fullWidth
                             InputProps={{
                                 readOnly: true,
-                                style: {fontSize: 14},
+                                style: { fontSize: 14 },
                             }}
                         />
                     </Grid>
@@ -93,4 +94,4 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
             </StyledDialog>
         </React.Fragment>
     );
-}
+};

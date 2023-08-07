@@ -1,6 +1,6 @@
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { useEffect, useState, useContext } from 'react';
-import productApi from '~/api/productApi';
+import productApi from '~/api/customer/productApi';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '~/context/cartContext';
 import Swal from 'sweetalert2';

@@ -6,7 +6,8 @@ import { ToastOption } from '~/components/toastify';
 import { ToastContainer, toast } from 'react-toastify';
 import { useState, useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
-import userApi from '~/api/userApi';
+import userApi from '~/api/customer/userApi';
+import image from '~/assets/images';
 
 import '~/assets/css/information.css';
 import '~/assets/css/loading.css';
@@ -62,7 +63,16 @@ function Information() {
     const handleEditClick = () => {
         setIsEditing(!isEditing);
     };
+    const handleCancelClick = () => {
+        // Đặt lại các trường nhập về giá trị ban đầu
+        inputFirstName.current.value = firstName;
+        inputLastName.current.value = lastName;
+        inputPhoneNumber.current.value = information.phone_number;
+        inputAddress.current.value = information.address;
 
+        // Chuyển đổi trở lại trạng thái không chỉnh sửa
+        setIsEditing(false);
+    };
     const handleUpdateClick = async () => {
         setIsEditing(false);
         const FirstName = inputFirstName.current.value;
@@ -122,7 +132,6 @@ function Information() {
                 title: 'Cập nhập thất bại',
                 timer: 3000,
             });
-            console.log(err);
         }
     };
     const [loadingApi, setLoangApi] = useState(false);
@@ -144,11 +153,7 @@ function Information() {
                     <div className="profile-tab-nav border-right">
                         <div className="p-4">
                             <div className="img-circle text-center mb-3">
-                                <img
-                                    src="https://img.lovepik.com/free-png/20210923/lovepik-cute-girl-avatar-png-image_401231841_wh1200.png"
-                                    alt="Imae"
-                                    className="shadow"
-                                />
+                                <img src={image.avatar_1} alt="Imae" className="shadow" />
                             </div>
                             <h4 className="text-center">{information.name}</h4>
                         </div>
@@ -286,7 +291,9 @@ function Information() {
                                     </button>
                                 )}
 
-                                <button className="btn btn-light text-uppercase btn-group">hủy bỏ</button>
+                                <button className="btn btn-light text-uppercase btn-group" onClick={handleCancelClick}>
+                                    hủy bỏ
+                                </button>
                             </div>
                             <ToastContainer />
                         </div>

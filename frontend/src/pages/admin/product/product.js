@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-    Box,
-    IconButton,
-    Typography,
-    Button,
-    Table,
-    TableBody,
-    TableContainer,
-    TableHead,
-    Paper,
-} from '@mui/material';
+import { Box, IconButton, Typography, Button, Table, TableBody, TableContainer, TableHead, Paper } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faMagnifyingGlass, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,27 +12,26 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { productsAPI, productTypesAPI } from '~/api/product';
 
-
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [viewOpen, setViewOpen] = React.useState({state: false, item:{}});
+    const [viewOpen, setViewOpen] = React.useState({ state: false, item: {} });
     const [createOpen, setCreateOpen] = React.useState(false);
-    const [editOpen, setEditOpen] = React.useState({state: false, item:{}});
-    const [deleteOpen, setDeleteOpen] = React.useState({state: false, item:{}});
+    const [editOpen, setEditOpen] = React.useState({ state: false, item: {} });
+    const [deleteOpen, setDeleteOpen] = React.useState({ state: false, item: {} });
 
     const [names, setNames] = React.useState([]);
     const [rows, setRows] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
 
     const columns = [
-        { id: 'product_name', label: 'Tên sản phẩm', flex: 3, align: "left", minWidth: 180 },
+        { id: 'product_name', label: 'Tên sản phẩm', flex: 3, align: 'left', minWidth: 180 },
         {
             id: 'id_product_type',
             label: 'Loại sản phẩm',
             flex: 2,
             minWidth: 120,
-            align: "center",
+            align: 'center',
             format: (value) => convertName(value),
         },
         {
@@ -50,17 +39,17 @@ export default function StickyHeadTable() {
             label: 'Giá (VND)',
             flex: 2,
             minWidth: 120,
-            align: "center",
+            align: 'center',
             format: (value) => value.toLocaleString('en-US'),
         },
     ];
 
     const dialogOpenId = React.useRef(0);
     React.useEffect(() => {
-        if(createOpen || editOpen.state || deleteOpen.state) {
+        if (createOpen || editOpen.state || deleteOpen.state) {
             dialogOpenId.current = dialogOpenId.current + 1;
         }
-    },[createOpen, editOpen, deleteOpen])
+    }, [createOpen, editOpen, deleteOpen]);
 
     React.useEffect(() => {
         const getProductTypeList = async () => {
@@ -89,7 +78,7 @@ export default function StickyHeadTable() {
             }
         };
         getProductList();
-    }, [dialogOpenId.current])
+    }, [dialogOpenId.current]);
 
     function convertName(_id) {
         let length = names.length;
@@ -112,9 +101,9 @@ export default function StickyHeadTable() {
 
     return (
         <Box m="1.5rem 2.5rem" width="95%">
-            <Box sx={{marginTop:2, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                <Typography variant='h3'>Sản phẩm</Typography>
-                <Button variant='contained' color='secondary' onClick={() => setCreateOpen(true)}>
+            <Box sx={{ marginTop: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Typography variant="h3">Sản phẩm</Typography>
+                <Button variant="contained" color="secondary" onClick={() => setCreateOpen(true)}>
                     Thêm sản phẩm
                 </Button>
             </Box>
@@ -139,41 +128,45 @@ export default function StickyHeadTable() {
                                 </StyledTableRow>
                             </TableHead>
                             <TableBody>
-                                {isLoading?
-                                <StyledTableRow>
-                                    <StyledTableCell>
-                                    <Typography variant='h5'>Đang tải...</Typography>
-                                    </StyledTableCell>
-                                </StyledTableRow>
-                                :rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                    return (
-                                        <StyledTableRow hover key={row._id}>
-                                            {columns.map((column) => {
-                                                const value = row[column.id];
-                                                return (
-                                                    <StyledTableCell key={column.id} align={column.align}>
-                                                        {column.format ? column.format(value) : value}
-                                                    </StyledTableCell>
-                                                );
-                                            })}
-                                            <StyledTableCell>
-                                                <IconButton onClick={() => setViewOpen({ state: true, item: row })}>
-                                                    <FontAwesomeIcon icon={faEye} />
-                                                </IconButton>
-                                            </StyledTableCell>
-                                            <StyledTableCell>
-                                                <IconButton onClick={() => setEditOpen({ state: true, item: row })}>
-                                                    <FontAwesomeIcon icon={faPenToSquare} />
-                                                </IconButton>
-                                            </StyledTableCell>
-                                            <StyledTableCell>
-                                                <IconButton onClick={() => setDeleteOpen({ state: true, item: row })}>
-                                                    <FontAwesomeIcon icon={faTrashCan} />
-                                                </IconButton>
-                                            </StyledTableCell>
-                                        </StyledTableRow>
-                                    );
-                                })}
+                                {isLoading ? (
+                                    <StyledTableRow>
+                                        <StyledTableCell>
+                                            <Typography variant="h5">Đang tải...</Typography>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
+                                ) : (
+                                    rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                        return (
+                                            <StyledTableRow hover key={row._id}>
+                                                {columns.map((column) => {
+                                                    const value = row[column.id];
+                                                    return (
+                                                        <StyledTableCell key={column.id} align={column.align}>
+                                                            {column.format ? column.format(value) : value}
+                                                        </StyledTableCell>
+                                                    );
+                                                })}
+                                                <StyledTableCell>
+                                                    <IconButton onClick={() => setViewOpen({ state: true, item: row })}>
+                                                        <FontAwesomeIcon icon={faEye} />
+                                                    </IconButton>
+                                                </StyledTableCell>
+                                                <StyledTableCell>
+                                                    <IconButton onClick={() => setEditOpen({ state: true, item: row })}>
+                                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                                    </IconButton>
+                                                </StyledTableCell>
+                                                <StyledTableCell>
+                                                    <IconButton
+                                                        onClick={() => setDeleteOpen({ state: true, item: row })}
+                                                    >
+                                                        <FontAwesomeIcon icon={faTrashCan} />
+                                                    </IconButton>
+                                                </StyledTableCell>
+                                            </StyledTableRow>
+                                        );
+                                    })
+                                )}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -188,27 +181,33 @@ export default function StickyHeadTable() {
                     />
                 </Paper>
                 <FormDialog
-                key={"view"+dialogOpenId.current.toString()}
-                isDialogOpened={viewOpen.state}
-                item = {viewOpen.item}
-                handleCloseDialog={() => setViewOpen({state: false, item: {}})}/>
+                    key={'view' + dialogOpenId.current.toString()}
+                    isDialogOpened={viewOpen.state}
+                    item={viewOpen.item}
+                    handleCloseDialog={() => setViewOpen({ state: false, item: {} })}
+                />
                 <FormCreateDialog
-                key={"edit"+dialogOpenId.current.toString()}
-                isDialogOpened={createOpen}
-                handleCloseDialog={() => setCreateOpen(false)}
-                names={names} />
-                {editOpen.state && <FormEditDialog
-                key={"dele"+dialogOpenId.current.toString()}
-                isDialogOpened={editOpen.state}
-                item = {editOpen.item}
-                event = {editOpen.event}
-                handleCloseDialog={() => setEditOpen({state: false, item: {}})}
-                names={names}/>}
+                    key={'edit' + dialogOpenId.current.toString()}
+                    isDialogOpened={createOpen}
+                    handleCloseDialog={() => setCreateOpen(false)}
+                    names={names}
+                />
+                {editOpen.state && (
+                    <FormEditDialog
+                        key={'dele' + dialogOpenId.current.toString()}
+                        isDialogOpened={editOpen.state}
+                        item={editOpen.item}
+                        event={editOpen.event}
+                        handleCloseDialog={() => setEditOpen({ state: false, item: {} })}
+                        names={names}
+                    />
+                )}
                 <FormDeleteDialog
-                key={"crea"+dialogOpenId.current.toString()}
-                isDialogOpened={deleteOpen.state}
-                item = {deleteOpen.item}
-                handleCloseDialog={() => setDeleteOpen({state: false, item: {}})}/>
+                    key={'crea' + dialogOpenId.current.toString()}
+                    isDialogOpened={deleteOpen.state}
+                    item={deleteOpen.item}
+                    handleCloseDialog={() => setDeleteOpen({ state: false, item: {} })}
+                />
             </Box>
             <ToastContainer />
         </Box>

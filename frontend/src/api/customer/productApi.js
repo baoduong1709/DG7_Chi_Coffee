@@ -9,9 +9,9 @@ const productApi = {
         const url = '/product-type';
         return axiosClient.get(url);
     },
-    getIdAll: (name) => {
+    getIdAll: (name, params) => {
         const url = `/product-type/${name}`;
-        return axiosClient.get(url);
+        return axiosClient.get(url, { params });
     },
     get: (id) => {
         const url = `/product/${id}`;
