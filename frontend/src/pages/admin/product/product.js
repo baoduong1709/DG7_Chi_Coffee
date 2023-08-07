@@ -18,7 +18,7 @@ import { faEye, faMagnifyingGlass, faPenToSquare, faTrashCan } from '@fortawesom
 import { CustomTablePagination, StyledTableCell, StyledTableRow } from '~/components/private_layout/theme';
 import { FormDialog, FormCreateDialog, FormDeleteDialog, FormEditDialog } from './product_dialog';
 
-import productApi from '~/api/productApi';
+import productApi from '~/api/customer/productApi';
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);

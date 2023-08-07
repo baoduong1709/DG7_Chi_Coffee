@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState, useContext } from 'react';
-import productApi from '~/api/productApi';
+import productApi from '~/api/customer/productApi';
 import { Link, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { CartContext } from '~/context/cartContext';

@@ -7,7 +7,7 @@ function About() {
             <div className="section-content">
                 <div className="content-row">
                     <div className="content-image">
-                        <img style={{ width: '100%' }} src={image.about} alt="Về chúng tôi" />
+                        <img style={{ height: '100%' }} src={image.about} alt="Về chúng tôi" />
                     </div>
                     <div className="content-text">
                         <h1 className="text-heading">Về chúng tôi</h1>
