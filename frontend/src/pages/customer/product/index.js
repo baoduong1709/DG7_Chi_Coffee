@@ -9,12 +9,16 @@ import '~/assets/css/loading.css';
 
 function Product() {
     const { id } = useParams();
+
     const [product, setProduct] = useState([]);
     useEffect(() => {
         const fetchProduct = async () => {
             setLoangApi(true);
             try {
-                const response = await productApi.getIdAll(id);
+                const params = {
+                    product_status: true,
+                };
+                const response = await productApi.getIdAll(id, params);
                 setProduct(response);
                 setLoangApi(false);
             } catch (error) {
