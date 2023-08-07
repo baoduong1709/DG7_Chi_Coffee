@@ -21,7 +21,7 @@ export default function EmployeeLogin() {
         let getAuth = JSON.parse(localStorage.getItem('user-admin'));
         if (getAuth) {
             toast.warning('Bạn phải đăng xuất trước!', ToastOption);
-            setTimeout(loadBack, 3000);
+            setTimeout(loadBack, 0);
             window.location.assign('./dashboard');
         }
     }, []);

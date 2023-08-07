@@ -45,6 +45,7 @@ export default function StickyHeadTable() {
                 let status = err.status;
                 let data = err.data;
                 toast.error('Lỗi ' + status + ': ' + data, ToastOption);
+                setIsLoading(false);
             }
         };
         getEmployeeList();
