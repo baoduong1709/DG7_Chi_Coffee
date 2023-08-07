@@ -1,33 +1,33 @@
-.MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+.date-picker .MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
     width: -webkit-fill-available;
 }
 
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+.date-picker .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
     font-size: 1.5rem !important;
 }
 
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+.date-picker .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
     height: 0px !important;
 }
 
-.MuiPickersCalendarHeader-labelContainer.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+.date-picker .MuiPickersCalendarHeader-labelContainer.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
     font-size: 1.6rem !important;
 }
 
-button.MuiPickersYear-yearButton.css-1beqopj-MuiPickersYear-yearButton {
+button .date-picker .MuiPickersYear-yearButton.css-1beqopj-MuiPickersYear-yearButton {
     font-size: 1.6rem !important;
 }
 
-button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
+button .date-picker .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
     font-size: 1.6rem !important;
 }
 
 
-span.MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+span .date-picker .MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
     font-size: 1.4rem !important;
 }
 
-button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
+button .date-picker .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
     font-size: 1.5rem !important;
 }
 
@@ -37,27 +37,27 @@ fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOut
 
 } */
 
-.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+.date-picker .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
     border: var(--bs-border-width) solid var(--bs-border-color) !important;
 }
 
 /* .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline :focus {
     border-color: #d32f2f !important;
 } */
-.css-1uvydh2 {
+.date-picker .css-1uvydh2 {
 
     width: 100% !important;
 
 }
 
-.input#\:r0\: {
+.date-picker .input#\:r0\: {
     height: 0px;
 
 }
 
 .date-picker {
-    height: auto;
+
     width: 100%;
-    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+
     font-size: 1.5rem !important;
 }
