@@ -1,71 +1,79 @@
-.date-picker .MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
-    width: -webkit-fill-available;
-}
+ .MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+     width: -webkit-fill-available;
+ }
 
-.date-picker .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
-    font-size: 1.5rem !important;
-}
+ .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+     font-size: 1.5rem !important;
+ }
 
-.date-picker .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
-    height: 0px !important;
-}
+ .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+     height: 0px !important;
+ }
 
-.date-picker .MuiPickersCalendarHeader-labelContainer.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
-    font-size: 1.6rem !important;
-}
+ .MuiPickersCalendarHeader-labelContainer.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+     font-size: 1.6rem !important;
+ }
 
-button .date-picker .MuiPickersYear-yearButton.css-1beqopj-MuiPickersYear-yearButton {
-    font-size: 1.6rem !important;
-}
+ button .MuiPickersYear-yearButton.css-1beqopj-MuiPickersYear-yearButton {
+     font-size: 1.6rem !important;
+ }
 
-button .date-picker .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
-    font-size: 1.6rem !important;
-}
+ button .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
+     font-size: 1.6rem !important;
+ }
 
 
-span .date-picker .MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
-    font-size: 1.4rem !important;
-}
+ span .MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+     font-size: 1.4rem !important;
+ }
 
-button .date-picker .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
-    font-size: 1.5rem !important;
-}
+ button .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
+     font-size: 1.5rem !important;
+ }
 
-/* 
+ /* 
 fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline:focus {
     border-color: var(--primary) !important;
 
 } */
 
-.date-picker .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
-    border: var(--bs-border-width) solid var(--bs-border-color) !important;
-}
+ .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+     border: var(--bs-border-width) solid var(--bs-border-color) !important;
+ }
 
-/* .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline :focus {
+ /* .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline :focus {
     border-color: #d32f2f !important;
 } */
-.date-picker .css-1uvydh2 {
-    height: 0px !important;
-    width: 100% !important;
+ .date-picker .css-1uvydh2 {
+     height: 0px !important;
+     width: 100% !important;
 
-}
+ }
 
-.date-picker .input#\:r0\: {
-    height: 0px;
+ .date-picker .input#\:r0\: {
+     height: 0px;
 
-}
+ }
 
-.date-picker {
+ .date-picker {
 
-    width: 100%;
+     width: 100%;
 
-    font-size: 1.5rem !important;
-}
+     font-size: 1.5rem !important;
+ }
 
-.date-picker .css-16j77m4 {
-    font-size: 1.5rem !important;
-}
+ .date-picker .css-16j77m4 {
+     font-size: 1.5rem !important;
+ }
 
-.css-1v994a0 {
-    font-size: 15px !important;
-}
+ .css-1v994a0 {
+     font-size: 15px !important;
+ }
+
+ .css-10qkmc3 {
+     font-size: 15px !important;
+ }
+
+ .css-1hrukl9 {
+     font-size: 15px !important;
+ }
