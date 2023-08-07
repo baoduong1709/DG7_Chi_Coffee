@@ -10,7 +10,7 @@ import userApi from '~/api/customer/userApi';
 import image from '~/assets/images';
 
 import '~/assets/css/information.css';
-import '~/assets/css/datepicker.css';
+import '~/assets/css/datePicker.css';
 import '~/assets/css/loading.css';
 
 function Information() {
