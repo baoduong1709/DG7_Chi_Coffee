@@ -94,7 +94,7 @@ export default function StickyHeadTable() {
     const handleChangeParam = (event) => {
         event.preventDefault();
         if(!stateParam.get("status")) {
-            window.location.assign("./bill?status=true");
+            window.location.assign("./bill?status=false");
         } else {
             window.location.assign("./bill");
         }
