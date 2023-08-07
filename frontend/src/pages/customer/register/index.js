@@ -142,8 +142,6 @@ function Register() {
                 },
             })
             .then((response) => {
-                console.log(response);
-
                 setLoadingApi(false);
                 Swal.fire({
                     icon: 'success',
