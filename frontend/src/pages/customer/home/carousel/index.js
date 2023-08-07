@@ -26,7 +26,7 @@ function Carousels() {
         <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false} showArrows={true}>
             {listImg.map((Img) => (
                 <div key={Img.id}>
-                    <img key={Img.id} style={{ height: '500px', width: 'auto' }} alt="" src={Img.image} />
+                    <img key={Img.id} style={{ height: '500px' }} alt="" src={Img.image} />
                 </div>
             ))}
         </Carousel>
