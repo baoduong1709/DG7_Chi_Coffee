@@ -9,7 +9,6 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
     React.useEffect(() => {
         setRows(item.product);
     }, [item])
-    console.log("rows: ",rows);
 
     return (
         <React.Fragment>
