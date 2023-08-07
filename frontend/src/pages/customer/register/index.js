@@ -316,6 +316,7 @@ function Register() {
                                                     onChange={onChangeDate}
                                                     defaultValue={formattedDate}
                                                     maxDate={today}
+                                                    style={{ color: 'red' }}
                                                 />
                                             </LocalizationProvider>
                                         </div>

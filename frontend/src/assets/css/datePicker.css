@@ -3,7 +3,7 @@
 }
 
 .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
 }
 
 .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
@@ -11,24 +11,24 @@
 }
 
 .MuiPickersCalendarHeader-labelContainer.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
 }
 
 button.MuiPickersYear-yearButton.css-1beqopj-MuiPickersYear-yearButton {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
 }
 
 button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
 }
 
 
 span.MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
-    font-size: 1.4rem;
+    font-size: 1.4rem !important;
 }
 
 button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
 }
 
 /* 
