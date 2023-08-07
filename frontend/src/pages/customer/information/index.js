@@ -4,15 +4,18 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { ToastOption } from '~/components/toastify';
 import { ToastContainer, toast } from 'react-toastify';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import Swal from 'sweetalert2';
 import userApi from '~/api/customer/userApi';
 import image from '~/assets/images';
+import { UserContext } from '~/context/userContext';
 
 import '~/assets/css/information.css';
+import '~/assets/css/datePicker.css';
 import '~/assets/css/loading.css';
 
 function Information() {
+    const { updateUserName } = useContext(UserContext);
     const [date, setDate] = useState(null);
     const onChangeDate = (date) => {
         setDate(date);
@@ -46,9 +49,17 @@ function Information() {
 
     useEffect(() => {
         if (information.name) {
-            const [hoValue, tenValue] = information.name.split(' ');
-            setFirstName(hoValue);
-            setLastName(tenValue);
+            const nameParts = information.name.split(' ');
+            if (nameParts.length > 1) {
+                const hoValue = nameParts[0];
+                const tenValue = nameParts.slice(1).join(' '); // Lấy tất cả phần còn lại và nối lại để tạo thành tên
+
+                setFirstName(hoValue);
+                setLastName(tenValue);
+            } else {
+                setFirstName(nameParts[0]); // Nếu chỉ có một phần thì sử dụng phần đó làm họ
+                setLastName(''); // Không có phần tên
+            }
         } else {
             console.log('Không có tên người dùng.');
         }
@@ -120,6 +131,13 @@ function Information() {
         try {
             // eslint-disable-next-line no-unused-vars
             const response = await userApi.update(data_information);
+            const updatedInformation = {
+                ...information,
+                name: data_information.name, // Cập nhật tên trong dữ liệu thông tin
+            };
+            setInformation(updatedInformation); // Cập nhật dữ liệu thông tin trong component
+            const savedToken = JSON.parse(localStorage.getItem('token')); // Lấy token từ localStorage
+            updateUserName(data_information.name, savedToken); // Truyền token vào đây
             Swal.fire({
                 icon: 'success',
                 showConfirmButton: false,
@@ -251,7 +269,7 @@ function Information() {
                                         <label className="text-capitalize">ngày sinh</label>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                className="form-control"
+                                                className="form-control  date-picker"
                                                 onChange={onChangeDate}
                                                 // defaultValue={formattedDate}
                                                 value={dateOfBirth}
