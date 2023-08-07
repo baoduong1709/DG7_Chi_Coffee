@@ -136,8 +136,14 @@ function Register() {
         };
         console.log('data_register: ', data_register);
         axios
-            .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/create', data_register)
+            .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/create', data_register, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
             .then((response) => {
+                console.log(response);
+
                 setLoadingApi(false);
                 Swal.fire({
                     icon: 'success',
@@ -262,7 +268,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="maleGender"
-                                                    defaultValue="famale"
+                                                    defaultValue="female"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
