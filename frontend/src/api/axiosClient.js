@@ -19,7 +19,6 @@ axiosClient.interceptors.request.use(async (config) => {
         config.headers['Access-Control-Allow-Origin'] = '* ';
         config.headers['Content-Type'] = 'multipart/form-data';
     }
-
     return config;
 });
 

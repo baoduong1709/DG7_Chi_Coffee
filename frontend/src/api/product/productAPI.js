@@ -7,7 +7,6 @@ export const productAPI = {
     },
     create: (value) => {
         const url = `/product/create`;
-        console.log("value:",value);
         return axiosClient.post(url, value);
     },
     update: (value, id) => {
