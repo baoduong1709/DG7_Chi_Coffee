@@ -22,7 +22,7 @@ import { orderAPI, ordersAPI } from '~/api/order';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 
 export default function StickyHeadTable() {
@@ -35,6 +35,7 @@ export default function StickyHeadTable() {
     const [rows, setRows] = React.useState([]);
     const [isfilter, setIsFilter] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(true);
+    const navigate = useNavigate();
 
     const columns = [
         { 
@@ -110,11 +111,17 @@ export default function StickyHeadTable() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-
+    const handleNavigate = (e) => {
+        e.preventDefault();
+        navigate("../admin/order");
+    }
     return (
         <Box m="1.5rem 2.5rem" width="95%">
-            <Box sx={{marginTop:2, display: "flex", flexDirection: "row"}}>
+            <Box sx={{marginTop:2, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <Typography variant='h3'>Hoá đơn</Typography>
+                <Button variant='contained' color='secondary' onClick={(e) => handleNavigate(e)}>
+                    Thêm đơn hàng
+                </Button>
             </Box>
             <Box mt="40px" height="75vh">
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
