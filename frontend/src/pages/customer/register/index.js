@@ -316,6 +316,7 @@ function Register() {
                                                     onChange={onChangeDate}
                                                     defaultValue={formattedDate}
                                                     maxDate={today}
+                                                    className="date-picker"
                                                 />
                                             </LocalizationProvider>
                                         </div>
