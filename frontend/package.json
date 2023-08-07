@@ -25,6 +25,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
+    "react-number-format": "^5.2.2",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.14.1",
