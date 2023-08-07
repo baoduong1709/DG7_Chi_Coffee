@@ -6,14 +6,14 @@ import { ToastOption } from '~/components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { productAPI } from '~/api/product';
+import { employeeAPI } from '~/api/employee';
 
 export const FormDeleteDialog = ({ isDialogOpened, handleCloseDialog, item }) => {
     const id = item?._id;
     const handleDelete = async (event) => {
         event.preventDefault();
         try {
-            const res = await productAPI.delete(id);
+            const res = await employeeAPI.delete(id);
             toast.success(res, ToastOption);
             setTimeout(handleCloseDialog, 0);
         } catch (err) {
@@ -27,7 +27,7 @@ export const FormDeleteDialog = ({ isDialogOpened, handleCloseDialog, item }) =>
             <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} maxWidth={"xs"} fullWidth={true}>
                 <DialogContent sx={{marginY: "20px"}}>
                     <DialogContentText textAlign="center">
-                        Xoá sản phẩm {item?.product_name}?
+                        Xoá nhân viên {item?.name}?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

@@ -41,6 +41,10 @@ export const theme = createTheme({
     },
 });
 
+theme.typography.subtitle1 = {
+  fontSize: '14px',
+}
+
 export const StyledDialog = styled(Dialog) (() => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
