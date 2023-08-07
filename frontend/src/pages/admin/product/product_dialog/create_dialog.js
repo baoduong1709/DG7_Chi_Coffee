@@ -110,6 +110,7 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog, names}) =>
                             autoFocus
                             margin="dense"
                             name="id_product_type"
+                            value={item.id_product_type}
                             defaultValue={item.id_product_type}
                             label="Loại sản phẩm"
                             variant="outlined"
