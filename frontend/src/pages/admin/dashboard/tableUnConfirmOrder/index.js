@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import ModalHistory from './modalUnConfirmOrder';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
-dayjs.extend(utc);
 
 function TableUnConfirmOrder() {
+    dayjs.extend(utc);
     // const today = dayjs();
     const [orderHistory, setOrderHistory] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
