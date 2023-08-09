@@ -1,7 +1,9 @@
 import OrderApi from '~/api/customer/orderApi';
 import { useState, useEffect } from 'react';
 import ModalHistory from './modalUnConfirmOrder';
+import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
+dayjs.extend(utc);
 
 function TableUnConfirmOrder() {
     // const today = dayjs();
@@ -19,6 +21,7 @@ function TableUnConfirmOrder() {
                     status: false,
                 };
                 const response = await OrderApi.getAll(params);
+                console.log(response);
                 setOrderHistory(response);
             } catch (err) {
                 console.log(err);
@@ -63,7 +66,7 @@ function TableUnConfirmOrder() {
                                 </td>
                                 <td>{history.amount}</td>
                                 <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
-                                <td>{dayjs(history.createdAt).format('DD/MM/YYYY  hh:mm:ss')}</td>
+                                <td>{dayjs.utc(history.createdAt).format('DD/MM/YYYY HH:mm:ss')}</td>
                                 <td>{history.customer_name}</td>
                             </tr>
                         ))
