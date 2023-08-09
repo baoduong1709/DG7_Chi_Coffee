@@ -26,7 +26,7 @@ function Login() {
     const validationAll = () => {
         const warning = {};
         if (isEmpty(username)) {
-            warning.username = 'Nhập tên đăng nhập';
+            warning.username = 'Nhập tên gmail';
         }
         if (isEmpty(password)) {
             warning.password = 'Nhập mật khẩu';
