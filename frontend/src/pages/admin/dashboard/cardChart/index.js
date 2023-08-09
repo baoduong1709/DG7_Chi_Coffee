@@ -64,7 +64,7 @@ function CardChart() {
                             >
                                 {selectedLabel}
                             </button>
-                            <ul className="dropdown-menu">
+                            <ul className="dropdown-menu menu">
                                 <li>
                                     <a
                                         className="dropdown-item text-capitalize"
