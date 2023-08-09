@@ -1,0 +1,94 @@
+
+[POST]/api/v1/customer/create
+body:[{
+  gmail: 'customer2q1@gmail.com',
+  password: '123456',
+  name: 'Bảo Dương',
+  gender: 'male',
+  date_of_birth: '17/09/2002',
+  phone_number: '11111111111',
+  address: 'Hà Tĩnh' 
+}];
+response:{
+  'Tạo tài khoản thành công'
+}
+
+[DELETE]/api/v1/customer/_id/delete
+header:{
+  'Token-Admin':'token'
+}
+params:{
+  _id:'64b7f17a912d0d0db12cfcf6'
+}
+response:{
+  'Xóa khách hàng thành công'
+}
+
+[POST]/api/v1/customer/auth
+body:[{
+  'gmail': 'duonghuybaoz@gmail.com',
+  'password': 'bao17092002' 
+}]
+response:{
+  'Đăng nhập thành công'
+}
+
+[PATCH]/api/v1/customer/details/update
+header:{
+  'Authorization':token
+}
+body:[{
+  gmail: 'customer2q1@gmail.com',
+  password: '123456',
+  name: 'Bảo Dương',
+  gender: 'male',
+  date_of_birth: '17/09/2002',
+  phone_number: '11111111111',
+  address: 'Hà Tĩnh' 
+}]
+response:{
+  'Cập nhật tài khoản thành công'
+}
+[GET]/api/v1/customer/details
+header:{
+  'Authorization':token
+}
+response:[{
+  gmail: 'customer2q1@gmail.com',
+  name: 'Bảo Dương',
+  gender: 'male',
+  date_of_birth: '17/09/2002',
+  phone_number: '11111111111',
+  address: 'Hà Tĩnh' 
+}]
+
+                Table.findOne({name: table_name})
+                .then(table => {
+                    if (table.status === true){
+                        res.status(400).send('Bàn đang được sử dụng')
+                    }else{
+                        Order.create({
+                            customer_id: customer_id,
+                            customer_name: customer_name,
+                            employee_id: employee_id,
+                            employee_name: employee_name,
+                            table_id: table_name,
+                            product: product,
+                            amount: amount,
+                            cost: cost,
+                            status: status,
+                            createdAt:createdAt
+                        })
+                        .then(() =>{
+                            next()
+                        })
+                        .catch(()=>{
+                            res.status(500).send('Lỗi server')
+                        })
+                    }
+                })
+
+
+
+
+

@@ -7,4 +7,4 @@ const Table = new Schema({
     order_id: String,
 })
 
-module.exports = mongoose.model('product_types', Product_type)
+module.exports = mongoose.model('table', Table)

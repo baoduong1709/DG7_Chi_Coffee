@@ -2,8 +2,8 @@ const Order = require('../../../models/Order')
 class UpdateOrderControllers {
     async update(req, res) {
         let _id = req.params._id
-        let employee_id=req.data._id
-        let employee_name=req.data.name
+        let employee_id=req.data_employee._id
+        let employee_name=req.data_employee.name
         let status=true
         const currentTime = new Date();
         const offsetHours = 7;

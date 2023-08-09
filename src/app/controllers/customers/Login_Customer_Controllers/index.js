@@ -18,7 +18,7 @@ class LoginCustomerControllers {
                     }, 'bao1709')
                     let name = data.name
                     return res.status(200).json({
-                        message: 'Login successfully!',
+                        message: 'Đăng nhập thành công',
                         token: token,
                         name: name,
                     })

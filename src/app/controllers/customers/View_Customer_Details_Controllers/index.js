@@ -3,10 +3,8 @@ class ViewCustomerDetailsControllers {
     
     async view(req, res, next) {
         let _id = req.params._id
-        console.log(_id)
         if (_id === undefined){
-            _id = req.data._id
-            console.log(_id)
+            _id = req.data_customer._id
         }
         try{
             const customer = await Customer.findById(_id)
