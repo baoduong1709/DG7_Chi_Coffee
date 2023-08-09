@@ -2,12 +2,14 @@ import HistoryOrderApi from '~/api/customer/historyOrderAPI';
 import { useState, useEffect } from 'react';
 import ModalHistory from './modalHistory';
 import Swal from 'sweetalert2';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
 import '~/assets/css/orderHistory.css';
 import '~/assets/css/loading.css';
-import dayjs from 'dayjs';
 
 function OrderHistory() {
+    dayjs.extend(utc);
     const [orderHistory, setOrderHistory] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -59,20 +61,18 @@ function OrderHistory() {
                 </thead>
                 <tbody>
                     {orderHistory.map((history) => (
-                        <tr key={history._id}>
-                            <td>
-                                <a
-                                    href="#modalHistory"
-                                    data-toggle="modal"
-                                    data-target="#modalHistory"
-                                    onClick={() => setSelectedOrder(history)}
-                                >
-                                    {history._id}
-                                </a>
-                            </td>
+                        <tr
+                            key={history._id}
+                            href="#modalHistory"
+                            data-toggle="modal"
+                            data-target="#modalHistory"
+                            onClick={() => setSelectedOrder(history)}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <td>{history._id}</td>
                             <td>{history.amount}</td>
                             <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
-                            <td>{dayjs(history.createdAt).format('DD/MM/YYYY  hh:mm:ss')}</td>
+                            <td>{dayjs.utc(history.createdAt).format('DD/MM/YYYY  HH:mm:ss')}</td>
                         </tr>
                     ))}
                 </tbody>
