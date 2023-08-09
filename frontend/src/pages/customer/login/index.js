@@ -18,10 +18,24 @@ function Login() {
     const onChangeUser = (e) => {
         const value = e.target.value;
         setUsername(value);
+        // Xóa thông báo kiểm tra khi người dùng bắt đầu nhập
+        if (validation.username) {
+            setValidation((prevValidation) => ({
+                ...prevValidation,
+                username: '',
+            }));
+        }
     };
     const onChangePassword = (e) => {
         const value = e.target.value;
         setPassword(value);
+        // Xóa thông báo kiểm tra khi người dùng bắt đầu nhập
+        if (validation.password) {
+            setValidation((prevValidation) => ({
+                ...prevValidation,
+                password: '',
+            }));
+        }
     };
     const validationAll = () => {
         const warning = {};
@@ -41,7 +55,15 @@ function Login() {
 
     const onSubmitLogin = async () => {
         const isValid = validationAll();
-        if (!isValid) return;
+        if (!isValid) {
+            // Sử dụng SweetAlert2 để hiển thị thông báo lỗi
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng điền đầy đủ thông tin',
+                timer: 3000,
+            });
+            return;
+        }
         //call API
         setLoangApi(true);
 
