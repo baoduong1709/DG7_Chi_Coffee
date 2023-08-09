@@ -11,9 +11,6 @@ class ViewOrderListControllers {
             } else {
                 orders = await Order.find({ status: status });
             }    
-            if (orders.length === 0) {
-                return res.status(404).send('Chưa có hóa đơn');
-            }   
             res.status(200).json(orders);
         } catch (err) {
             res.status(500).send('Lỗi server');
