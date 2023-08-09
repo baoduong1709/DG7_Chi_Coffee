@@ -67,8 +67,8 @@ function CardChart() {
                             <ul className="dropdown-menu">
                                 <li>
                                     <a
-                                        className="dropdown-item text-uppercase"
-                                        href="#1"
+                                        className="dropdown-item text-capitalize"
+                                        href="#7 ngày"
                                         onClick={() => handleRangeChange('7')}
                                     >
                                         Doanh thu 7 ngày
@@ -76,8 +76,8 @@ function CardChart() {
                                 </li>
                                 <li>
                                     <a
-                                        className="dropdown-item text-uppercase"
-                                        href="#1"
+                                        className="dropdown-item text-capitalize"
+                                        href="#30 ngày"
                                         onClick={() => handleRangeChange('30')}
                                     >
                                         doanh thu 30 ngày
