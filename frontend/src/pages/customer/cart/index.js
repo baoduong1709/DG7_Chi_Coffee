@@ -17,6 +17,7 @@ function Cart() {
                 icon: 'warning',
                 title: 'Giỏ hàng trống',
                 width: '400px',
+                timer: 2000,
             });
         } else if (isUser) {
             const data = cartItems.map((item) => ({
@@ -48,6 +49,7 @@ function Cart() {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Bạn đã thanh toán thành công',
+                                timer: 2000,
                             });
                             clearCart();
                         })
@@ -90,7 +92,16 @@ function Cart() {
                                                     style={{ cursor: 'pointer' }}
                                                     className="text-uppercase text-danger fw-bold mb-0"
                                                     onClick={() => {
-                                                        clearCart();
+                                                        if (cartItems.length === 0) {
+                                                            Swal.fire({
+                                                                icon: 'warning',
+                                                                title: 'Giỏ hàng trống',
+                                                                width: '400px',
+                                                                timer: 2000,
+                                                            });
+                                                        } else {
+                                                            clearCart();
+                                                        }
                                                     }}
                                                 >
                                                     Xóa giỏ hàng

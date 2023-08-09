@@ -52,17 +52,15 @@ function TableUnConfirmOrder() {
                     {orderHistory && orderHistory.length > 0 ? (
                         orderHistory?.map((history) => (
                             //     history?.data?.map((data) => (
-                            <tr key={history._id}>
-                                <td>
-                                    <a
-                                        href="#modalHistory"
-                                        data-toggle="modal"
-                                        data-target="#modalHistory"
-                                        onClick={() => setSelectedOrder(history)}
-                                    >
-                                        {history._id}
-                                    </a>
-                                </td>
+                            <tr
+                                key={history._id}
+                                href="#modalHistory"
+                                data-toggle="modal"
+                                data-target="#modalHistory"
+                                onClick={() => setSelectedOrder(history)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <td>{history._id}</td>
                                 <td>{history.amount}</td>
                                 <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
                                 <td>{dayjs.utc(history.createdAt).format('DD/MM/YYYY HH:mm:ss')}</td>
