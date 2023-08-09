@@ -13,6 +13,7 @@ class CreateOrderControllers {
         let product = req.body.product
         let amount = req.body.amount
         let cost = req.body.cost
+        let status = req.body.status
         try{
             if (table_name == 'other'){
                 let employee_id = req.data_employee._id
@@ -24,7 +25,7 @@ class CreateOrderControllers {
                     product: product,
                     amount: amount,
                     cost: cost,
-                    status: true,
+                    status: status,
                     createdAt:createdAt
                 })
                 .then(() =>{
@@ -42,7 +43,6 @@ class CreateOrderControllers {
                     let customer_name = data.name
                     let employee_id = req.body._id
                     let employee_name = req.body.name
-                    let status = false
                     console.log(table_name)
                     Order.create({
                         customer_id: customer_id,
@@ -87,7 +87,7 @@ class CreateOrderControllers {
                             product: product,
                             amount: amount,
                             cost: cost,
-                            status: true,
+                            status: status,
                             createdAt:createdAt
                         })
                         .then(() =>{
