@@ -1,7 +1,7 @@
 const Customer = require('../../../models/Customer');
 class UpdateCustommerControllers {
     async update(req, res, next) {
-        let _id = req.data_employee._id
+        let _id = req.data_customer._id
         let customer = req.body
         try {     
             const updatedCustomer = await Customer.findByIdAndUpdate(_id, customer, { new: true });       
