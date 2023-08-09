@@ -21,7 +21,6 @@ function TableUnConfirmOrder() {
                     status: false,
                 };
                 const response = await OrderApi.getAll(params);
-                console.log(response);
                 setOrderHistory(response);
             } catch (err) {
                 console.log(err);
