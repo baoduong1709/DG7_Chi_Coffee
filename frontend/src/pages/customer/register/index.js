@@ -87,7 +87,7 @@ function Register() {
             toast.warning('Chưa nhập mật khẩu', ToastOption);
             return;
         }
-        if (password.length < 4) {
+        if (password.length > 4) {
             toast.warning('Mật khẩu phải tối thiểu 4 ký tự', ToastOption);
         }
         if (password !== confirmPassword) {
