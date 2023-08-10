@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from './route';
 import { Fragment } from 'react';
-import { DefaultLayout, PrivateLayout } from './components';
+import { DefaultLayout, PrivateLayout, ToastOption } from './components';
 import { UserContext } from './context/userContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
     const [userData, setUserData] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isSending, setIsSending] = useState(true);
     useEffect(() => {
         if (isSending) {
@@ -22,9 +24,19 @@ function App() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const ProtectedRoute = ({ user, redirectPath = '../admin/login', children }) => {
+    useEffect(() => {
+        if(userData){
+            setIsAdmin(userData.isAdmin);
+        }
+    }, [userData]);
+
+    const ProtectedRoute = ({ user, isAdmin, allow, redirectPath = '../admin/login', children }) => {
         if (!user && !isSending) {
             return <Navigate to={redirectPath} />;
+        }
+        if((isAdmin == false) && (allow == true)) {
+            toast.error("Không có quyền truy cập trang này", ToastOption);
+            return <Navigate to={-1} />
         }
         return children ? children : <Outlet />;
     };
@@ -57,7 +69,7 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <ProtectedRoute user={userData}>
+                                    <ProtectedRoute user={userData} isAdmin={isAdmin} allow={route.admin}>
                                         <Layout>
                                             <Page />
                                         </Layout>
@@ -68,6 +80,7 @@ function App() {
                     })}
                 </Routes>
             </BrowserRouter>
+            <ToastContainer />
         </>
     );
 }

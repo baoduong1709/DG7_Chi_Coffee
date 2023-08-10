@@ -39,6 +39,16 @@ export const theme = createTheme({
             hover: '#F2F2F2',
         },
     },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            fontSize: 12,
+            boxSizing: "border-box",
+          }
+        }
+      }
+    }
 });
 
 theme.typography.subtitle1 = {
