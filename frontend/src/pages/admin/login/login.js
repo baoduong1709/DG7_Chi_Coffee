@@ -18,17 +18,17 @@ export default function EmployeeLogin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        let getAuth = JSON.parse(localStorage.getItem('user-admin'));
-        if (getAuth) {
+        let adminData = localStorage.getItem('user-admin');
+        if( adminData ) {
+            let getAuth = JSON.parse(adminData);
             toast.warning('Bạn phải đăng xuất trước!', ToastOption);
-            setTimeout(loadBack, 0);
-            window.location.assign('./dashboard');
+            if(getAuth.isAdmin === true) {
+                setTimeout(window.location.assign('./dashboard'), 0);
+            } else {
+                setTimeout(window.location.assign('./order'), 0);
+            }
         }
     }, []);
-
-    function loadBack() {
-        navigate('../admin/dashboard');
-    }
 
     const validateLogin = () => {
         if (!username) {

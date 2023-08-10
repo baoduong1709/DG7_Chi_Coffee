@@ -135,7 +135,7 @@ function Register() {
             phone_number: phone_number,
             address: address,
         };
-        console.log('data_register: ', data_register);
+        
         axios
             .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/create', data_register, {
                 headers: {

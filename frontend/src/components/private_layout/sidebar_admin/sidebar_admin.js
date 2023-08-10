@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import {
     faAnglesLeft,
     faBars,
-    faGear,
     faHouse,
     faMoneyBills,
     faMugHot,
     faMugSaucer,
-    faRightFromBracket,
+    faUsers,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -71,16 +70,28 @@ const AdminSide = [
         name: 'Sản phẩm',
     },
     {
+        id: 6,
+        svg: faUsers,
+        route: '../admin/customer',
+        name: 'Khách hàng',
+    },
+    {
         id: 4,
         svg: faMoneyBills,
         route: '../admin/bill',
         name: 'Hoá đơn',
     },
+    {
+        id: 5,
+        svg: faMugSaucer,
+        route: '../admin/order',
+        name: 'Đặt hàng',
+    }
 ];
 
 const EmployeeSide = [
     {
-        id: 7,
+        id: 5,
         svg: faMugSaucer,
         route: '../admin/order',
         name: 'Đặt hàng',

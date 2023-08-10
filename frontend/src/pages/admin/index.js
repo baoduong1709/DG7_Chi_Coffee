@@ -5,4 +5,4 @@ export { Bill as Bill } from "./bill";
 export { Logout as Logout } from "./logout";
 export { EmployeeOrder as EmployeeOrder } from "./order";
 export { ProductManaging as ProductManaging } from "./product";
-export { Setting as Setting } from "./setting";
+export { Customer as Customer } from "./customer";
