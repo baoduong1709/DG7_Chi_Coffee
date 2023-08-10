@@ -7,7 +7,7 @@ import {
     Logout,
     EmployeeOrder,
     ProductManaging,
-    Setting,
+    Customer,
 } from '~/pages/admin';
 import Product from '~/pages/customer/product';
 import Details from '~/pages/customer/product/detailsProduct';
@@ -32,13 +32,14 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    { path: 'admin/dashboard', component: AdminDashBoard },
-    { path: 'admin/employee', component: EmployeeManaging },
-    { path: 'admin/bill', component: Bill },
-    { path: '/logout', component: Logout },
-    { path: 'admin/order', component: EmployeeOrder },
-    { path: 'admin/product', component: ProductManaging },
-    { path: 'admin/information', component: Setting },
+    { path: 'admin/dashboard', component: AdminDashBoard, admin: true },
+    { path: 'admin/employee', component: EmployeeManaging, admin: true },
+    { path: 'admin/bill', component: Bill, admin: false },
+    { path: '/logout', component: Logout, admin: false },
+    { path: 'admin/order', component: EmployeeOrder,admin: false },
+    { path: 'admin/product', component: ProductManaging, admin: true },
+    { path: 'admin/customer', component: Customer, admin: true },
+    
 ];
 
 export { publicRoutes, privateRoutes };

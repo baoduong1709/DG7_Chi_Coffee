@@ -1,0 +1,1 @@
+export { tablesAPI as tablesAPI } from "./tablesAPI";
