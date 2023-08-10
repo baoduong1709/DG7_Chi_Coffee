@@ -21,7 +21,7 @@ const ItemPicker = ({ item }) => {
     }
     return (
         <React.Fragment>
-            <Card sx={{ display: 'flex', direction: 'row', paddingX: 1, paddingY: 1, border: 1 }} onClick={(e)=> handleAddOrder(e)}>
+            <Card sx={{ display: 'flex', direction: 'row', paddingX: 1, paddingY: 1, border: 1, cursor:"pointer" }} onClick={(e)=> handleAddOrder(e)}>
                 <CardMedia
                     component={"img"}
                     image={item.product_image}
@@ -224,6 +224,9 @@ export default function EmployeeOrder() {
         event.preventDefault();
         if(orderItems.length === 0) {
             toast.warning("Đơn hàng trống", ToastOption);
+        }
+        else if(table === "") {
+            toast.warning("Chưa chọn bàn", ToastOption);
         } else {
             const data = orderItems?.map((item) => ({
                 product_id: item._id,
@@ -258,6 +261,8 @@ export default function EmployeeOrder() {
         event.preventDefault();
         if(orderItems.length === 0) {
             toast.warning("Đơn hàng trống", ToastOption);
+        } else if(table === "") {
+            toast.warning("Chưa chọn bàn", ToastOption);
         } else {
             const data = orderItems?.map((item) => ({
                 product_id: item._id,
