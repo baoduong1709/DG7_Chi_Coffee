@@ -9,4 +9,8 @@ export const orderAPI = {
             }
         });
     },
+    create: (values) => {
+        const url = `/order/employee/create`;
+        return axiosClient.post(url, values);
+    }
 }
