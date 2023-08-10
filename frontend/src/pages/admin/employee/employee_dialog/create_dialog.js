@@ -100,7 +100,7 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                         defaultValue={item.password}
                         onChange={(e) => handleChange(e)}
                         variant="outlined"
-                        type="text"
+                        type={"password"}
                         fullWidth
                     />
                     <TextField
