@@ -37,7 +37,7 @@ class CreateOrderControllers {
                         product: product,
                         amount: amount,
                         cost: cost,
-                        status: status,
+                        status: false,
                         createdAt:createdAt
                     })
                     .then(() =>{
@@ -104,7 +104,7 @@ class CreateOrderControllers {
                                 product: product,
                                 amount: amount,
                                 cost: cost,
-                                status: false,
+                                status: status,
                                 createdAt:createdAt
                             })
                             .then(() =>{
