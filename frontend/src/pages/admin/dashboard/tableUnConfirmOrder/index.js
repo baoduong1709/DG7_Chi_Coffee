@@ -1,24 +1,26 @@
-import cardChart from '~/api/dashboard/cardChart';
+import OrderApi from '~/api/customer/orderApi';
 import { useState, useEffect } from 'react';
 import ModalHistory from './modalUnConfirmOrder';
+import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
 
 function TableUnConfirmOrder() {
-    const today = dayjs();
+    dayjs.extend(utc);
+    // const today = dayjs();
     const [orderHistory, setOrderHistory] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
         const fetchOrderHistory = async () => {
             try {
-                const startDate = today;
-                const endDate = today;
+                // const startDate = today;
+                // const endDate = today;
                 const params = {
-                    startDate: startDate.format('YYYY-MM-DDT00:00:00'), // Định dạng ngày bắt đầu thành chuỗi 'YYYY-MM-DD'
-                    endDate: endDate.format('YYYY-MM-DDT23:59:59'), // Định dạng ngày kết thúc thành chuỗi 'YYYY-MM-DD'
+                    // startDate: startDate.format('YYYY-MM-DDT00:00:00'), // Định dạng ngày bắt đầu thành chuỗi 'YYYY-MM-DD'
+                    // endDate: endDate.format('YYYY-MM-DDT23:59:59'), // Định dạng ngày kết thúc thành chuỗi 'YYYY-MM-DD'
                     status: false,
                 };
-                const response = await cardChart.getAll(params);
+                const response = await OrderApi.getAll(params);
                 setOrderHistory(response);
             } catch (err) {
                 console.log(err);
@@ -47,26 +49,29 @@ function TableUnConfirmOrder() {
                     </tr>
                 </thead>
                 <tbody>
-                    {orderHistory.map((history) =>
-                        history.data.map((data) => (
-                            <tr key={data._id}>
-                                <td>
-                                    {' '}
-                                    <a
-                                        href="#modalHistory"
-                                        data-toggle="modal"
-                                        data-target="#modalHistory"
-                                        onClick={() => setSelectedOrder(history)}
-                                    >
-                                        {data._id}
-                                    </a>
-                                </td>
-                                <td>{data.amount}</td>
+                    {orderHistory && orderHistory.length > 0 ? (
+                        orderHistory?.map((history) => (
+                            //     history?.data?.map((data) => (
+                            <tr
+                                key={history._id}
+                                href="#modalHistory"
+                                data-toggle="modal"
+                                data-target="#modalHistory"
+                                onClick={() => setSelectedOrder(history)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <td>{history._id}</td>
+                                <td>{history.amount}</td>
                                 <td>{formatter.format(history.cost).replace(/₫/g, 'VNĐ')}</td>
-                                <td>{dayjs(history.createdAt).format('DD/MM/YYYY  hh:mm:ss')}</td>
-                                <td>{data.customer_name}</td>
+                                <td>{dayjs.utc(history.createdAt).format('DD/MM/YYYY HH:mm:ss')}</td>
+                                <td>{history.customer_name}</td>
                             </tr>
-                        )),
+                        ))
+                    ) : (
+                        // ))
+                        <tr key={orderHistory._id}>
+                            <td colSpan="5">Không có hóa đơn.</td>
+                        </tr>
                     )}
                 </tbody>
             </table>

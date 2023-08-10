@@ -49,9 +49,10 @@ function CardChart() {
             setSelectedLabel('Doanh thu 30 ngày');
         }
     };
+
     return (
         <div className="row">
-            <div className="col-xl-8 col-lg-7" style={{ width: '800px' }}>
+            <div className="col-xl-8 col-lg-7" style={{ width: '850px' }}>
                 <div className="card shadow mb-4">
                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <div className="dropdown">
@@ -63,11 +64,11 @@ function CardChart() {
                             >
                                 {selectedLabel}
                             </button>
-                            <ul className="dropdown-menu">
+                            <ul className="dropdown-menu menu">
                                 <li>
                                     <a
-                                        className="dropdown-item text-uppercase"
-                                        href="#1"
+                                        className="dropdown-item text-capitalize"
+                                        href="#7 ngày"
                                         onClick={() => handleRangeChange('7')}
                                     >
                                         Doanh thu 7 ngày
@@ -75,8 +76,8 @@ function CardChart() {
                                 </li>
                                 <li>
                                     <a
-                                        className="dropdown-item text-uppercase"
-                                        href="#1"
+                                        className="dropdown-item text-capitalize"
+                                        href="#30 ngày"
                                         onClick={() => handleRangeChange('30')}
                                     >
                                         doanh thu 30 ngày
@@ -97,17 +98,32 @@ function CardChart() {
                                 </div>
                             </div>
                             <ComposedChart
-                                width={750}
-                                margin={{ top: 0, right: 0, left: 25, bottom: 0 }}
+                                width={800}
+                                margin={{ top: 0, right: 0, left: 40, bottom: 0 }}
                                 height={250}
                                 data={totalBillsTrue}
                             >
                                 <XAxis dataKey="time" tickFormatter={formatDateTick} />
-                                <YAxis />
-                                <Tooltip />
+                                <YAxis tickFormatter={(value) => new Intl.NumberFormat('vi-VN').format(value)} />
+                                <Tooltip
+                                    labelFormatter={(label) => {
+                                        const date = dayjs(label);
+                                        return date.format('DD/MM/YYYY');
+                                    }}
+                                />
                                 <Legend />
                                 <CartesianGrid stroke="#f5f5f5" />
-                                <Bar dataKey="cost" barSize={20} fill="#de4057" name="Doanh thu" />
+                                <Bar
+                                    dataKey="cost"
+                                    barSize={20}
+                                    fill="#de4057"
+                                    name="Doanh thu"
+                                    formatter={(value) =>
+                                        new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
+                                            .format(value)
+                                            .replace(/₫/g, 'VNĐ')
+                                    }
+                                />
                             </ComposedChart>
                         </div>
                     </div>

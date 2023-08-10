@@ -7,6 +7,7 @@ function ModalHistory({ data, selectedOrder }) {
     //Điều này giúp cho component kiểm tra xem có đơn hàng nào được chọn trước khi hiển thị nội dung của modal.
     //Nếu không có đơn hàng được chọn (order là undefined), component sẽ trả về null để ngăn việc hiển thị nội dung của modal.
     //Ngược lại, nó sẽ hiển thị modal với chi tiết của đơn hàng đã chọn.
+
     if (!order) {
         return null; // Thêm kiểm tra nếu không có mã đơn hàng nào được chọn
     }
@@ -22,7 +23,7 @@ function ModalHistory({ data, selectedOrder }) {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h1 className="modal-title fs-2 text-uppercase text-danger fw-bold" id="exampleModalLabel">
-                            Chi tiết đơn hàng
+                            Chi tiết hóa đơn
                         </h1>
                         <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -35,13 +36,15 @@ function ModalHistory({ data, selectedOrder }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {order.data.map((listProduct) =>
-                                    listProduct.product.map((product) => (
-                                        <tr key={product.product_id}>
-                                            <td>{product.product_name}</td>
-                                            <td>{product.quanlity}</td>
+                                {order?.product.map(
+                                    (listProduct) => (
+                                        // listProduct.product.map((product) => (
+                                        <tr key={listProduct.product_id}>
+                                            <td>{listProduct.product_name}</td>
+                                            <td>{listProduct.quanlity}</td>
                                         </tr>
-                                    )),
+                                    ),
+                                    // )),
                                 )}
                             </tbody>
                         </table>

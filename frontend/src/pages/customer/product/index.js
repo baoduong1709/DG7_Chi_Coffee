@@ -38,6 +38,15 @@ function Product() {
         style: 'currency',
         currency: 'VND',
     });
+    const handleAddToCart = (productItem) => {
+        addToCart(productItem);
+        Swal.fire({
+            icon: 'success',
+            title: 'Thêm vào giỏ hàng thành công!',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    };
     return (
         <div className="menu-section">
             <div className="container-content product-content">
@@ -72,7 +81,7 @@ function Product() {
                                 <button
                                     className="btn btn-danger btn-add-cart button"
                                     type="button"
-                                    onClick={() => addToCart(Productitem)}
+                                    onClick={() => handleAddToCart(Productitem)}
                                 >
                                     <i className="fa fa-shopping-cart"></i>
                                     <span className="btn-heading">Thêm vào giỏ hàng</span>

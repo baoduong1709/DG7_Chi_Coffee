@@ -9,6 +9,7 @@ const axiosClient = axios.create({
 });
 axiosClient.interceptors.request.use(async (config) => {
     //Handle token here ...
+    config.headers['Access-Control-Allow-Origin'] = '* ';
     const token = localStorage.getItem('token');
     if (token) {
         config.headers['Authorization'] = `${JSON.parse(token)['token']}`;
@@ -16,7 +17,6 @@ axiosClient.interceptors.request.use(async (config) => {
     const token_admin = localStorage.getItem('user-admin');
     if (token_admin) {
         config.headers['Token-Admin'] = `${JSON.parse(token_admin)['token']}`;
-        config.headers['Access-Control-Allow-Origin'] = '* ';
     }
     return config;
 });
