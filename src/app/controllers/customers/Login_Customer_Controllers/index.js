@@ -5,7 +5,6 @@ class LoginCustomerControllers {
     async login(req, res, next) {
         let gmail = req.body.gmail
         let passwordC = req.body.password
-        console.log(gmail)
         try{
             const customer = await Customer.findOne({
                 gmail: gmail

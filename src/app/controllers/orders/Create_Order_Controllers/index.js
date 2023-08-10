@@ -104,7 +104,7 @@ class CreateOrderControllers {
                                 product: product,
                                 amount: amount,
                                 cost: cost,
-                                status: status,
+                                status: false,
                                 createdAt:createdAt
                             })
                             .then(() =>{
