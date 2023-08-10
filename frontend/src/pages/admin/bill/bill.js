@@ -21,9 +21,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { orderAPI, ordersAPI } from '~/api/order';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-
+import utc from 'dayjs/plugin/utc';
 
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
@@ -36,6 +35,7 @@ export default function StickyHeadTable() {
     const [isfilter, setIsFilter] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(true);
     const navigate = useNavigate();
+    dayjs.extend(utc);
 
     const columns = [
         { 
@@ -43,7 +43,8 @@ export default function StickyHeadTable() {
             label: 'Khách hàng', 
             flex: 3, 
             minWidth: 150,
-            align: "left",  
+            align: "left",
+            format: (value) => convertToName(value),  
         },
         {
             id: 'createdAt',
@@ -51,7 +52,7 @@ export default function StickyHeadTable() {
             flex: 2,
             minWidth: 100,
             align: "center",
-            format: (value) => dayjs(value).format("HH:mm:ss DD/MM/YYYY").toString(),
+            format: (value) => dayjs.utc(value).format("HH:mm:ss DD/MM/YYYY").toString(),
         },
         {
             id: 'status',
@@ -71,7 +72,7 @@ export default function StickyHeadTable() {
     ];
 
     React.useEffect(() => {
-        const getProductTypeList = async () => {
+        const getOrderedList = async () => {
             try {
                 const param = stateParam.get("status");
                 param? setIsFilter(true): setIsFilter(false);
@@ -85,8 +86,13 @@ export default function StickyHeadTable() {
                 setIsLoading(false);
             }
         };
-        getProductTypeList();
+        getOrderedList();
     }, [confirmOpen]);
+
+    function convertToName(value) {
+        if(value === undefined) return "Khách vãng lai";
+        else return value;
+    }
 
     function convertName(status) {
         if(status === true) return "Đã xác nhận";

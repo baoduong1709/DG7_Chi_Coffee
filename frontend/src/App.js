@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
     const [userData, setUserData] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(true);
     const [isSending, setIsSending] = useState(true);
     useEffect(() => {
         if (isSending) {
@@ -30,7 +30,7 @@ function App() {
         }
     }, [userData]);
 
-    const ProtectedRoute = ({ user, isAdmin, allow, redirectPath = '../admin/login', children }) => {
+    const ProtectedRoute = ({ user, allow, redirectPath = '../admin/login', children }) => {
         if (!user && !isSending) {
             return <Navigate to={redirectPath} />;
         }
@@ -69,7 +69,7 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <ProtectedRoute user={userData} isAdmin={isAdmin} allow={route.admin}>
+                                    <ProtectedRoute user={userData} allow={route.admin}>
                                         <Layout>
                                             <Page />
                                         </Layout>
