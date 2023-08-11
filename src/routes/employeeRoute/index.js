@@ -4,10 +4,10 @@ const CheckLoginEmployee =require('../../app/security/CheckLoginEmployee')
 const CheckAdmin = require('../../app/security/CheckAdmin')
 
 const ViewEmployeeListControllers = require('../../app/controllers/employees/View_Employee_List_Controllers')
-router.get('/', ViewEmployeeListControllers.view)
+router.get('/',CheckLoginEmployee.check,CheckAdmin.check, ViewEmployeeListControllers.view)
 
 const ViewEmployeeDetailsControllers = require('../../app/controllers/employees/View_Employee_Details_Controllers')
-router.get('/:_id', ViewEmployeeDetailsControllers.view)
+router.get('/:_id',CheckLoginEmployee.check,CheckAdmin.check, ViewEmployeeDetailsControllers.view)
 
 const LoginEmployeeControllers = require('../../app/controllers/employees/Login_Employee_Controllers')
 router.post('/auth', LoginEmployeeControllers.login)
