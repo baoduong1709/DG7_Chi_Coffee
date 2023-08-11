@@ -2,7 +2,6 @@ const Employee = require('../../../models/Employee')
 class UpdateEmployeeControllers {
     async update(req, res, next) {
         let _id = req.params._id
-        let new_ssn = req.body.ssn
         let new_name = req.body.name
         let new_phone_number = req.body.phone_number
         let new_gmail = req.body.gmail
@@ -18,17 +17,17 @@ class UpdateEmployeeControllers {
                 return res.status(404).send('Nhân viên không tồn tại');
             }
             if(new_name==null
-                || new_ssn == null
+                || _id==null 
                 || new_phone_number==null 
                 || new_gender==null 
                 || new_address==null 
+                || new_shift_number==null 
                 || new_gmail==null 
                 || new_position==null 
                 || new_date_of_birth == null){
                 return res.status(400).send('Điền đầy đủ thông tin')
                 }
             Employee.findByIdAndUpdate(_id, {
-                ssn: new_ssn,
                 name: new_name,
                 phone_number: new_phone_number,
                 gmail: new_gmail,
