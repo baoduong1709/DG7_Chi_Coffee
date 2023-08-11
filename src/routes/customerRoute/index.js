@@ -25,3 +25,4 @@ router.get('/',CheckLoginEmployee.check, ViewCustomerListControllers.view)
 router.get('/:_id',CheckLoginEmployee.check, ViewCustomerDetailsControllers.view)
 
 module.exports = router;
+
