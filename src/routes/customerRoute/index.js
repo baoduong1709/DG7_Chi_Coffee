@@ -19,4 +19,10 @@ router.get('/details',CheckLoginCustomer.check, ViewCustomerDetailsControllers.v
 const DeleteCustomerControllers = require('../../app/controllers/customers/Delete_Customer_Controllers')
 router.delete('/:_id/delete',CheckLoginEmployee.check,CheckAdmin.check, DeleteCustomerControllers.delete)
 
+const ViewCustomerListControllers = require('../../app/controllers/customers/View_Customer_List_Controllers')
+router.get('/',CheckLoginEmployee.check, ViewCustomerListControllers.view)
+
+router.get('/:_id',CheckLoginEmployee.check, ViewCustomerDetailsControllers.view)
+
 module.exports = router;
+
