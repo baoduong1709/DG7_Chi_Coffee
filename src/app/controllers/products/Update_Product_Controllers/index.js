@@ -15,6 +15,7 @@ class UpdateProductControllers {
                 product_image = dataFile.path;
                 product_image_name = dataFile.filename;
             }
+            let product_name = req.body.product_name;
             let id_product_type = req.body.id_product_type
             let new_price = req.body.new_price
             let old_price = req.body.old_price
@@ -28,6 +29,7 @@ class UpdateProductControllers {
                 return res.status(400).send('Vui lòng nhập đầy đủ thông tin')
             }else{
                 Product.findByIdAndUpdate(_id,{
+                    product_name: product_name,
                     id_product_type: id_product_type,
                     old_price: old_price,
                     new_price: new_price,

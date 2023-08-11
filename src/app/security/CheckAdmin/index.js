@@ -1,6 +1,6 @@
 class CheckAdmin{
     check(req, res, next){
-        let isAdmin = req.data.isAdmin
+        let isAdmin = req.data_employee.isAdmin
         if (isAdmin === true){
             next()
         }else{

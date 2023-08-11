@@ -1,6 +1,5 @@
 const Product = require('../../../models/Product')
 const Product_type =require('../../../models/Product_type')
-const moment = require('moment');
 
 // const { mutipleMongooseToObject } = require('../../../util/mongoose')
 class ViewProductDetailsControllers {
@@ -27,10 +26,6 @@ class ViewProductDetailsControllers {
                         product_status: product.product_status,
                         description: product.description,
                     }
-                    const currentTime = new Date()
-                    console.log(currentTime)
-                    const thoiGianDaChuyenDoi = moment(currentTime).utcOffset(7).format('DD/MM/YYYY HH:mm');
-                    console.log(thoiGianDaChuyenDoi)
                     res.status(200).json(data)
                 })
                 .catch(err => {
