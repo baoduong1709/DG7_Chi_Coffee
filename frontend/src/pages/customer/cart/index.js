@@ -123,9 +123,9 @@ function Cart() {
                                                             />
                                                         </div>
                                                         <div className="col-md-3 col-lg-3 col-xl-3">
-                                                            <h4 className="text-muted text-capitalize">
-                                                                {item.product_type_name}
-                                                            </h4>
+                                                            // <h4 className="text-muted text-capitalize">
+                                                            //     {item.product_type_name}
+                                                            // </h4>
                                                             <h4 className="text-black mb-0">{item.product_name}</h4>
                                                         </div>
                                                         <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
