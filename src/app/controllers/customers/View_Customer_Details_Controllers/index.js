@@ -1,9 +1,11 @@
 const Customer = require('../../../models/Customer')
-let jwt = require('jsonwebtoken')
 class ViewCustomerDetailsControllers {
     
     async view(req, res, next) {
-        let _id = req.data._id
+        let _id = req.params._id
+        if (_id === undefined){
+            _id = req.data_customer._id
+        }
         try{
             const customer = await Customer.findById(_id)
             if (!customer) {
