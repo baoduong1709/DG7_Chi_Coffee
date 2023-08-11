@@ -75,7 +75,7 @@ function DetailsPage() {
                 <div className="content-info">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">Trang Chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item href={`/product/${detail.product_type_name}`}>Sản Phẩm</Breadcrumb.Item>
+                        <Breadcrumb.Item href={`/product/${detail.product_type_name}`}>{detail.product_type_name}</Breadcrumb.Item>
                         <Breadcrumb.Item active>{detail.product_name}</Breadcrumb.Item>
                     </Breadcrumb>
                     <h1 className="name-item">{detail.product_name}</h1>
