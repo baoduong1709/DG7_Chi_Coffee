@@ -4,13 +4,9 @@ const Schema = mongoose.Schema
 const Order = new Schema({
     customer_id: {
         type: String,
-        required: true,
-        immutable: true
     },
     customer_name: {
         type: String,
-        required: true,
-        immutable: true
     },
     employee_id: {
         type: String,
@@ -27,11 +23,11 @@ const Order = new Schema({
     amount: Number,
     cost: Number,
     createdAt: {
-        type: String,
+        type: Date,
         required: true,
         immutable: true
     },
-    updatedAt: String,
+    updatedAt: Date,
     status: Boolean
 })
 module.exports = mongoose.model('Order', Order)

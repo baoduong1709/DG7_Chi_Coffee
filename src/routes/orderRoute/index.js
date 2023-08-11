@@ -3,13 +3,18 @@ const router = express.Router()
 const CheckLoginEmployee =require('../../app/security/CheckLoginEmployee')
 const CheckLoginCustomer = require('../../app/security/CheckLoginCustomer')
 
+const InsertTableControllers = require('../../app/controllers/table/Insert_Table_Controllers')
 const CreateOrderController = require('../../app/controllers/orders/Create_Order_Controllers')
 router.post('/create',CheckLoginCustomer.check, CreateOrderController.create)
+router.post('/employee/create',CheckLoginEmployee.check, CreateOrderController.create,InsertTableControllers.insert)
 
 const UpdateOrderOnlineController = require('../../app/controllers/orders/Update_Order_Controllers')
 router.put('/:_id/update',CheckLoginEmployee.check, UpdateOrderOnlineController.update)
 
 const ViewOrderHistoryController = require('../../app/controllers/orders/View_Order_History_Controllers')
 router.get('/history',CheckLoginCustomer.check, ViewOrderHistoryController.view)
+
+const ViewOrderListController = require('../../app/controllers/orders/View_Order_List_Controllers')
+router.get('/',CheckLoginEmployee.check, ViewOrderListController.view)
 
 module.exports = router
