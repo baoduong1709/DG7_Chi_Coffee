@@ -3,12 +3,8 @@ const Order = require('../../../models/Order')
 class ViewOrderHistoryControllers {
     
     async view(req, res, next) {
-        let token = req.header('Authorization')
-        if (token == undefined){
-            return res.status(401).send('Chưa đăng nhập')
-        }
         try{
-            let _id = jwt.verify(token,'bao1709')
+            let _id = req.data_customer._id
             await Order.find({customer_id: _id})
             .then(order => {
                 if(order == '') {
