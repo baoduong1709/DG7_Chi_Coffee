@@ -11,7 +11,7 @@ class checkLogin{
             Employee.findById(_id)
             .then((data) =>{
                 if (data){
-                    req.data_employee = data
+                    req.data = data
                     next()
                 }else{
                     return res.status(404).send('Tài khoản không tồn tại')

@@ -4,7 +4,7 @@
     background: white;
     border-radius: 6px;
     overflow: hidden;
-    max-width: 800px;
+    min-width: 900px;
     width: 100%;
     margin: 0 auto;
     position: relative;
@@ -31,7 +31,7 @@
     border-bottom: 1px solid var(--primary);
 }
 
-.table-container tbody tr:last-child {
+.table-container tbody tr a:last-child {
     border: 0;
 }
 
@@ -58,4 +58,31 @@
 tbody>tr:hover {
     background-color: var(--primary);
     color: #fff;
+}
+
+tbody>tr:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+tbody>tr:hover td a {
+    color: #fff;
+}
+
+td a {
+    color: #333;
+}
+
+/* modal */
+.table-content {
+    border-spacing: 1px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
 }

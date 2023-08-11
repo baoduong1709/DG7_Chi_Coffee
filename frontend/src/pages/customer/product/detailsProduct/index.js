@@ -1,6 +1,6 @@
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { useEffect, useState, useContext } from 'react';
-import productApi from '~/api/productApi';
+import productApi from '~/api/customer/productApi';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '~/context/cartContext';
 import Swal from 'sweetalert2';
@@ -48,6 +48,15 @@ function DetailsPage() {
         style: 'currency',
         currency: 'VND',
     });
+    const handleAddToCart = (detail) => {
+        addToCart(detail);
+        Swal.fire({
+            icon: 'success',
+            title: 'Thêm vào giỏ hàng thành công!',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    };
     return (
         <div className="content-product-details">
             {loadingApi && (
@@ -84,7 +93,7 @@ function DetailsPage() {
                         </div>
                         <input type="hidden" value={number} />
                     </div>
-                    <button onClick={() => addToCart(detail)} className="btn btn-danger btn-add button">
+                    <button onClick={() => handleAddToCart(detail)} className="btn btn-danger btn-add button">
                         <i className="fa fa-shopping-cart" />
                         <span className="btn-cart"> Thêm vào giỏ hàng</span>
                     </button>

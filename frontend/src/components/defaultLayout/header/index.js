@@ -2,7 +2,7 @@ import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import productTypeApi from '~/api/productTypeApi';
+import productTypeApi from '~/api/customer/productTypeApi';
 import { UserContext } from '~/context/userContext';
 import { CartContext } from '~/context/cartContext';
 import Swal from 'sweetalert2';
@@ -12,6 +12,7 @@ import '~/assets/css/header.css';
 
 function Header() {
     const { cartItems } = useContext(CartContext);
+
     const navigate = useNavigate();
     const [productType, setProductType] = useState([]);
     useEffect(() => {
@@ -27,6 +28,7 @@ function Header() {
     }, []);
 
     const { logout, user } = useContext(UserContext);
+
     const handleLogout = () => {
         Swal.fire({
             icon: 'question',

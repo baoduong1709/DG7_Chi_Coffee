@@ -30,3 +30,7 @@ button {
 img {
     width: 100%;
 }
+
+.swal2-popup {
+    font-size: 12px !important;
+}

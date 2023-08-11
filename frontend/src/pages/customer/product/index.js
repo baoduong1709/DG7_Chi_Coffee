@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState, useContext } from 'react';
-import productApi from '~/api/productApi';
+import productApi from '~/api/customer/productApi';
 import { Link, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { CartContext } from '~/context/cartContext';
@@ -9,12 +9,16 @@ import '~/assets/css/loading.css';
 
 function Product() {
     const { id } = useParams();
+
     const [product, setProduct] = useState([]);
     useEffect(() => {
         const fetchProduct = async () => {
             setLoangApi(true);
             try {
-                const response = await productApi.getIdAll(id);
+                const params = {
+                    product_status: true,
+                };
+                const response = await productApi.getIdAll(id, params);
                 setProduct(response);
                 setLoangApi(false);
             } catch (error) {
@@ -34,6 +38,15 @@ function Product() {
         style: 'currency',
         currency: 'VND',
     });
+    const handleAddToCart = (productItem) => {
+        addToCart(productItem);
+        Swal.fire({
+            icon: 'success',
+            title: 'Thêm vào giỏ hàng thành công!',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    };
     return (
         <div className="menu-section">
             <div className="container-content product-content">
@@ -68,7 +81,7 @@ function Product() {
                                 <button
                                     className="btn btn-danger btn-add-cart button"
                                     type="button"
-                                    onClick={() => addToCart(Productitem)}
+                                    onClick={() => handleAddToCart(Productitem)}
                                 >
                                     <i className="fa fa-shopping-cart"></i>
                                     <span className="btn-heading">Thêm vào giỏ hàng</span>

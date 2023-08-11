@@ -89,6 +89,7 @@ function Register() {
         }
         if (password.length < 4) {
             toast.warning('Mật khẩu phải tối thiểu 4 ký tự', ToastOption);
+            return;
         }
         if (password !== confirmPassword) {
             toast.warning('Mật khẩu không khớp', ToastOption);
@@ -134,9 +135,13 @@ function Register() {
             phone_number: phone_number,
             address: address,
         };
-        console.log('data_register: ', data_register);
+        
         axios
-            .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/create', data_register)
+            .post('https://ex-dg7-chi-coffee.onrender.com/api/v1/customer/create', data_register, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
             .then((response) => {
                 setLoadingApi(false);
                 Swal.fire({
@@ -244,7 +249,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="femaleGender"
-                                                    defaultValue="Nam"
+                                                    defaultValue="male"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
@@ -262,7 +267,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="maleGender"
-                                                    defaultValue="Nữ"
+                                                    defaultValue="female"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
@@ -280,7 +285,7 @@ function Register() {
                                                     type="radio"
                                                     name="inlineRadioOptions"
                                                     id="maleGender"
-                                                    defaultValue="Khác"
+                                                    defaultValue="other"
                                                     onChange={onChangeRadio}
                                                     style={{ minWidth: 'unset' }}
                                                 />
@@ -310,6 +315,7 @@ function Register() {
                                                     onChange={onChangeDate}
                                                     defaultValue={formattedDate}
                                                     maxDate={today}
+                                                    className="date-picker"
                                                 />
                                             </LocalizationProvider>
                                         </div>
