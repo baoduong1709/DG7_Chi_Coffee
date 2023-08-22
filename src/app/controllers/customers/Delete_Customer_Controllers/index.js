@@ -7,7 +7,7 @@ class DeleteCustomerControllers {
         if (!customer) {
             return res.status(404).send('Khách hàng không tồn tại')
         }
-        await Employee.deleteOne({_id: _id})
+        await Customer.deleteOne({_id: _id})
                 .then(data => {
                     res.status(200).send('Xóa khách hàng thành công')
                 })

@@ -20,14 +20,12 @@ class CreateOrderControllers {
  
             if (table_name == undefined){
                 let _id = req.data_customer._id
-                console.log(req.data_customer,_id)
                 Customer.findById(_id)
                 .then((data) =>{
                     let customer_id = data._id
                     let customer_name = data.name
                     let employee_id = req.body._id
                     let employee_name = req.body.name
-                    console.log(table_name)
                     Order.create({
                         customer_id: customer_id,
                         customer_name: customer_name,
@@ -51,7 +49,6 @@ class CreateOrderControllers {
         
                 })
                 .catch(err=>{
-                    console.error(err)
                     return res.status(404).send('Tài khoản không tồn tại!')
                 })
     
@@ -59,7 +56,6 @@ class CreateOrderControllers {
                 let customer_gmail = req.body.customer_gmail
                 let customer_id = req.body.customer_id
                 let customer_name = req.body.customer_name
-                console.log(customer_gmail)
                 if (customer_gmail){
                     const customer =await Customer.findOne({gmail: customer_gmail}).exec()
                     customer_id = customer._id

@@ -10,7 +10,6 @@ class ViewEmployeeDetailsControllers {
             }
             await Employee.findById(_id,'name ssn phone_number gmail gender date_of_birth shift_number address position username')
             .then(data => {
-    
                 res.status(200).json(data)
             })
             .catch(err => {
@@ -20,7 +19,6 @@ class ViewEmployeeDetailsControllers {
         catch (err) {
             return res.status(401).send('Id không hợp lệ')
         }
-
     };
 }
 module.exports = new ViewEmployeeDetailsControllers;

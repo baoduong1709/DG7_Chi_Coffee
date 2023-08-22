@@ -13,13 +13,9 @@ class checkLogin{
                 if (data){
                     req.data_employee = data
                     next()
-                }else{
-                    return res.status(404).send('Tài khoản không tồn tại')
-                }
+                }else{return res.status(404).send('Tài khoản không tồn tại')}
             })
-        }catch(err){
-            return res.status(401).send('Token không hợp lệ')
-        }
+        }catch(err){return res.status(401).send('Token không hợp lệ')}
     }
 }
 module.exports = new checkLogin

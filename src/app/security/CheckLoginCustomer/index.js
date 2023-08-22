@@ -4,6 +4,7 @@ class checkLoginEmployee{
     async check(req, res, next){
         try{
             let token = req.header('Authorization')
+            console.log('dads',token)
             if (token == undefined){
                 return res.status(401).send('Chưa đăng nhập')
             }

@@ -2,13 +2,10 @@ const Employee = require('../../../models/Employee')
 const jwt = require('jsonwebtoken')
 const CryptoJS = require("crypto-js");
 class LoginEmployeeControllers {
-
     login(req, res, next) {
         let username = req.body.username
         let passwordC = req.body.password
-        Employee.findOne({
-            username: username           
-        })
+        Employee.findOne({username: username})
             .then(data => {
                 if (data) {
                     let bytes  = CryptoJS.AES.decrypt(data.password, 'duonghuybao');
@@ -25,18 +22,12 @@ class LoginEmployeeControllers {
                             name: name,
                             isAdmin: isAdmin
                         })
-                    }else{
-                        res.status(404).send('Sai mật khẩu!')
-                    }                   
-                } else {  
-                    res.status(404).send('Tài khoản không tồn tại!')
-                }
+                    }else{res.status(404).send('Sai mật khẩu!')}                 
+                } else {res.status(404).send('Tài khoản không tồn tại!')}
             })
             .catch(error => {
                 res.status(500).send('Lỗi server!')
         })
-        
     }
-    
 };
 module.exports = new LoginEmployeeControllers;
