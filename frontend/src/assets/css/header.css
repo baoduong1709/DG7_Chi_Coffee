@@ -79,3 +79,90 @@ a {
 li.liItem.dis a:hover {
     text-decoration: underline;
 }
+
+/* Mobile */
+.btn-bars {
+    /* width: 28px;
+    height: 28px; */
+    display: none;
+    margin-left: 8px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.btn-bars_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: fadeIn linear 0.2s;
+}
+
+.ulHeader_mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 100%;
+    background-color: #fff;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform linear 0.2s, opacity linear 0.2s;
+}
+
+.mobile_ul {
+    margin-top: 24px;
+}
+
+.mobile_li {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 0;
+    font-size: 1.6rem;
+}
+
+.mobile-close {
+    width: 28px;
+    height: 28px;
+    color: #666;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+.mobile_input:checked~.btn-bars_overlay {
+    display: block;
+}
+
+.mobile_input:checked~.ulHeader_mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+@media (max-width: 1023px) {
+    .btn-bars {
+        display: block;
+        position: relative;
+        right: 250px;
+    }
+
+    .ulHeader {
+        display: none;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -19,10 +19,10 @@ export default function EmployeeLogin() {
 
     useEffect(() => {
         let adminData = localStorage.getItem('user-admin');
-        if( adminData ) {
+        if (adminData) {
             let getAuth = JSON.parse(adminData);
             toast.warning('Bạn phải đăng xuất trước!', ToastOption);
-            if(getAuth.isAdmin === true) {
+            if (getAuth.isAdmin === true) {
                 setTimeout(window.location.assign('./dashboard'), 0);
             } else {
                 setTimeout(window.location.assign('./order'), 0);
