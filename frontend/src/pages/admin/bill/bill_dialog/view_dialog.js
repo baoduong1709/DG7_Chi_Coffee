@@ -48,7 +48,10 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
     React.useEffect(() => {
         setRows(item.product);
     }, [item]);
-
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
     return (
         <React.Fragment>
             <StyledDialog open={isDialogOpened} onClose={handleCloseDialog} fullWidth maxWidth={'sm'}>
@@ -132,7 +135,7 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                         >
                             <Typography variant="subtitle1">{'Tổng tiền:  '}</Typography>
                             <Typography variant="subtitle1" marginLeft={2}>
-                                {item.cost}
+                                {formatter.format(item.cost).replace(/₫/g, 'VNĐ')}
                             </Typography>
                         </Grid>
                     </Grid>
