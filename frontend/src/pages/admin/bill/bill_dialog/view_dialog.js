@@ -141,7 +141,6 @@ export const FormDialog = ({ isDialogOpened, item, handleCloseDialog }) => {
                     <Button onClick={handleCloseDialog}>Đóng lại</Button>
                 </DialogActions>
             </StyledDialog>
-            <ToastContainer />
         </React.Fragment>
     );
 };
