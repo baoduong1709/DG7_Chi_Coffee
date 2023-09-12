@@ -40,10 +40,10 @@ function Login() {
     const validationAll = () => {
         const warning = {};
         if (isEmpty(username)) {
-            warning.username = 'Nhập Tên Email';
+            warning.username = 'Nhập tên gmail';
         }
         if (isEmpty(password)) {
-            warning.password = 'Nhập Mật Khẩu';
+            warning.password = 'Nhập mật khẩu';
         }
         setValidation(warning);
         if (Object.keys(warning).length > 0) {
@@ -161,7 +161,7 @@ function Login() {
                                                         fontSize: '1.6rem',
                                                     }}
                                                     className="form-control form-control-lg"
-                                                    placeholder="Tên Email"
+                                                    placeholder="Tên gmail"
                                                     required
                                                     onChange={onChangeUser}
                                                 />
@@ -179,7 +179,7 @@ function Login() {
                                                         fontSize: '1.6rem',
                                                     }}
                                                     className="form-control form-control-lg"
-                                                    placeholder="Mật Khẩu"
+                                                    placeholder="Mật khẩu"
                                                     required // bắt buộc điền trước khi submit đi
                                                     onChange={onChangePassword}
                                                 />
