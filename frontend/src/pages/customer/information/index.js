@@ -271,7 +271,7 @@ function Information() {
                                             <DatePicker
                                                 className="form-control  date-picker"
                                                 onChange={onChangeDate}
-                                                defaultValue={formattedDate}
+                                                defaultValue={dateOfBirth}
                                                 value={dateOfBirth}
                                                 maxDate={today}
                                                 readOnly={!isEditing}
