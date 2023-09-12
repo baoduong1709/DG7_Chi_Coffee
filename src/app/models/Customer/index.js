@@ -34,3 +34,4 @@ const Customer = new Schema({
     bonus_mark: Number
 })
 module.exports = mongoose.model('customers', Customer)
+
