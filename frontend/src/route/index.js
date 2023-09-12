@@ -36,10 +36,9 @@ const privateRoutes = [
     { path: 'admin/employee', component: EmployeeManaging, admin: true },
     { path: 'admin/bill', component: Bill, admin: false },
     { path: '/logout', component: Logout, admin: false },
-    { path: 'admin/order', component: EmployeeOrder,admin: false },
+    { path: 'admin/order', component: EmployeeOrder, admin: false },
     { path: 'admin/product', component: ProductManaging, admin: true },
     { path: 'admin/customer', component: Customer, admin: true },
-    
 ];
 
 export { publicRoutes, privateRoutes };
