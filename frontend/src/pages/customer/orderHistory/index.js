@@ -18,6 +18,8 @@ function OrderHistory() {
             setLoading(true);
             try {
                 const response = await HistoryOrderApi.getAll();
+                // Sắp xếp phản hồi theo createdAt theo thứ tự giảm dần (mới nhất trước)
+                response.sort((a, b) => dayjs.utc(b.createdAt).valueOf() - dayjs.utc(a.createdAt).valueOf());
                 setOrderHistory(response);
                 setLoading(false);
             } catch (err) {
