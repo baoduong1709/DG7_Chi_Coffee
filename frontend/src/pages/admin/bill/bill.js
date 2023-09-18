@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-    Box,
-    IconButton,
-    Typography,
-    Button,
-    Table,
-    TableBody,
-    TableContainer,
-    TableHead,
-    Paper,
-} from '@mui/material';
+import { Box, IconButton, Typography, Button, Table, TableBody, TableContainer, TableHead, Paper } from '@mui/material';
 import dayjs from 'dayjs';
 import { CustomTablePagination, StyledTableCell, StyledTableRow, theme } from '~/components/private_layout/theme';
 import { FormDialog, FormConfirmDialog } from './bill_dialog';
@@ -27,8 +17,8 @@ import utc from 'dayjs/plugin/utc';
 export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [viewOpen, setViewOpen] = React.useState({state: false, item:{}});
-    const [confirmOpen, setConfirmOpen] = React.useState({state: false, item:{}});
+    const [viewOpen, setViewOpen] = React.useState({ state: false, item: {} });
+    const [confirmOpen, setConfirmOpen] = React.useState({ state: false, item: {} });
     const [stateParam, setStateParam] = useSearchParams();
 
     const [rows, setRows] = React.useState([]);
@@ -38,28 +28,28 @@ export default function StickyHeadTable() {
     dayjs.extend(utc);
 
     const columns = [
-        { 
+        {
             id: 'customer_name',
-            label: 'Khách hàng', 
-            flex: 3, 
+            label: 'Khách hàng',
+            flex: 3,
             minWidth: 150,
-            align: "left",
-            format: (value) => convertToName(value),  
+            align: 'left',
+            format: (value) => convertToName(value),
         },
         {
             id: 'createdAt',
             label: 'Thời gian',
             flex: 2,
             minWidth: 100,
-            align: "center",
-            format: (value) => dayjs.utc(value).format("HH:mm:ss DD/MM/YYYY").toString(),
+            align: 'center',
+            format: (value) => dayjs.utc(value).format('HH:mm:ss DD/MM/YYYY').toString(),
         },
         {
             id: 'status',
             label: 'Tình trạng',
             flex: 2,
             minWidth: 100,
-            align: "center",
+            align: 'center',
             format: (value) => convertName(value),
         },
         {
@@ -67,16 +57,18 @@ export default function StickyHeadTable() {
             label: 'Nhân viên xác nhận',
             flex: 3,
             minWidth: 150,
-            align: "left",
+            align: 'left',
         },
     ];
 
     React.useEffect(() => {
         const getOrderedList = async () => {
             try {
-                const param = stateParam.get("status");
-                param? setIsFilter(true): setIsFilter(false);
+                const param = stateParam.get('status');
+                param ? setIsFilter(true) : setIsFilter(false);
                 const res = await ordersAPI.getAll(param);
+                // Sắp xếp phản hồi theo createdAt theo thứ tự giảm dần (mới nhất trước)
+                res.sort((a, b) => dayjs.utc(b.createdAt).valueOf() - dayjs.utc(a.createdAt).valueOf());
                 setRows(res);
                 setIsLoading(false);
             } catch (err) {
@@ -90,24 +82,24 @@ export default function StickyHeadTable() {
     }, [confirmOpen]);
 
     function convertToName(value) {
-        if(value === undefined) return "Khách vãng lai";
+        if (value === undefined) return 'Khách vãng lai';
         else return value;
     }
 
     function convertName(status) {
-        if(status === true) return "Đã xác nhận";
-        else if(status === false) return "Chưa xác nhận";
+        if (status === true) return 'Đã xác nhận';
+        else if (status === false) return 'Chưa xác nhận';
         else return 'null';
     }
     const handleChangeParam = (event) => {
         event.preventDefault();
-        if(!stateParam.get("status")) {
-            window.location.assign("./bill?status=false");
+        if (!stateParam.get('status')) {
+            window.location.assign('./bill?status=false');
         } else {
-            window.location.assign("./bill");
+            window.location.assign('./bill');
         }
         return;
-    }
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -119,13 +111,13 @@ export default function StickyHeadTable() {
     };
     const handleNavigate = (e) => {
         e.preventDefault();
-        navigate("../admin/order");
-    }
+        navigate('../admin/order');
+    };
     return (
         <Box m="1.5rem 2.5rem" width="95%">
-            <Box sx={{marginTop:2, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                <Typography variant='h3'>Hoá đơn</Typography>
-                <Button variant='contained' color='secondary' onClick={(e) => handleNavigate(e)}>
+            <Box sx={{ marginTop: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Typography variant="h3">Hoá đơn</Typography>
+                <Button variant="contained" color="secondary" onClick={(e) => handleNavigate(e)}>
                     Thêm đơn hàng
                 </Button>
             </Box>
@@ -145,56 +137,58 @@ export default function StickyHeadTable() {
                                         </StyledTableCell>
                                     ))}
                                     <StyledTableCell></StyledTableCell>
-                                    <StyledTableCell align='center'>
+                                    <StyledTableCell align="center">
                                         <IconButton onClick={handleChangeParam}>
-                                            <FontAwesomeIcon 
-                                                icon={faFilter} 
-                                                color={isfilter? theme.palette.warning.main :theme.palette.light.main}
+                                            <FontAwesomeIcon
+                                                icon={faFilter}
+                                                color={isfilter ? theme.palette.warning.main : theme.palette.light.main}
                                             />
                                         </IconButton>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             </TableHead>
                             <TableBody>
-                                {isLoading?
-                                <StyledTableRow>
-                                    <StyledTableCell>
-                                    <Typography variant='h5'>Đang tải...</Typography>
-                                    </StyledTableCell>
-                                </StyledTableRow>
-                                :rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                    return (
-                                        <StyledTableRow hover key={row._id}>
-                                            {columns.map((column) => {
-                                                const value = row[column.id];
-                                                return (
-                                                    <StyledTableCell key={column.id} align={column.align}>
-                                                        {column.format ? column.format(value) : value}
-                                                    </StyledTableCell>
-                                                );
-                                            })}
-                                            <StyledTableCell>
-                                                <Button
-                                                    variant="contained"
-                                                    onClick={() => setViewOpen({ state: true, item: row })}
-                                                    color='primary'
-                                                >
-                                                    Chi tiết
-                                                </Button>
-                                            </StyledTableCell>
-                                            <StyledTableCell>
-                                                <Button
-                                                    variant="contained"
-                                                    onClick={() => setConfirmOpen({ state: true, item: row })}
-                                                    color='warning'
-                                                    disabled={row.status === true}
-                                                >
-                                                    Xác nhận
-                                                </Button>
-                                            </StyledTableCell>
-                                        </StyledTableRow>
-                                    );
-                                })}
+                                {isLoading ? (
+                                    <StyledTableRow>
+                                        <StyledTableCell>
+                                            <Typography variant="h5">Đang tải...</Typography>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
+                                ) : (
+                                    rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                        return (
+                                            <StyledTableRow hover key={row._id}>
+                                                {columns.map((column) => {
+                                                    const value = row[column.id];
+                                                    return (
+                                                        <StyledTableCell key={column.id} align={column.align}>
+                                                            {column.format ? column.format(value) : value}
+                                                        </StyledTableCell>
+                                                    );
+                                                })}
+                                                <StyledTableCell>
+                                                    <Button
+                                                        variant="contained"
+                                                        onClick={() => setViewOpen({ state: true, item: row })}
+                                                        color="primary"
+                                                    >
+                                                        Chi tiết
+                                                    </Button>
+                                                </StyledTableCell>
+                                                <StyledTableCell>
+                                                    <Button
+                                                        variant="contained"
+                                                        onClick={() => setConfirmOpen({ state: true, item: row })}
+                                                        color="warning"
+                                                        disabled={row.status === true}
+                                                    >
+                                                        Xác nhận
+                                                    </Button>
+                                                </StyledTableCell>
+                                            </StyledTableRow>
+                                        );
+                                    })
+                                )}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -209,15 +203,17 @@ export default function StickyHeadTable() {
                     />
                 </Paper>
                 <FormDialog
-                key={"view"+viewOpen.item["_id"]}
-                isDialogOpened={viewOpen.state}
-                item = {viewOpen.item}
-                handleCloseDialog={() => setViewOpen({state: false, item: {}})}/>
+                    key={'view' + viewOpen.item['_id']}
+                    isDialogOpened={viewOpen.state}
+                    item={viewOpen.item}
+                    handleCloseDialog={() => setViewOpen({ state: false, item: {} })}
+                />
                 <FormConfirmDialog
-                key={"conf"+confirmOpen.item["_id"]}
-                isDialogOpened={confirmOpen.state}
-                item = {confirmOpen.item}
-                handleCloseDialog={() => setConfirmOpen({state: false, item: {}})}/>
+                    key={'conf' + confirmOpen.item['_id']}
+                    isDialogOpened={confirmOpen.state}
+                    item={confirmOpen.item}
+                    handleCloseDialog={() => setConfirmOpen({ state: false, item: {} })}
+                />
             </Box>
             <ToastContainer />
         </Box>
