@@ -188,7 +188,6 @@ export const FormCreateDialog = ({ isDialogOpened, handleCloseDialog}) => {
                         fullWidth
                     >
                         <MenuItem  id="position" value={"employee"}>Nhân viên</MenuItem>
-                        <MenuItem  id="position" value={"admin"}>Quản lí</MenuItem>
                     </TextField>
                 </DialogContent>
                 <DialogActions>
